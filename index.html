@@ -1,345 +1,205 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>MIND OF MARKET</title>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 
 <style>
-
-body{
-background:#020810;
-color:white;
-font-family:Arial;
-margin:0;
-text-align:center;
-}
-
-header{
-padding:20px;
-font-size:30px;
-font-weight:bold;
-background:#07111f;
-}
-
-.box{
-background:#101a2f;
-width:90%;
-margin:20px auto;
-padding:20px;
-border-radius:12px;
-}
-
-canvas{
-max-width:100%;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020810;color:#e2e8f0;font-family:Arial,sans-serif;min-height:100vh}
+header{background:#050f1f;border-bottom:1px solid #164e63;padding:18px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:bold;color:#38bdf8}
+.live{color:#34d399;font-size:13px}
+main{max-width:1300px;margin:auto;padding:18px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.card,.stat{background:#07111f;border:1px solid #164e63;border-radius:14px;padding:16px}
+.label{color:#94a3b8;font-size:12px;margin-bottom:8px}
+.value{font-size:24px;font-weight:bold;color:#38bdf8}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+h3{color:#38bdf8;margin-bottom:12px}
+.item{padding:12px;border-bottom:1px solid #1e293b;font-size:14px}
+.green{color:#34d399}.red{color:#f87171}.yellow{color:#fbbf24}.purple{color:#a78bfa}
+canvas{height:260px!important}
+footer{text-align:center;color:#64748b;padding:18px;font-size:12px}
+@media(max-width:800px){.stats,.grid{grid-template-columns:1fr}}
 </style>
-
 </head>
-
-
 
 <body>
 
-
 <header>
-
-🐋 MIND OF MARKET
-
+  <div class="logo">🐋 MIND OF MARKET</div>
+  <div class="live">LIVE • <span id="clock">--:--:--</span></div>
 </header>
 
+<main>
 
+<div class="stats">
+  <div class="stat"><div class="label">Whale Score</div><div class="value" id="score">--</div></div>
+  <div class="stat"><div class="label">Fear & Greed</div><div class="value" id="fear">--</div></div>
+  <div class="stat"><div class="label">Market Mood</div><div class="value" id="mood">--</div></div>
+  <div class="stat"><div class="label">Whale Moves</div><div class="value" id="movesCount">--</div></div>
+  <div class="stat"><div class="label">Last Update</div><div class="value" id="updated">--</div></div>
+</div>
 
-<div class="box">
+<div class="grid">
 
-Fear & Greed :
-<span id="fear">Loading...</span>
+  <div class="card">
+    <h3>🐋 Whale Alerts</h3>
+    <div id="whales"></div>
+  </div>
+
+  <div class="card">
+    <h3>📊 Whale Flow Chart</h3>
+    <canvas id="whaleChart"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>💰 Live Market Prices</h3>
+    <div id="prices"></div>
+  </div>
+
+  <div class="card">
+    <h3>🧠 MIND OF MARKET Analysis</h3>
+    <div id="analysis">جاري التحليل...</div>
+  </div>
 
 </div>
 
+</main>
 
-
-<div class="box">
-
-Whale Score :
-<span id="score">Loading...</span>
-
-</div>
-
-
-
-<div class="box">
-
-<div id="analysis">
-
-Loading analysis...
-
-</div>
-
-</div>
-
-
-
-<div class="box">
-
-<canvas id="chart"></canvas>
-
-</div>
-
-
-
-<div class="box" id="whales">
-
-Loading whale movements...
-
-</div>
-
-
-
-
+<footer>
+MIND OF MARKET — بيانات للمتابعة فقط وليست نصيحة استثمارية
+</footer>
 
 <script>
+setInterval(()=>{
+  document.getElementById("clock").innerText =
+  new Date().toLocaleTimeString("ar-SA");
+},1000);
 
+const whaleMoves = [
+  {token:"BTC", amount:1250, usd:104250000, from:"Unknown Wallet", to:"Binance", type:"إيداع CEX"},
+  {token:"ETH", amount:8500, usd:44500000, from:"Whale Wallet", to:"Unknown Wallet", type:"تراكم"},
+  {token:"USDT", amount:25000000, usd:25000000, from:"Treasury", to:"Market", type:"سيولة"},
+  {token:"BTC", amount:900, usd:94000000, from:"Coinbase", to:"Cold Wallet", type:"سحب CEX"},
+  {token:"SOL", amount:320000, usd:58200000, from:"Unknown Wallet", to:"Binance", type:"إيداع"}
+];
 
-const ARKHAM_KEY =
-window.ENV?.ARKHAM_KEY || "";
-
-
-const ANTHROPIC_KEY =
-window.ENV?.ANTHROPIC_KEY || "";
-
-
-
-let chart;
-
-
+const prices = [
+  {name:"BTC", price:"$104,250", change:"+1.8%", color:"green"},
+  {name:"ETH", price:"$5,240", change:"-0.6%", color:"red"},
+  {name:"SOL", price:"$182", change:"+3.2%", color:"green"},
+  {name:"USDT", price:"$1.00", change:"0.0%", color:"yellow"}
+];
 
 function money(n){
-
-n = Number(n||0);
-
-if(n>=1e9) return "$"+(n/1e9).toFixed(2)+"B";
-
-if(n>=1e6) return "$"+(n/1e6).toFixed(2)+"M";
-
-return "$"+n.toFixed(0);
-
+  if(n>=1e9)return "$"+(n/1e9).toFixed(2)+"B";
+  if(n>=1e6)return "$"+(n/1e6).toFixed(2)+"M";
+  if(n>=1e3)return "$"+(n/1e3).toFixed(1)+"K";
+  return "$"+n;
 }
 
+async function loadFear(){
+  try{
+    const r = await fetch("https://api.alternative.me/fng/");
+    const d = await r.json();
+    const fear = Number(d.data[0].value);
+    document.getElementById("fear").innerText = fear;
 
+    let mood = "محايد";
+    let score = 5;
+    let analysis = "السوق محايد. راقبي تحركات الحيتان قبل الدخول.";
 
+    if(fear < 30){
+      mood = "خوف";
+      score = 7;
+      analysis = "الخوف مرتفع. قد توجد فرص تراكم، لكن الدخول يحتاج تأكيد.";
+    }
 
-async function loadDashboard(){
+    if(fear > 70){
+      mood = "جشع";
+      score = 8;
+      analysis = "الجشع مرتفع. يجب الحذر من التصريف أو الفخاخ السعرية.";
+    }
 
+    document.getElementById("mood").innerText = mood;
+    document.getElementById("score").innerText = score + "/10";
+    document.getElementById("analysis").innerText = analysis;
 
-try{
-
-
-const fg =
-await fetch(
-"https://api.alternative.me/fng/"
-);
-
-
-const fgd =
-await fg.json();
-
-
-const fear =
-fgd.data[0].value;
-
-
-document.getElementById(
-"fear"
-).innerHTML = fear;
-
-
-
-
-const ar =
-await fetch(
-
-"https://api.arkhamintelligence.com/transfers?usdGte=1000000&limit=20",
-
-{
-
-headers:{
-
-"API-Key":
-ARKHAM_KEY
-
+  }catch(e){
+    document.getElementById("fear").innerText = "N/A";
+    document.getElementById("mood").innerText = "Demo";
+    document.getElementById("score").innerText = "6/10";
+    document.getElementById("analysis").innerText =
+    "تعذر جلب Fear & Greed حالياً. الداشبورد يعمل بوضع العرض التجريبي.";
+  }
 }
 
+function renderWhales(){
+  document.getElementById("movesCount").innerText = whaleMoves.length;
+  document.getElementById("updated").innerText =
+  new Date().toLocaleTimeString("ar-SA");
+
+  document.getElementById("whales").innerHTML = whaleMoves.map(w=>`
+    <div class="item">
+      <b class="yellow">🐋 ${money(w.usd)}</b> — ${w.amount.toLocaleString()} ${w.token}<br>
+      من: ${w.from}<br>
+      إلى: ${w.to}<br>
+      النوع: <span class="purple">${w.type}</span>
+    </div>
+  `).join("");
 }
 
-);
-
-
-
-const ad =
-await ar.json();
-
-
-
-const transfers =
-ad.transfers || [];
-
-
-
-const labels =
-transfers.slice(0,6).map(
-x=>x.tokenSymbol
-);
-
-
-const values =
-transfers.slice(0,6).map(
-x=>x.historicalUSD
-);
-
-
-
-
-if(chart){
-
-chart.destroy();
-
+function renderPrices(){
+  document.getElementById("prices").innerHTML = prices.map(p=>`
+    <div class="item">
+      <b>${p.name}</b> — ${p.price}
+      <span class="${p.color}">${p.change}</span>
+    </div>
+  `).join("");
 }
 
+let chart;
+function renderChart(){
+  const ctx = document.getElementById("whaleChart");
+  if(chart) chart.destroy();
 
-
-
-chart =
-new Chart(
-
-document.getElementById(
-"chart"
-),
-
-{
-
-type:"bar",
-
-data:{
-
-labels,
-
-datasets:[{
-
-data:values
-
-}]
-
+  chart = new Chart(ctx,{
+    type:"bar",
+    data:{
+      labels:whaleMoves.map(x=>x.token),
+      datasets:[{
+        label:"USD Value",
+        data:whaleMoves.map(x=>x.usd)
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{
+          ticks:{
+            callback:v=>money(v)
+          }
+        }
+      }
+    }
+  });
 }
 
+function loadAll(){
+  renderWhales();
+  renderPrices();
+  renderChart();
+  loadFear();
 }
 
-);
-
-
-
-
-
-document.getElementById(
-"whales"
-).innerHTML =
-
-transfers.slice(0,5).map(
-
-t=>`
-
-<div style='padding:10px'>
-
-🐋 ${money(
-t.historicalUSD
-)}
-
-<br>
-
-${t.tokenSymbol}
-
-</div>
-
-`
-
-).join("");
-
-
-
-
-
-let score = 5;
-let text = "محايد";
-
-
-if(fear < 30){
-
-score = 8;
-text = "فرصة تراكم";
-
-}
-
-
-if(fear > 70){
-
-score = 8;
-text = "احذر من التصريف";
-
-}
-
-
-
-document.getElementById(
-"score"
-).innerHTML =
-score+"/10";
-
-
-document.getElementById(
-"analysis"
-).innerHTML =
-text;
-
-
-
-}
-
-
-catch(e){
-
-console.log(e);
-
-}
-
-
-
-}
-
-
-
-loadDashboard();
-
-
-setInterval(
-
-loadDashboard,
-
-15000
-
-);
-
-
-
+loadAll();
+setInterval(loadAll,60000);
 </script>
 
-
-
 </body>
-
 </html>
