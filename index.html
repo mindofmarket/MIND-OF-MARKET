@@ -1,32 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 
 <head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MIND OF MARKET</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 
 <style>
 
 body{
-background:#0b1020;
+background:#020810;
 color:white;
 font-family:Arial;
-text-align:center;
 margin:0;
+text-align:center;
 }
 
-h1{
-margin-top:40px;
-font-size:50px;
+header{
+padding:20px;
+font-size:30px;
+font-weight:bold;
+background:#07111f;
 }
 
 .box{
-background:#151c33;
-width:80%;
+background:#101a2f;
+width:90%;
 margin:20px auto;
 padding:20px;
 border-radius:12px;
-font-size:28px;
+}
+
+canvas{
+max-width:100%;
 }
 
 </style>
@@ -34,76 +44,300 @@ font-size:28px;
 </head>
 
 
+
 <body>
 
-<h1>🐋 MIND OF MARKET</h1>
+
+<header>
+
+🐋 MIND OF MARKET
+
+</header>
+
+
 
 <div class="box">
-Whale Intelligence Dashboard
+
+Fear & Greed :
+<span id="fear">Loading...</span>
+
 </div>
 
 
-<div class="box" id="prices">
-Loading prices...
+
+<div class="box">
+
+Whale Score :
+<span id="score">Loading...</span>
+
 </div>
 
 
-<div class="box" id="whale">
-Loading whale activity...
+
+<div class="box">
+
+<div id="analysis">
+
+Loading analysis...
+
 </div>
+
+</div>
+
+
+
+<div class="box">
+
+<canvas id="chart"></canvas>
+
+</div>
+
+
+
+<div class="box" id="whales">
+
+Loading whale movements...
+
+</div>
+
+
 
 
 
 <script>
 
-const prices = [
 
-"₿ BTC $104,250 ▲",
-"Ξ ETH $5,240 ▼",
-"◎ SOL $182 ▲",
-"₿ BTC $104,880 ▲"
-
-];
+const ARKHAM_KEY =
+window.ENV?.ARKHAM_KEY || "";
 
 
-const alerts = [
-
-"🐋 1,250 BTC moved to Binance",
-"🐋 8,500 ETH moved to unknown wallet",
-"🐋 25M USDT minted",
-"🐋 900 BTC withdrawn from Coinbase"
-
-];
+const ANTHROPIC_KEY =
+window.ENV?.ANTHROPIC_KEY || "";
 
 
 
-let p = 0;
-let i = 0;
+let chart;
 
 
 
-setInterval(()=>{
+function money(n){
 
-document.getElementById("prices").innerHTML = prices[p];
+n = Number(n||0);
 
-p = (p+1)%prices.length;
+if(n>=1e9) return "$"+(n/1e9).toFixed(2)+"B";
 
-},1500);
+if(n>=1e6) return "$"+(n/1e6).toFixed(2)+"M";
+
+return "$"+n.toFixed(0);
+
+}
 
 
 
 
-setInterval(()=>{
+async function loadDashboard(){
 
-document.getElementById("whale").innerHTML = alerts[i];
 
-i = (i+1)%alerts.length;
+try{
 
-},2000);
+
+const fg =
+await fetch(
+"https://api.alternative.me/fng/"
+);
+
+
+const fgd =
+await fg.json();
+
+
+const fear =
+fgd.data[0].value;
+
+
+document.getElementById(
+"fear"
+).innerHTML = fear;
+
+
+
+
+const ar =
+await fetch(
+
+"https://api.arkhamintelligence.com/transfers?usdGte=1000000&limit=20",
+
+{
+
+headers:{
+
+"API-Key":
+ARKHAM_KEY
+
+}
+
+}
+
+);
+
+
+
+const ad =
+await ar.json();
+
+
+
+const transfers =
+ad.transfers || [];
+
+
+
+const labels =
+transfers.slice(0,6).map(
+x=>x.tokenSymbol
+);
+
+
+const values =
+transfers.slice(0,6).map(
+x=>x.historicalUSD
+);
+
+
+
+
+if(chart){
+
+chart.destroy();
+
+}
+
+
+
+
+chart =
+new Chart(
+
+document.getElementById(
+"chart"
+),
+
+{
+
+type:"bar",
+
+data:{
+
+labels,
+
+datasets:[{
+
+data:values
+
+}]
+
+}
+
+}
+
+);
+
+
+
+
+
+document.getElementById(
+"whales"
+).innerHTML =
+
+transfers.slice(0,5).map(
+
+t=>`
+
+<div style='padding:10px'>
+
+🐋 ${money(
+t.historicalUSD
+)}
+
+<br>
+
+${t.tokenSymbol}
+
+</div>
+
+`
+
+).join("");
+
+
+
+
+
+let score = 5;
+let text = "محايد";
+
+
+if(fear < 30){
+
+score = 8;
+text = "فرصة تراكم";
+
+}
+
+
+if(fear > 70){
+
+score = 8;
+text = "احذر من التصريف";
+
+}
+
+
+
+document.getElementById(
+"score"
+).innerHTML =
+score+"/10";
+
+
+document.getElementById(
+"analysis"
+).innerHTML =
+text;
+
+
+
+}
+
+
+catch(e){
+
+console.log(e);
+
+}
+
+
+
+}
+
+
+
+loadDashboard();
+
+
+setInterval(
+
+loadDashboard,
+
+15000
+
+);
 
 
 
 </script>
+
 
 
 </body>
