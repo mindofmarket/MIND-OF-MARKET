@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <title>MIND OF MARKET</title>
 
 <style>
+
 body{
 background:#0b1020;
 color:white;
 font-family:Arial;
 text-align:center;
+margin:0;
 }
 
 h1{
 margin-top:40px;
+font-size:50px;
 }
 
 .box{
@@ -21,11 +26,13 @@ width:80%;
 margin:20px auto;
 padding:20px;
 border-radius:12px;
-font-size:22px;
+font-size:28px;
 }
+
 </style>
 
 </head>
+
 
 <body>
 
@@ -35,27 +42,70 @@ font-size:22px;
 Whale Intelligence Dashboard
 </div>
 
+
+<div class="box" id="prices">
+Loading prices...
+</div>
+
+
 <div class="box" id="whale">
 Loading whale activity...
 </div>
 
+
+
 <script>
 
+const prices = [
+
+"₿ BTC $104,250 ▲",
+"Ξ ETH $5,240 ▼",
+"◎ SOL $182 ▲",
+"₿ BTC $104,880 ▲"
+
+];
+
+
 const alerts = [
+
 "🐋 1,250 BTC moved to Binance",
 "🐋 8,500 ETH moved to unknown wallet",
 "🐋 25M USDT minted",
 "🐋 900 BTC withdrawn from Coinbase"
+
 ];
 
+
+
+let p = 0;
 let i = 0;
 
+
+
 setInterval(()=>{
+
+document.getElementById("prices").innerHTML = prices[p];
+
+p = (p+1)%prices.length;
+
+},1500);
+
+
+
+
+setInterval(()=>{
+
 document.getElementById("whale").innerHTML = alerts[i];
+
 i = (i+1)%alerts.length;
+
 },2000);
+
+
 
 </script>
 
+
 </body>
+
 </html>
