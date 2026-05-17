@@ -1,204 +1,288 @@
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIND OF MARKET</title>
+<title>عقل السوق | رادار الحيتان</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#020810;color:#e2e8f0;font-family:Arial,sans-serif;min-height:100vh}
-header{background:#050f1f;border-bottom:1px solid #164e63;padding:18px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:24px;font-weight:bold;color:#38bdf8}
-.live{color:#34d399;font-size:13px}
-main{max-width:1300px;margin:auto;padding:18px}
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
-.card,.stat{background:#07111f;border:1px solid #164e63;border-radius:14px;padding:16px}
-.label{color:#94a3b8;font-size:12px;margin-bottom:8px}
-.value{font-size:24px;font-weight:bold;color:#38bdf8}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-h3{color:#38bdf8;margin-bottom:12px}
-.item{padding:12px;border-bottom:1px solid #1e293b;font-size:14px}
-.green{color:#34d399}.red{color:#f87171}.yellow{color:#fbbf24}.purple{color:#a78bfa}
-canvas{height:260px!important}
-footer{text-align:center;color:#64748b;padding:18px;font-size:12px}
-@media(max-width:800px){.stats,.grid{grid-template-columns:1fr}}
-</style>
-</head>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Orbitron:wght@700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#030b14;color:#e2e8f0;font-family:'Tajawal',sans-serif;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(56,189,248,0.04) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(167,139,250,0.03) 0%,transparent 50%);pointer-events:none;}
+.رأس{position:sticky;top:0;z-index:100;background:rgba(3,11,20,0.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;}
+.شعار{display:flex;align-items:center;gap:12px;}
+.عين{width:36px;height:18px;border:2px solid #38bdf8;border-radius:50%;position:relative;box-shadow:0 0 12px rgba(56,189,248,0.4);}
+.عين::after{content:'';position:absolute;width:10px;height:10px;background:#38bdf8;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 0 10px #38bdf8;animation:رمش 4s infinite;}
+@keyframes رمش{0%,80%,100%{opacity:1;}90%{opacity:0;}}
+.اسم{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;letter-spacing:3px;color:#38bdf8;}
+.وصف{font-size:9px;letter-spacing:2px;color:#475569;}
+.رأس-يمين{display:flex;align-items:center;gap:16px;}
+.مباشر{display:flex;align-items:center;gap:6px;font-size:10px;color:#34d399;letter-spacing:2px;}
+.نقطة{width:6px;height:6px;background:#34d399;border-radius:50%;animation:وميض 2s infinite;}
+@keyframes وميض{0%,100%{opacity:1;}50%{opacity:0.2;}}
+.ساعة{font-family:'Orbitron',sans-serif;font-size:12px;color:#475569;letter-spacing:2px;}
+.زر{background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:#38bdf8;padding:7px 16px;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:12px;cursor:pointer;}
+.زر:hover{background:rgba(56,189,248,0.15);}
+.محتوى{max-width:1400px;margin:0 auto;padding:20px 16px;position:relative;z-index:1;}
 
+/* أسعار السوق */
+.شريط-سوق{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+.بطاقة-سعر{background:rgba(10,20,40,0.95);border:1px solid rgba(56,189,248,0.1);border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;}
+.عملة-اسم{font-size:12px;font-weight:700;color:#e2e8f0;}
+.عملة-سعر{font-family:‘Orbitron’,sans-serif;font-size:16px;font-weight:700;color:#38bdf8;}
+.عملة-تغيير{font-size:11px;font-weight:700;}
+.صاعد{color:#34d399;}
+.هابط{color:#f87171;}
+
+/* الإحصاءات */
+.إحصاءات{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px;}
+.بطاقة-إحصاء{background:rgba(10,20,40,0.95);border:1px solid rgba(56,189,248,0.1);border-radius:12px;padding:16px;}
+.عنوان-إحصاء{font-size:9px;letter-spacing:2px;color:#475569;text-transform:uppercase;margin-bottom:5px;}
+.قيمة-إحصاء{font-family:‘Orbitron’,sans-serif;font-size:20px;font-weight:700;}
+.وصف-إحصاء{font-size:10px;color:#475569;margin-top:3px;}
+.أزرق{color:#38bdf8;}.أحمر{color:#f87171;}.أخضر{color:#34d399;}.أصفر{color:#fbbf24;}.بنفسجي{color:#a78bfa;}
+
+.شبكة-رئيسية{display:grid;grid-template-columns:1fr 1fr 340px;gap:16px;margin-bottom:16px;}
+.شبكة-سفلية{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.بطاقة{background:rgba(10,20,40,0.95);border:1px solid rgba(56,189,248,0.1);border-radius:16px;overflow:hidden;}
+.رأس-بطاقة{padding:14px 18px;border-bottom:1px solid rgba(56,189,248,0.1);display:flex;align-items:center;justify-content:space-between;}
+.عنوان-بطاقة{font-size:9px;letter-spacing:3px;color:#38bdf8;text-transform:uppercase;font-weight:700;}
+.وصف-بطاقة{font-size:9px;color:#475569;}
+.غلاف-مخطط{padding:16px;height:210px;}
+.قائمة-بورصة{padding:12px;display:flex;flex-direction:column;gap:6px;}
+.عنصر-بورصة{display:flex;align-items:center;gap:10px;}
+.اسم-بورصة{width:72px;font-size:11px;color:#e2e8f0;text-align:right;}
+.شريط-خ{flex:1;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;}
+.شريط-ق{height:100%;border-radius:3px;transition:width 1.2s ease;}
+.قيمة-بورصة{font-size:10px;font-family:‘Orbitron’,sans-serif;width:65px;text-align:left;}
+.علامة{font-size:8px;padding:2px 6px;border-radius:3px;}
+.علامة-cex{background:rgba(56,189,248,0.1);color:#38bdf8;}
+.علامة-dex{background:rgba(167,139,250,0.1);color:#a78bfa;}
+.قائمة-تحركات{padding:10px;display:flex;flex-direction:column;gap:7px;max-height:340px;overflow-y:auto;}
+.قائمة-تحركات::-webkit-scrollbar{width:3px;}
+.قائمة-تحركات::-webkit-scrollbar-thumb{background:rgba(56,189,248,0.1);}
+.تحرك{border:1px solid rgba(56,189,248,0.1);border-radius:10px;padding:12px 14px;background:rgba(255,255,255,0.015);transition:all 0.2s;}
+.تحرك:hover{border-color:rgba(56,189,248,0.25);}
+.تحرك-أعلى{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.مبلغ{font-family:‘Orbitron’,sans-serif;font-size:14px;font-weight:700;}
+.رمز{font-size:10px;padding:2px 7px;border-radius:4px;background:rgba(56,189,248,0.1);color:#38bdf8;}
+.مسار{font-size:11px;color:#475569;margin-bottom:6px;display:flex;align-items:center;gap:5px;}
+.من,.إلى{color:#e2e8f0;}
+.سهم{color:#38bdf8;}
+.تفاصيل{display:flex;align-items:center;gap:8px;}
+.شبكة{font-size:9px;color:#475569;text-transform:uppercase;}
+.وقت{font-size:9px;color:#475569;}
+.شارة{font-size:9px;padding:2px 8px;border-radius:20px;margin-right:auto;}
+.ش-بيع{background:rgba(248,113,113,0.1);color:#f87171;}
+.ش-شراء{background:rgba(52,211,153,0.1);color:#34d399;}
+.ش-محايد{background:rgba(251,191,36,0.1);color:#fbbf24;}
+.ش-dex{background:rgba(167,139,250,0.1);color:#a78bfa;}
+.صندوق-تحليل{padding:16px;display:flex;flex-direction:column;gap:12px;}
+.صندوق-نتيجة{text-align:center;padding:18px;background:rgba(56,189,248,0.06);border:1px solid rgba(56,189,248,0.15);border-radius:12px;}
+.عنوان-نتيجة{font-size:9px;letter-spacing:3px;color:#38bdf8;text-transform:uppercase;margin-bottom:8px;}
+.رقم-نتيجة{font-family:‘Orbitron’,sans-serif;font-size:50px;font-weight:900;color:#38bdf8;line-height:1;}
+.من-عشرة{font-size:18px;color:#475569;}
+.قسم{border:1px solid rgba(56,189,248,0.1);border-radius:10px;padding:12px;}
+.عنوان-قسم{font-size:9px;letter-spacing:2px;color:#475569;text-transform:uppercase;margin-bottom:6px;}
+.محتوى-قسم{font-size:12px;line-height:1.8;}
+.صف-فحص{display:flex;align-items:center;gap:8px;}
+.نسبة-فحص{font-size:18px;font-weight:700;}
+.شريط-فحص{flex:1;height:5px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;}
+.قيمة-فحص{height:100%;border-radius:3px;}
+.نص-فحص{font-size:10px;color:#475569;}
+.صندوق-قرار{text-align:center;padding:14px;border-radius:10px;font-size:15px;font-weight:700;letter-spacing:2px;}
+.انتظر{background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2);color:#fbbf24;}
+.احذر{background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);color:#f87171;}
+.فرصة{background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);color:#34d399;}
+.خريطة{padding:10px;}
+.صف-خريطة{display:grid;grid-template-columns:80px 1fr 80px 65px;gap:8px;padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.03);align-items:center;}
+.صف-خريطة:last-child{border-bottom:none;}
+.رأس-خريطة{font-size:9px;letter-spacing:2px;color:#475569;text-transform:uppercase;}
+.عملة-خريطة{font-size:11px;font-weight:700;}
+.شريط-خريطة{height:5px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;}
+.شريط-داخل{height:100%;background:#f87171;border-radius:3px;}
+.شريط-خارج{height:100%;background:#34d399;border-radius:3px;}
+.حجم-خريطة{font-size:10px;font-family:‘Orbitron’,sans-serif;text-align:center;}
+.اتجاه-خريطة{font-size:9px;padding:2px 6px;border-radius:4px;text-align:center;}
+.تحميل{display:flex;align-items:center;justify-content:center;gap:8px;padding:30px;color:#475569;font-size:11px;letter-spacing:2px;}
+.دوار{width:14px;height:14px;border:2px solid rgba(56,189,248,0.1);border-top-color:#38bdf8;border-radius:50%;animation:دوران 1s linear infinite;}
+@keyframes دوران{to{transform:rotate(360deg);}}
+footer{text-align:center;padding:16px;color:#475569;font-size:10px;letter-spacing:2px;border-top:1px solid rgba(56,189,248,0.1);margin-top:16px;position:relative;z-index:1;}
+@media(max-width:1024px){.شبكة-رئيسية{grid-template-columns:1fr 1fr;}.شبكة-رئيسية .بطاقة:last-child{grid-column:1/-1;}.إحصاءات{grid-template-columns:repeat(3,1fr);}.شريط-سوق{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.شبكة-رئيسية,.شبكة-سفلية{grid-template-columns:1fr;}.إحصاءات{grid-template-columns:repeat(2,1fr);}.شريط-سوق{grid-template-columns:1fr 1fr;}}
+</style>
+
+</head>
 <body>
 
-<header>
-  <div class="logo">🐋 MIND OF MARKET</div>
-  <div class="live">LIVE • <span id="clock">--:--:--</span></div>
-</header>
-
-<main>
-
-<div class="stats">
-  <div class="stat"><div class="label">Whale Score</div><div class="value" id="score">--</div></div>
-  <div class="stat"><div class="label">Fear & Greed</div><div class="value" id="fear">--</div></div>
-  <div class="stat"><div class="label">Market Mood</div><div class="value" id="mood">--</div></div>
-  <div class="stat"><div class="label">Whale Moves</div><div class="value" id="movesCount">--</div></div>
-  <div class="stat"><div class="label">Last Update</div><div class="value" id="updated">--</div></div>
+<div class="رأس">
+  <div class="شعار">
+    <div class="عين"></div>
+    <div>
+      <div class="اسم">MIND OF MARKET</div>
+      <div class="وصف">رادار الحيتان العربي</div>
+    </div>
+  </div>
+  <div class="رأس-يمين">
+    <div class="مباشر"><div class="نقطة"></div>مباشر</div>
+    <div class="ساعة" id="ساعة">--:--:--</div>
+    <button class="زر" onclick="تحميل_كل()">تحديث</button>
+  </div>
 </div>
 
-<div class="grid">
+<div class="محتوى">
 
-  <div class="card">
-    <h3>🐋 Whale Alerts</h3>
-    <div id="whales"></div>
+  <!-- أسعار السوق المجانية -->
+
+  <div class="شريط-سوق">
+    <div class="بطاقة-سعر"><div><div class="عملة-اسم">Bitcoin</div><div style="font-size:9px;color:#475569">BTC</div></div><div style="text-align:left"><div class="عملة-سعر" id="سعر-btc">--</div><div class="عملة-تغيير" id="تغيير-btc">--</div></div></div>
+    <div class="بطاقة-سعر"><div><div class="عملة-اسم">Ethereum</div><div style="font-size:9px;color:#475569">ETH</div></div><div style="text-align:left"><div class="عملة-سعر" id="سعر-eth">--</div><div class="عملة-تغيير" id="تغيير-eth">--</div></div></div>
+    <div class="بطاقة-سعر"><div><div class="عملة-اسم">Solana</div><div style="font-size:9px;color:#475569">SOL</div></div><div style="text-align:left"><div class="عملة-سعر" id="سعر-sol">--</div><div class="عملة-تغيير" id="تغيير-sol">--</div></div></div>
+    <div class="بطاقة-سعر"><div><div class="عملة-اسم">Fear & Greed</div><div style="font-size:9px;color:#475569">مزاج السوق</div></div><div style="text-align:left"><div class="عملة-سعر أحمر" id="خوف">--</div><div class="عملة-تغيير" id="وصف-خوف" style="color:#475569">--</div></div></div>
   </div>
 
-  <div class="card">
-    <h3>📊 Whale Flow Chart</h3>
-    <canvas id="whaleChart"></canvas>
+  <!-- الإحصاءات -->
+
+  <div class="إحصاءات">
+    <div class="بطاقة-إحصاء"><div class="عنوان-إحصاء">Whale Score</div><div class="قيمة-إحصاء أزرق" id="درجة">--</div><div class="وصف-إحصاء" id="وصف-درجة">--</div></div>
+    <div class="بطاقة-إحصاء"><div class="عنوان-إحصاء">تدفق CEX</div><div class="قيمة-إحصاء أصفر" id="تدفق-cex">--</div><div class="وصف-إحصاء" id="وصف-cex">--</div></div>
+    <div class="بطاقة-إحصاء"><div class="عنوان-إحصاء">تدفق DEX</div><div class="قيمة-إحصاء بنفسجي" id="تدفق-dex">--</div><div class="وصف-إحصاء" id="وصف-dex">--</div></div>
+    <div class="بطاقة-إحصاء"><div class="عنوان-إحصاء">إجمالي التحركات</div><div class="قيمة-إحصاء أخضر" id="إجمالي">--</div><div class="وصف-إحصاء" id="آخر-تحديث">--</div></div>
+    <div class="بطاقة-إحصاء"><div class="عنوان-إحصاء">القرار</div><div class="قيمة-إحصاء أصفر" id="قرار-سريع">--</div><div class="وصف-إحصاء">توصية الحوت</div></div>
   </div>
 
-  <div class="card">
-    <h3>💰 Live Market Prices</h3>
-    <div id="prices"></div>
+  <div class="شبكة-رئيسية">
+    <div class="بطاقة">
+      <div class="رأس-بطاقة"><div class="عنوان-بطاقة">البورصات المركزية CEX</div><div class="وصف-بطاقة">داخل / خارج</div></div>
+      <div class="غلاف-مخطط"><canvas id="مخطط-cex"></canvas></div>
+      <div class="قائمة-بورصة" id="قائمة-cex"><div class="تحميل"><div class="دوار"></div>جاري التحميل</div></div>
+    </div>
+    <div class="بطاقة">
+      <div class="رأس-بطاقة"><div class="عنوان-بطاقة">البورصات اللامركزية DEX</div><div class="وصف-بطاقة">تدفق السيولة</div></div>
+      <div class="غلاف-مخطط"><canvas id="مخطط-dex"></canvas></div>
+      <div class="قائمة-بورصة" id="قائمة-dex"><div class="تحميل"><div class="دوار"></div>جاري التحميل</div></div>
+    </div>
+    <div class="بطاقة">
+      <div class="رأس-بطاقة"><div class="عنوان-بطاقة">تحليل عقل السوق</div></div>
+      <div class="صندوق-تحليل" id="صندوق-تحليل"><div class="تحميل"><div class="دوار"></div>جاري التحليل</div></div>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>🧠 MIND OF MARKET Analysis</h3>
-    <div id="analysis">جاري التحليل...</div>
+  <div class="شبكة-سفلية">
+    <div class="بطاقة">
+      <div class="رأس-بطاقة"><div class="عنوان-بطاقة">تحركات الحيتان</div><div class="وصف-بطاقة" id="عدد">--</div></div>
+      <div class="قائمة-تحركات" id="قائمة-تحركات"><div class="تحميل"><div class="دوار"></div>جاري جلب البيانات</div></div>
+    </div>
+    <div class="بطاقة">
+      <div class="رأس-بطاقة"><div class="عنوان-بطاقة">خريطة تدفق السيولة</div><div class="وصف-بطاقة">داخل / خارج البورصات</div></div>
+      <div class="خريطة">
+        <div class="صف-خريطة">
+          <div class="رأس-خريطة">العملة</div>
+          <div class="رأس-خريطة">التدفق</div>
+          <div class="رأس-خريطة">الحجم</div>
+          <div class="رأس-خريطة">الاتجاه</div>
+        </div>
+        <div id="صفوف-خريطة"><div class="تحميل"><div class="دوار"></div>جاري التحميل</div></div>
+      </div>
+    </div>
   </div>
-
 </div>
 
-</main>
-
-<footer>
-MIND OF MARKET — بيانات للمتابعة فقط وليست نصيحة استثمارية
-</footer>
+<footer>عقل السوق | MIND OF MARKET | @theMindofmarket | بيانات فقط — ليست نصيحة استثمارية</footer>
 
 <script>
-setInterval(()=>{
-  document.getElementById("clock").innerText =
-  new Date().toLocaleTimeString("ar-SA");
-},1000);
+// ضع مفاتيحك هنا
+const مفتاح_اركام = 'YOUR_ARKHAM_KEY';
+const مفتاح_انثروبيك = 'YOUR_ANTHROPIC_KEY';
 
-const whaleMoves = [
-  {token:"BTC", amount:1250, usd:104250000, from:"Unknown Wallet", to:"Binance", type:"إيداع CEX"},
-  {token:"ETH", amount:8500, usd:44500000, from:"Whale Wallet", to:"Unknown Wallet", type:"تراكم"},
-  {token:"USDT", amount:25000000, usd:25000000, from:"Treasury", to:"Market", type:"سيولة"},
-  {token:"BTC", amount:900, usd:94000000, from:"Coinbase", to:"Cold Wallet", type:"سحب CEX"},
-  {token:"SOL", amount:320000, usd:58200000, from:"Unknown Wallet", to:"Binance", type:"إيداع"}
-];
+const CEX=['binance','coinbase','okx','bybit','kraken','kucoin','mexc','gate','hitbtc','huobi','bithumb','bitfinex'];
+const DEX=['uniswap','aerodrome','curve','sushiswap','pancakeswap','dydx','gmx','1inch','balancer','velodrome'];
 
-const prices = [
-  {name:"BTC", price:"$104,250", change:"+1.8%", color:"green"},
-  {name:"ETH", price:"$5,240", change:"-0.6%", color:"red"},
-  {name:"SOL", price:"$182", change:"+3.2%", color:"green"},
-  {name:"USDT", price:"$1.00", change:"0.0%", color:"yellow"}
-];
+setInterval(()=>{document.getElementById('ساعة').textContent=new Date().toLocaleTimeString('ar-SA');},1000);
 
-function money(n){
-  if(n>=1e9)return "$"+(n/1e9).toFixed(2)+"B";
-  if(n>=1e6)return "$"+(n/1e6).toFixed(2)+"M";
-  if(n>=1e3)return "$"+(n/1e3).toFixed(1)+"K";
-  return "$"+n;
-}
+const isCEX=n=>n&&CEX.some(e=>n.toLowerCase().includes(e));
+const isDEX=n=>n&&DEX.some(e=>n.toLowerCase().includes(e));
+const fmt=n=>{if(!n)return'--';const x=parseFloat(n);if(x>=1e9)return'$'+(x/1e9).toFixed(2)+'B';if(x>=1e6)return'$'+(x/1e6).toFixed(2)+'M';if(x>=1e3)return'$'+(x/1e3).toFixed(1)+'K';return'$'+x.toFixed(0);};
+const شارة=(f,t)=>{const fc=isCEX(f),tc=isCEX(t),td=isDEX(t);if(tc&&!fc)return'<span class="شارة ش-بيع">إيداع CEX</span>';if(fc&&!tc&&!td)return'<span class="شارة ش-شراء">سحب CEX</span>';if(td)return'<span class="شارة ش-dex">DEX</span>';if(fc&&tc)return'<span class="شارة ش-محايد">نقل CEX</span>';return'<span class="شارة ش-محايد">داخلي</span>';};
 
-async function loadFear(){
+let cI=null,dI=null;
+const مخطط=(id,l,i,o)=>{const ctx=document.getElementById(id).getContext('2d');if(id==='مخطط-cex'&&cI)cI.destroy();if(id==='مخطط-dex'&&dI)dI.destroy();const m=new Chart(ctx,{type:'bar',data:{labels:l,datasets:[{label:'داخل',data:i,backgroundColor:'rgba(248,113,113,0.75)',borderRadius:5},{label:'خارج',data:o,backgroundColor:'rgba(52,211,153,0.75)',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#94a3b8',font:{size:10,family:'Tajawal'},boxWidth:10}}},scales:{x:{ticks:{color:'#475569',font:{size:9}},grid:{color:'rgba(255,255,255,0.03)'}},y:{ticks:{color:'#475569',font:{size:9},callback:v=>fmt(v)},grid:{color:'rgba(255,255,255,0.03)'}}}}});if(id==='مخطط-cex')cI=m;else dI=m;};
+
+const بورصات=ts=>{
+  const cex={},dex={};let ci=0,co=0,di=0,do_=0;
+  ts.forEach(t=>{const f=t.fromAddress?.arkhamEntity?.name||'',to=t.toAddress?.arkhamEntity?.name||'',a=parseFloat(t.historicalUSD)||0;if(isCEX(to)){ci+=a;const k=CEX.find(e=>to.toLowerCase().includes(e))||to;cex[k]=cex[k]||{in:0,out:0};cex[k].in+=a;}if(isCEX(f)){co+=a;const k=CEX.find(e=>f.toLowerCase().includes(e))||f;cex[k]=cex[k]||{in:0,out:0};cex[k].out+=a;}if(isDEX(to)){di+=a;const k=DEX.find(e=>to.toLowerCase().includes(e))||to;dex[k]=dex[k]||{in:0,out:0};dex[k].in+=a;}if(isDEX(f)){do_+=a;const k=DEX.find(e=>f.toLowerCase().includes(e))||f;dex[k]=dex[k]||{in:0,out:0};dex[k].out+=a;}});
+  const nc=ci-co,nd=di-do_;
+  document.getElementById('تدفق-cex').textContent=fmt(Math.abs(nc));document.getElementById('وصف-cex').textContent=nc>0?'▲ ضغط بيع':'▼ تراكم';document.getElementById('وصف-cex').style.color=nc>0?'#f87171':'#34d399';
+  document.getElementById('تدفق-dex').textContent=fmt(Math.abs(nd));document.getElementById('وصف-dex').textContent=nd>0?'▲ تفريغ خفي':'▼ شراء DEX';document.getElementById('وصف-dex').style.color=nd>0?'#a78bfa':'#34d399';
+  const ck=Object.keys(cex).slice(0,5),dk=Object.keys(dex).slice(0,5);
+  مخطط('مخطط-cex',ck,ck.map(k=>cex[k].in),ck.map(k=>cex[k].out));
+  if(!dk.length)مخطط('مخطط-dex',['Uniswap','Curve','GMX'],[0,0,0],[0,0,0]);else مخطط('مخطط-dex',dk,dk.map(k=>dex[k].in),dk.map(k=>dex[k].out));
+  const mc=Math.max(...Object.values(cex).map(v=>v.in+v.out),1);document.getElementById('قائمة-cex').innerHTML=ck.slice(0,4).map(k=>{const t=cex[k].in+cex[k].out,p=Math.round(t/mc*100),d=cex[k].in>cex[k].out;return`<div class="عنصر-بورصة"><div class="اسم-بورصة">${k.charAt(0).toUpperCase()+k.slice(1)}</div><div class="شريط-خ"><div class="شريط-ق" style="width:${p}%;background:${d?'#f87171':'#34d399'}"></div></div><div class="قيمة-بورصة" style="color:${d?'#f87171':'#34d399'}">${fmt(t)}</div><div class="علامة علامة-cex">CEX</div></div>`;}).join('')||'<div style="padding:10px;font-size:11px;color:#475569;text-align:center">لا توجد بيانات</div>';
+  const md=Math.max(...Object.values(dex).map(v=>v.in+v.out),1);document.getElementById('قائمة-dex').innerHTML=dk.slice(0,4).map(k=>{const t=dex[k].in+dex[k].out,p=Math.round(t/md*100);return`<div class="عنصر-بورصة"><div class="اسم-بورصة">${k.charAt(0).toUpperCase()+k.slice(1)}</div><div class="شريط-خ"><div class="شريط-ق" style="width:${p}%;background:#a78bfa"></div></div><div class="قيمة-بورصة بنفسجي">${fmt(t)}</div><div class="علامة علامة-dex">DEX</div></div>`;}).join('')||'<div style="padding:10px;font-size:11px;color:#475569;text-align:center">لا توجد بيانات</div>';
+  const bt={};ts.forEach(t=>{const s=t.tokenSymbol||'???',a=parseFloat(t.historicalUSD)||0,to=t.toAddress?.arkhamEntity?.name||'',f=t.fromAddress?.arkhamEntity?.name||'';if(!bt[s])bt[s]={in:0,out:0};if(isCEX(to)||isDEX(to))bt[s].in+=a;if(isCEX(f)||isDEX(f))bt[s].out+=a;});
+  const tks=Object.entries(bt).sort((a,b)=>(b[1].in+b[1].out)-(a[1].in+a[1].out)).slice(0,6);
+  document.getElementById('صفوف-خريطة').innerHTML=tks.map(([s,v])=>{const t=v.in+v.out||1,pi=Math.round(v.in/t*100),n=v.in-v.out,dc=n>0?'#f87171':'#34d399',bg=n>0?'rgba(248,113,113,0.1)':'rgba(52,211,153,0.1)';return`<div class="صف-خريطة"><div class="عملة-خريطة أزرق">${s}</div><div><div class="شريط-خريطة"><div class="${n>0?'شريط-داخل':'شريط-خارج'}" style="width:${pi}%"></div></div><div style="font-size:9px;color:#475569;margin-top:2px">${pi}% داخل</div></div><div class="حجم-خريطة" style="color:${dc}">${fmt(t)}</div><div class="اتجاه-خريطة" style="background:${bg};color:${dc}">${n>0?'بيع':'تراكم'}</div></div>`;}).join('')||'<div class="تحميل">لا توجد بيانات</div>';
+};
+
+const تحركات=ts=>{if(!ts||!ts.length)return'<div class="تحميل">لا توجد بيانات</div>';return ts.slice(0,10).map(t=>{const f=t.fromAddress?.arkhamEntity?.name||'محفظة مجهولة',to=t.toAddress?.arkhamEntity?.name||'محفظة مجهولة',time=t.blockTimestamp?new Date(t.blockTimestamp).toLocaleTimeString('ar-SA'):'--';return`<div class="تحرك"><div class="تحرك-أعلى"><div class="مبلغ">${fmt(t.historicalUSD)}</div><div class="رمز">${t.tokenSymbol||'--'}</div></div><div class="مسار"><span class="من">${f}</span><span class="سهم">←</span><span class="إلى">${to}</span></div><div class="تفاصيل"><span class="شبكة">${t.chain||'--'}</span><span class="وقت">${time}</span>${شارة(f,to)}</div></div>`;}).join('');};
+
+const تحليل=(نص,درجة)=>{let ق='انتظر',ف='انتظر';if(نص.includes('احذر')){ق='احذر';ف='احذر';}if(نص.includes('فرصة')){ق='فرصة';ف='فرصة';}let fn=20;const fm=نص.match(/(\d+)%/);if(fm)fn=parseInt(fm[1]);const fc=fn>60?'#f87171':fn>30?'#fbbf24':'#34d399';document.getElementById('قرار-سريع').textContent=ق;document.getElementById('قرار-سريع').style.color=fn>60?'#f87171':fn>30?'#fbbf24':'#34d399';return`<div class="صندوق-نتيجة"><div class="عنوان-نتيجة">Whale Score</div><div class="رقم-نتيجة">${درجة}<span class="من-عشرة">/10</span></div></div><div class="قسم"><div class="عنوان-قسم">Fake Hunt Check</div><div class="صف-فحص"><div class="نسبة-فحص" style="color:${fc}">${fn}%</div><div class="شريط-فحص"><div class="قيمة-فحص" style="width:${fn}%;background:${fc}"></div></div><div class="نص-فحص">${fn>60?'مشبوه':fn>30?'محايد':'حقيقي'}</div></div></div><div class="قسم"><div class="عنوان-قسم">التحليل</div><div class="محتوى-قسم">${نص.replace(/\n/g,'<br>')}</div></div><div class="صندوق-قرار ${ف}">${ق}</div>`;};
+
+async function تحميل_كل(){
+  document.getElementById('قائمة-تحركات').innerHTML='<div class="تحميل"><div class="دوار"></div>جاري جلب البيانات</div>';
+  document.getElementById('صندوق-تحليل').innerHTML='<div class="تحميل"><div class="دوار"></div>جاري التحليل</div>';
   try{
-    const r = await fetch("https://api.alternative.me/fng/");
-    const d = await r.json();
-    const fear = Number(d.data[0].value);
-    document.getElementById("fear").innerText = fear;
+    // أسعار مجانية بدون مفتاح
+    const prices=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true');
+    const pd=await prices.json();
+    const fmt_price=n=>n>=1000?'$'+n.toLocaleString('en',{maximumFractionDigits:0}):'$'+n.toFixed(2);
+    const fmt_change=n=>`<span class="${n>=0?'صاعد':'هابط'}">${n>=0?'+':''}${n.toFixed(2)}%</span>`;
+    document.getElementById('سعر-btc').textContent=fmt_price(pd.bitcoin.usd);
+    document.getElementById('تغيير-btc').innerHTML=fmt_change(pd.bitcoin.usd_24h_change);
+    document.getElementById('سعر-eth').textContent=fmt_price(pd.ethereum.usd);
+    document.getElementById('تغيير-eth').innerHTML=fmt_change(pd.ethereum.usd_24h_change);
+    document.getElementById('سعر-sol').textContent=fmt_price(pd.solana.usd);
+    document.getElementById('تغيير-sol').innerHTML=fmt_change(pd.solana.usd_24h_change);
 
-    let mood = "محايد";
-    let score = 5;
-    let analysis = "السوق محايد. راقبي تحركات الحيتان قبل الدخول.";
+    // Fear & Greed مجاني
+    const fg=await fetch('https://api.alternative.me/fng/');
+    const fgd=await fg.json();
+    const fv=fgd.data[0].value;
+    document.getElementById('خوف').textContent=fv+'/100';
+    document.getElementById('وصف-خوف').textContent=fgd.data[0].value_classification;
 
-    if(fear < 30){
-      mood = "خوف";
-      score = 7;
-      analysis = "الخوف مرتفع. قد توجد فرص تراكم، لكن الدخول يحتاج تأكيد.";
-    }
+    // Arkham - يحتاج مفتاح
+    const ar=await fetch('https://api.arkhamintelligence.com/transfers?usdGte=1000000&limit=50',{headers:{'API-Key':مفتاح_اركام}});
+    const ad=await ar.json();
+    const ts=ad.transfers||[];
+    document.getElementById('إجمالي').textContent=(ad.count||0).toLocaleString();
+    document.getElementById('آخر-تحديث').textContent='آخر تحديث: '+new Date().toLocaleTimeString('ar-SA');
+    document.getElementById('عدد').textContent=ts.length+' تحرك';
+    بورصات(ts);
+    document.getElementById('قائمة-تحركات').innerHTML=تحركات(ts);
 
-    if(fear > 70){
-      mood = "جشع";
-      score = 8;
-      analysis = "الجشع مرتفع. يجب الحذر من التصريف أو الفخاخ السعرية.";
-    }
-
-    document.getElementById("mood").innerText = mood;
-    document.getElementById("score").innerText = score + "/10";
-    document.getElementById("analysis").innerText = analysis;
-
+    // Claude - يحتاج مفتاح
+    const top=ts.slice(0,3);
+    const prompt=`أنت محلل كريبتو متخصص. لا تستخدم # أو * أو markdown. أجب بالعربية فقط:\n\nWhale Score: X/10\nالتحرك: جملة واحدة\nنوع الحركة: تراكم/توزيع/داخلي\nFake Hunt: X% مشبوه أو حقيقي\nماذا تفعل: انتظر/احذر/فرصة\n\nالبيانات:\n${top.map(t=>`${fmt(t.historicalUSD)} ${t.tokenSymbol} على ${t.chain} من ${t.fromAddress?.arkhamEntity?.name||'مجهول'} إلى ${t.toAddress?.arkhamEntity?.name||'مجهول'}`).join('\n')}\nBTC: $${pd.bitcoin.usd}\nFear: ${fv}/100`;
+    const cr=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':مفتاح_انثروبيك,'anthropic-version':'2023-06-01'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:300,messages:[{role:'user',content:prompt}]})});
+    const cd=await cr.json();
+    const txt=cd.content[0].text;
+    const sm=txt.match(/(\d+)\/10/);
+    const score=sm?sm[1]:'--';
+    document.getElementById('درجة').textContent=score+'/10';
+    document.getElementById('وصف-درجة').textContent=score>=7?'تحذير':score>=5?'محايد':'آمن';
+    document.getElementById('صندوق-تحليل').innerHTML=تحليل(txt,score);
   }catch(e){
-    document.getElementById("fear").innerText = "N/A";
-    document.getElementById("mood").innerText = "Demo";
-    document.getElementById("score").innerText = "6/10";
-    document.getElementById("analysis").innerText =
-    "تعذر جلب Fear & Greed حالياً. الداشبورد يعمل بوضع العرض التجريبي.";
+    console.error(e);
+    document.getElementById('قائمة-تحركات').innerHTML='<div class="تحميل">⚠️ تحقق من المفاتيح</div>';
+    document.getElementById('صندوق-تحليل').innerHTML='<div class="تحميل">⚠️ تحقق من المفاتيح</div>';
   }
 }
 
-function renderWhales(){
-  document.getElementById("movesCount").innerText = whaleMoves.length;
-  document.getElementById("updated").innerText =
-  new Date().toLocaleTimeString("ar-SA");
-
-  document.getElementById("whales").innerHTML = whaleMoves.map(w=>`
-    <div class="item">
-      <b class="yellow">🐋 ${money(w.usd)}</b> — ${w.amount.toLocaleString()} ${w.token}<br>
-      من: ${w.from}<br>
-      إلى: ${w.to}<br>
-      النوع: <span class="purple">${w.type}</span>
-    </div>
-  `).join("");
-}
-
-function renderPrices(){
-  document.getElementById("prices").innerHTML = prices.map(p=>`
-    <div class="item">
-      <b>${p.name}</b> — ${p.price}
-      <span class="${p.color}">${p.change}</span>
-    </div>
-  `).join("");
-}
-
-let chart;
-function renderChart(){
-  const ctx = document.getElementById("whaleChart");
-  if(chart) chart.destroy();
-
-  chart = new Chart(ctx,{
-    type:"bar",
-    data:{
-      labels:whaleMoves.map(x=>x.token),
-      datasets:[{
-        label:"USD Value",
-        data:whaleMoves.map(x=>x.usd)
-      }]
-    },
-    options:{
-      responsive:true,
-      plugins:{legend:{display:false}},
-      scales:{
-        y:{
-          ticks:{
-            callback:v=>money(v)
-          }
-        }
-      }
-    }
-  });
-}
-
-function loadAll(){
-  renderWhales();
-  renderPrices();
-  renderChart();
-  loadFear();
-}
-
-loadAll();
-setInterval(loadAll,60000);
+تحميل_كل();
+setInterval(تحميل_كل,15*60*1000);
 </script>
 
 </body>
