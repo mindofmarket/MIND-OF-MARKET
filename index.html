@@ -365,7 +365,7 @@ function renderDecision(analysis){
 async function loadData(){
   document.getElementById('wl').innerHTML='<div class="ld"><div class="spin"></div><span>جاري جلب البيانات</span></div>';
   try{
-    const r=await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({trigger:'refresh'})});
+    const r=await fetch(WEBHOOK);
     const d=await r.json();
 
     // تحركات
@@ -385,7 +385,7 @@ async function loadData(){
     // التحليل والقرار
     if(d.analysis)renderDecision(d.analysis);
 
- catch(e){
+  }catch(e){
     // لو Webhook لم يُضبط بعد، أظهر رسالة
     document.getElementById('wl').innerHTML='<div class="ld" style="font-size:8px;color:#475569">⚠️ أضف رابط Webhook من Make.com</div>';
     document.getElementById('decision').textContent='انتظر';
