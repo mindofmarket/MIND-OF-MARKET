@@ -8,7 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Orbitron:wght@700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;overflow:hidden;background:#030b14;color:#e2e8f0;}
-body{font-family:'Tajawal',sans-serif;display:flex;flex-direction:column;max-width:480px;margin:0 auto;}
+body{font-family:'Tajawal',sans-serif;display:flex;flex-direction:column;width:100%;}
 
 /* HEADER */
 .hdr{background:rgba(3,11,20,0.98);border-bottom:1px solid rgba(56,189,248,0.15);padding:7px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
@@ -107,7 +107,7 @@ footer{text-align:center;padding:3px;color:#1e293b;font-size:7px;flex-shrink:0;}
 <div class="hdr">
   <div class="logo">
     <div class="eye"></div>
-    <div><div class="ln" id="t-name">MIND OF MARKET</div><div class="ls" id="t-sub">رادار الحيتان العربي</div></div>
+    <div><div class="ln" id="t-name">MIND OF MARKET</div><div class="ls" id="t-sub">رادار الحيتان</div></div>
   </div>
   <div class="hr">
     <div class="live"><div class="dot"></div><span id="t-live">مباشر</span></div>
@@ -209,7 +209,7 @@ const fmtP=n=>{if(!n)return'--';const x=parseFloat(n);return x>=1000?'$'+x.toLoc
 // اللغة
 let lang='ar';
 const T={
-  ar:{name:'MIND OF MARKET',sub:'رادار الحيتان العربي',live:'مباشر',ref:'تحديث',cen:'مركزية',den:'لامركزية',fg:'خوف/جشع',fund:'Funding',ls:'L/S Ratio',wh:'أهم التحركات',ld:'جاري جلب البيانات',wait:'انتظر',warn:'احذر',go:'فرصة'},
+  ar:{name:'MIND OF MARKET',sub:'رادار الحيتان',live:'مباشر',ref:'تحديث',cen:'مركزية',den:'لامركزية',fg:'خوف/جشع',fund:'Funding',ls:'L/S Ratio',wh:'أهم التحركات',ld:'جاري جلب البيانات',wait:'انتظر',warn:'احذر',go:'فرصة'},
   en:{name:'MIND OF MARKET',sub:'Whale Radar',live:'LIVE',ref:'Refresh',cen:'Centralized',den:'Decentralized',fg:'Fear/Greed',fund:'Funding',ls:'L/S Ratio',wh:'Top Transfers',ld:'Loading...',wait:'WAIT',warn:'CAUTION',go:'OPPORTUNITY'}
 };
 
@@ -365,7 +365,7 @@ function renderDecision(analysis){
 async function loadData(){
   document.getElementById('wl').innerHTML='<div class="ld"><div class="spin"></div><span>جاري جلب البيانات</span></div>';
   try{
-    const r=await fetch(WEBHOOK);
+    const r=await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({trigger:'refresh'})});
     const d=await r.json();
 
     // تحركات
