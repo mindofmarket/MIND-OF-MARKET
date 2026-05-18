@@ -196,7 +196,7 @@ footer{text-align:center;padding:3px;color:#1e293b;font-size:7px;flex-shrink:0;}
 <script>
 // ══════════════════════════════
 // ضع رابط Webhook من Make.com هنا
-const WEBHOOK = 'https://hook.eu1.make.com/97ix185k6qse8rg9803ltgnijh3i5vdx';
+const WEBHOOK = 'https://hook.eu1.make.com/zbu9gppxo83xw16nnxxufo8mpnux6hvh';
 // ══════════════════════════════
 
 const CEX=['binance','coinbase','okx','bybit','kraken','kucoin','mexc','gate','hitbtc','huobi'];
@@ -385,7 +385,7 @@ async function loadData(){
     // التحليل والقرار
     if(d.analysis)renderDecision(d.analysis);
 
-  catch(e){
+  }catch(e){
     // لو Webhook لم يُضبط بعد، أظهر رسالة
     document.getElementById('wl').innerHTML='<div class="ld" style="font-size:8px;color:#475569">⚠️ أضف رابط Webhook من Make.com</div>';
     document.getElementById('decision').textContent='انتظر';
