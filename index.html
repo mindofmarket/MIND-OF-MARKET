@@ -196,9 +196,7 @@ footer{text-align:center;padding:3px;color:#1e293b;font-size:7px;flex-shrink:0;}
 <script>
 // ══════════════════════════════
 // ضع رابط Webhook من Make.com هنا
-const BIN_ID = '6a0cc917ee5a733b12e7bb5e';
-const BIN_KEY = '$2a$10$HARPLZao7Pu.DMw1GYLM.ewbGEBwyUVt3Ph4zWm2usn7zaeY6QiBu';
-const BIN_URL = 'https://api.jsonbin.io/v3/b/' + BIN_ID + '/latest';
+const DATA_URL = 'https://raw.githubusercontent.com/mindofmarket/MIND-OF-MARKET/main/data.json';
 // ══════════════════════════════
 
 const CEX=['binance','coinbase','okx','bybit','kraken','kucoin','mexc','gate','hitbtc','huobi'];
@@ -367,13 +365,8 @@ function renderDecision(analysis){
 async function loadData(){
   document.getElementById('wl').innerHTML='<div class="ld"><div class="spin"></div><span>جاري جلب البيانات</span></div>';
   try{
-    const r=await fetch(BIN_URL,{
-      headers:{
-        'X-Access-Key': BIN_KEY
-      }
-    });
-    const raw=await r.json();
-    const d=raw.record||raw;
+    const r=await fetch(DATA_URL+'?t='+Date.now());
+    const d=await r.json();
 
     // تحرك واحد من Make.com
     const transfer={
