@@ -1,3 +1,26 @@
-index.html
-data.json
-README.md
+{
+  "transfers": [],
+  "whale_score": "7/10",
+  "analysis": "السوق مستقر حالياً",
+  "prices": {
+    "btc": {
+      "price": "76912",
+      "change": "0.53"
+    },
+    "eth": {
+      "price": "2118",
+      "change": "0.65"
+    },
+    "sol": {
+      "price": "84.72"
+    },
+    "bnb": {
+      "price": "640.81"
+    }
+  },
+  "market": {
+    "funding": "0.0063",
+    "oi": "1.47",
+    "count": "9233"
+  }
+}
