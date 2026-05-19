@@ -288,7 +288,13 @@ function connectWS(){
 
 async function loadFunding(){
   try{
-    const r=await fetch('https://fapi.binance.com/fapi/v1/premiumIndex?symbol=BTCUSDT');
+    const r = await fetch(WEBHOOK,{
+  method:'GET',
+  headers:{
+    'Accept':'application/json'
+  },
+  cache:'no-store'
+});
     const d=await r.json();
 
     const fr=parseFloat(d.lastFundingRate)*100;
@@ -489,6 +495,11 @@ function renderDecision(analysis){
 
 async function loadData(){
 
+
+  window.addEventListener('focus',loadData);
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden) loadData();
+});
   document.getElementById('wl').innerHTML =
   '<div class="ld"><div class="spin"></div><span>جاري جلب البيانات</span></div>';
 
@@ -614,7 +625,7 @@ loadData();
 setInterval(loadFearGreed,60000);
 setInterval(loadFunding,30000);
 setInterval(loadNews,300000);
-setInterval(loadData,900000);
+setInterval(loadData,30000);
 </script>
 
 </body>
