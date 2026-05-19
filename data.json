@@ -1,7 +1,8 @@
 {
   "transfers": [],
+  "transfers_count": "0",
   "whale_score": "7/10",
-  "analysis": "السوق مستقر حالياً",
+  "analysis": "فرصة: السوق يظهر نشاطًا إيجابيًا ويحتاج متابعة قبل اتخاذ قرار.",
   "prices": {
     "btc": {
       "price": "76912",
@@ -12,10 +13,12 @@
       "change": "0.65"
     },
     "sol": {
-      "price": "84.72"
+      "price": "84.72",
+      "change": "0.21"
     },
     "bnb": {
-      "price": "640.81"
+      "price": "640.81",
+      "change": "-0.12"
     }
   },
   "market": {
