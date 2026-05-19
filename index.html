@@ -1,73 +1,312 @@
+<script>
+const DATA_URL = './data.json';
+
+const CEX=['binance','coinbase','okx','bybit','kraken','kucoin','mexc','gate','hitbtc','huobi'];
+const DEX=['uniswap','aerodrome','curve','sushiswap','pancakeswap','dydx','gmx','1inch','balancer'];
+
+const isCEX=n=>n&&CEX.some(e=>n.toLowerCase().includes(e));
+const isDEX=n=>n&&DEX.some(e=>n.toLowerCase().includes(e));
+
+const fmt=n=>{
+  if(!n)return'--';
+  const x=parseFloat(n);
+  if(x>=1e9)return'$'+(x/1e9).toFixed(2)+'B';
+  if(x>=1e6)return'$'+(x/1e6).toFixed(2)+'M';
+  if(x>=1e3)return'$'+(x/1e3).toFixed(1)+'K';
+  return'$'+x.toFixed(0);
+};
+
+const fmtP=n=>{
+  if(!n)return'--';
+  const x=parseFloat(n);
+  return x>=1000?'$'+x.toLocaleString('en',{maximumFractionDigits:0}):'$'+x.toFixed(2);
+};
+
+let lang='ar';
+
+const T={
+  ar:{name:'MIND OF MARKET',sub:'رادار الحيتان',live:'مباشر',ref:'تحديث',cen:'مركزية',den:'لامركزية',fg:'خوف/جشع',fund:'Funding',ls:'L/S Ratio',wh:'أهم التحركات',ld:'جاري جلب البيانات',wait:'انتظر',warn:'احذر',go:'فرصة'},
+  en:{name:'MIND OF MARKET',sub:'Whale Radar',live:'LIVE',ref:'Refresh',cen:'Centralized',den:'Decentralized',fg:'Fear/Greed',fund:'Funding',ls:'L/S Ratio',wh:'Top Transfers',ld:'Loading...',wait:'WAIT',warn:'CAUTION',go:'OPPORTUNITY'}
+};
+
+function toggleLang(){
+  lang=lang==='ar'?'en':'ar';
+  const r=document.getElementById('root');
+  r.setAttribute('lang',lang);
+  r.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+
+  document.getElementById('lang-btn').textContent=lang==='ar'?'EN':'عر';
+
+  const t=T[lang];
+  document.getElementById('t-name').textContent=t.name;
+  document.getElementById('t-sub').textContent=t.sub;
+  document.getElementById('t-live').textContent=t.live;
+  document.getElementById('t-ref').textContent=t.ref;
+  document.getElementById('t-cen').textContent=t.cen;
+  document.getElementById('t-den').textContent=t.den;
+  document.getElementById('t-fg').textContent=t.fg;
+  document.getElementById('t-fund').textContent=t.fund;
+  document.getElementById('t-ls').textContent=t.ls;
+  document.getElementById('t-wh').textContent=t.wh;
+  document.getElementById('t-ld').textContent=t.ld;
+}
+
+const SYM={BTCUSDT:'btc',ETHUSDT:'eth',SOLUSDT:'sol',BNBUSDT:'bnb'};
+let ws=null;
+
+function connectWS(){
+  ws=new WebSocket('wss://stream.binance.com:9443/stream?streams=btcusdt@ticker/ethusdt@ticker/solusdt@ticker/bnbusdt@ticker');
+
+  ws.onmessage=e=>{
+    const d=JSON.parse(e.data).data;
+    const id=SYM[d.s];
+    if(!id)return;
+
+    const pr=parseFloat(d.c);
+    const ch=parseFloat(d.P);
+
+    const ep=document.getElementById('p-'+id);
+    const ec=document.getElementById('c-'+id);
+
+    if(ep)ep.textContent=fmtP(pr);
+
+    if(ec){
+      ec.textContent=(ch>=0?'+':'')+ch.toFixed(2)+'%';
+      ec.className='pch '+(ch>=0?'up':'dn');
+    }
+  };
+
+  ws.onclose=()=>setTimeout(connectWS,3000);
+  ws.onerror=()=>ws.close();
+}
+
+async function loadFunding(){
+  try{
+    const r=await fetch('https://fapi.binance.com/fapi/v1/premiumIndex?symbol=BTCUSDT');
+    const d=await r.json();
+    const fr=parseFloat(d.lastFundingRate)*100;
+
+    const el=document.getElementById('fund-val');
+    const ed=document.getElementById('fund-desc');
+
+    if(el){
+      el.textContent=(fr>=0?'+':'')+fr.toFixed(4)+'%';
+      el.style.color=fr>0?'#f87171':fr<0?'#34d399':'#fbbf24';
+    }
+
+    if(ed)ed.textContent=fr>0.01?'شراء مسيطر':fr<-0.01?'بيع مسيطر':'محايد';
+  }catch(e){}
+}
+
+async function loadFearGreed(){
+  try{
+    const r=await fetch('https://api.alternative.me/fng/');
+    const d=await r.json();
+    const fv=parseInt(d.data[0].value);
+    const fc=fv<25?'#f87171':fv<50?'#fb923c':fv<75?'#fbbf24':'#34d399';
+
+    document.getElementById('fg-val').textContent=fv;
+    document.getElementById('fg-val').style.color=fc;
+    document.getElementById('fg-desc').textContent=d.data[0].value_classification;
+    document.getElementById('fg-bar').style.cssText=`width:${fv}%;background:${fc}`;
+  }catch(e){}
+}
+
+function loadNews(){
+  const defaults=[
+    'BTC يتداول فوق مستويات الدعم الرئيسية',
+    'حيتان ETH تتراكم في هذه المنطقة',
+    'حجم تداول الكريبتو يرتفع خلال 24 ساعة',
+    'Altcoins تظهر إشارات انتعاش',
+    'مستثمرون مؤسسيون يزيدون مراكزهم'
+  ];
+
+  defaults.forEach((t,i)=>{
+    const el1=document.getElementById('n'+(i+1));
+    const el2=document.getElementById('n'+(i+1)+'b');
+    if(el1)el1.textContent=t;
+    if(el2)el2.textContent=t;
+  });
+}
+
+function renderCEXDEX(transfers){
+  const cex={},dex={};
+
+  transfers.forEach(t=>{
+    const f=t.fromAddress?.arkhamEntity?.name||'';
+    const to=t.toAddress?.arkhamEntity?.name||'';
+    const a=parseFloat(t.historicalUSD)||0;
+
+    if(isCEX(to)){
+      const k=CEX.find(e=>to.toLowerCase().includes(e))||to;
+      cex[k]=(cex[k]||0)+a;
+    }
+
+    if(isCEX(f)){
+      const k=CEX.find(e=>f.toLowerCase().includes(e))||f;
+      cex[k]=(cex[k]||0)+a;
+    }
+
+    if(isDEX(to)){
+      const k=DEX.find(e=>to.toLowerCase().includes(e))||to;
+      dex[k]=(dex[k]||0)+a;
+    }
+
+    if(isDEX(f)){
+      const k=DEX.find(e=>f.toLowerCase().includes(e))||f;
+      dex[k]=(dex[k]||0)+a;
+    }
+  });
+
+  const mc=Math.max(...Object.values(cex),1);
+  const ck=Object.keys(cex).slice(0,3);
+
+  document.getElementById('cex-list').innerHTML=ck.length?ck.map(k=>`
+    <div class="fi">
+      <div class="fn">${k.charAt(0).toUpperCase()+k.slice(1)}</div>
+      <div class="fb"><div class="ff" style="width:${Math.round(cex[k]/mc*100)}%;background:#38bdf8"></div></div>
+      <div class="fv" style="color:#38bdf8">${fmt(cex[k])}</div>
+    </div>
+  `).join(''):'<div class="ld" style="font-size:8px;color:#475569">--</div>';
+
+  const md=Math.max(...Object.values(dex),1);
+  const dk=Object.keys(dex).slice(0,3);
+
+  document.getElementById('dex-list').innerHTML=dk.length?dk.map(k=>`
+    <div class="fi">
+      <div class="fn">${k.charAt(0).toUpperCase()+k.slice(1)}</div>
+      <div class="fb"><div class="ff" style="width:${Math.round(dex[k]/md*100)}%;background:#a78bfa"></div></div>
+      <div class="fv" style="color:#a78bfa">${fmt(dex[k])}</div>
+    </div>
+  `).join(''):'<div class="ld" style="font-size:8px;color:#475569">--</div>';
+}
+
+function badge(f,t){
+  const fc=isCEX(f),tc=isCEX(t),td=isDEX(t);
+  if(tc&&!fc)return'<span class="badge bs">إيداع</span>';
+  if(fc&&!tc&&!td)return'<span class="badge bb">سحب</span>';
+  if(td)return'<span class="badge bdx">DEX</span>';
+  if(fc&&tc)return'<span class="badge bn">نقل</span>';
+  return'<span class="badge bn">داخلي</span>';
+}
+
+function renderWhales(transfers){
+  if(!transfers||!transfers.length){
+    return'<div class="ld" style="font-size:8px;color:#475569">لا توجد بيانات</div>';
+  }
+
+  const sorted=[...transfers].sort((a,b)=>parseFloat(b.historicalUSD||0)-parseFloat(a.historicalUSD||0));
+
+  return sorted.slice(0,4).map(t=>{
+    const f=t.fromAddress?.arkhamEntity?.name||'مجهول';
+    const to=t.toAddress?.arkhamEntity?.name||'مجهول';
+    const time=t.blockTimestamp?new Date(t.blockTimestamp).toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}):'--';
+
+    return`
+      <div class="wi">
+        <div class="wa">${fmt(t.historicalUSD)}</div>
+        <div class="winfo">
+          <div class="wroute">
+            <span class="wfrom">${f}</span>
+            <span class="warrow">←</span>
+            <span class="wto">${to}</span>
+          </div>
+          <div class="wbot">
+            <span class="wchain">${t.chain||'--'}</span>
+            <span class="wtime">${time}</span>
+            ${badge(f,to)}
+            <span style="font-size:7px;color:#38bdf8;margin-right:auto">${t.tokenSymbol||''}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderDecision(analysis){
+  const dec=document.getElementById('decision');
+  if(!analysis){
+    dec.textContent=T[lang].wait;
+    dec.className='dec dw';
+    return;
+  }
+
+  dec.textContent=String(analysis);
+
+  if(String(analysis).includes('احذر')||String(analysis).includes('CAUTION')){
+    dec.className='dec dc';
+  }else if(String(analysis).includes('فرصة')||String(analysis).includes('OPPORTUNITY')){
+    dec.className='dec dg';
+  }else{
+    dec.className='dec dw';
+  }
+}
+
 async function loadData(){
-  document.getElementById('wl').innerHTML =
-    '<div class="ld"><div class="spin"></div><span>جاري جلب البيانات</span></div>';
+  document.getElementById('wl').innerHTML='<div class="ld"><div class="spin"></div><span>جاري جلب البيانات</span></div>';
 
   try{
-    const r = await fetch(DATA_URL + '?t=' + Date.now(), {
-      cache: 'no-store'
-    });
+    const r=await fetch(DATA_URL+'?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error('Cannot load data.json');
 
-    if(!r.ok) throw new Error('Cannot load data.json');
-
-    const d = await r.json();
+    const d=await r.json();
 
     if(d.prices){
-      document.getElementById('p-btc').textContent = fmtP(d.prices.btc.price);
-      document.getElementById('c-btc').textContent =
-        (parseFloat(d.prices.btc.change) >= 0 ? '+' : '') +
-        parseFloat(d.prices.btc.change).toFixed(2) + '%';
-      document.getElementById('c-btc').className =
-        'pch ' + (parseFloat(d.prices.btc.change) >= 0 ? 'up' : 'dn');
+      document.getElementById('p-btc').textContent=fmtP(d.prices.btc.price);
+      document.getElementById('c-btc').textContent=(parseFloat(d.prices.btc.change)>=0?'+':'')+parseFloat(d.prices.btc.change).toFixed(2)+'%';
+      document.getElementById('c-btc').className='pch '+(parseFloat(d.prices.btc.change)>=0?'up':'dn');
 
-      document.getElementById('p-eth').textContent = fmtP(d.prices.eth.price);
-      document.getElementById('c-eth').textContent =
-        (parseFloat(d.prices.eth.change) >= 0 ? '+' : '') +
-        parseFloat(d.prices.eth.change).toFixed(2) + '%';
-      document.getElementById('c-eth').className =
-        'pch ' + (parseFloat(d.prices.eth.change) >= 0 ? 'up' : 'dn');
+      document.getElementById('p-eth').textContent=fmtP(d.prices.eth.price);
+      document.getElementById('c-eth').textContent=(parseFloat(d.prices.eth.change)>=0?'+':'')+parseFloat(d.prices.eth.change).toFixed(2)+'%';
+      document.getElementById('c-eth').className='pch '+(parseFloat(d.prices.eth.change)>=0?'up':'dn');
 
-      document.getElementById('p-sol').textContent = fmtP(d.prices.sol.price);
-      document.getElementById('c-sol').textContent =
-        (parseFloat(d.prices.sol.change || 0) >= 0 ? '+' : '') +
-        parseFloat(d.prices.sol.change || 0).toFixed(2) + '%';
+      document.getElementById('p-sol').textContent=fmtP(d.prices.sol.price);
+      document.getElementById('c-sol').textContent=(parseFloat(d.prices.sol.change||0)>=0?'+':'')+parseFloat(d.prices.sol.change||0).toFixed(2)+'%';
+      document.getElementById('c-sol').className='pch '+(parseFloat(d.prices.sol.change||0)>=0?'up':'dn');
 
-      document.getElementById('p-bnb').textContent = fmtP(d.prices.bnb.price);
-      document.getElementById('c-bnb').textContent =
-        (parseFloat(d.prices.bnb.change || 0) >= 0 ? '+' : '') +
-        parseFloat(d.prices.bnb.change || 0).toFixed(2) + '%';
+      document.getElementById('p-bnb').textContent=fmtP(d.prices.bnb.price);
+      document.getElementById('c-bnb').textContent=(parseFloat(d.prices.bnb.change||0)>=0?'+':'')+parseFloat(d.prices.bnb.change||0).toFixed(2)+'%';
+      document.getElementById('c-bnb').className='pch '+(parseFloat(d.prices.bnb.change||0)>=0?'up':'dn');
     }
 
     if(d.market){
-      document.getElementById('fund-val').textContent = d.market.funding || '--';
-      document.getElementById('ls-val').textContent = d.market.oi || '--';
+      document.getElementById('fund-val').textContent=d.market.funding||'--';
+      document.getElementById('ls-val').textContent=d.market.oi||'--';
     }
 
     if(d.whale_score){
-      const score = parseInt(String(d.whale_score).split('/')[0]);
-      document.getElementById('ws-val').textContent = d.whale_score;
-      document.getElementById('ws-val').style.color =
-        score >= 7 ? '#f87171' : score >= 5 ? '#fbbf24' : '#34d399';
-      document.getElementById('ws-desc').textContent =
-        score >= 7 ? 'تحذير' : score >= 5 ? 'محايد' : 'آمن';
+      const score=parseInt(String(d.whale_score).split('/')[0]);
+      document.getElementById('ws-val').textContent=d.whale_score;
+      document.getElementById('ws-val').style.color=score>=7?'#f87171':score>=5?'#fbbf24':'#34d399';
+      document.getElementById('ws-desc').textContent=score>=7?'تحذير':score>=5?'محايد':'آمن';
     }
 
     if(d.analysis){
-      document.getElementById('decision').textContent = d.analysis;
       renderDecision(String(d.analysis));
     }
 
-    const transfers = Array.isArray(d.transfers) ? d.transfers : [];
-    document.getElementById('wh-count').textContent =
-      (d.transfers_count || transfers.length) + ' تحرك';
+    const transfers=Array.isArray(d.transfers)?d.transfers:[];
+    document.getElementById('wh-count').textContent=(d.transfers_count||transfers.length)+' تحرك';
 
     renderCEXDEX(transfers);
-    document.getElementById('wl').innerHTML = renderWhales(transfers);
+    document.getElementById('wl').innerHTML=renderWhales(transfers);
 
   }catch(e){
-    console.log('Data error:', e);
-    document.getElementById('wl').innerHTML =
-      '<div class="ld" style="font-size:8px;color:#475569">⚠️ تحقق من الاتصال</div>';
-    document.getElementById('decision').textContent = 'انتظر';
-    document.getElementById('decision').className = 'dec dw';
+    console.log('Data error:',e);
+    document.getElementById('wl').innerHTML='<div class="ld" style="font-size:8px;color:#475569">⚠️ تحقق من الاتصال</div>';
+    document.getElementById('decision').textContent='انتظر';
+    document.getElementById('decision').className='dec dw';
   }
 }
+
+connectWS();
+loadFearGreed();
+loadFunding();
+loadNews();
+loadData();
+
+setInterval(loadFearGreed,60000);
+setInterval(loadFunding,30000);
+setInterval(loadNews,300000);
+setInterval(loadData,30000);
+</script>
