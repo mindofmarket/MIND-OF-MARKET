@@ -368,27 +368,23 @@ async function loadData(){
     const r=await fetch(WEBHOOK);
     const d=await r.json();
 
-    // تحركات
     const transfers=d.transfers||[];
     document.getElementById('wh-count').textContent=transfers.length+' تحرك';
     renderCEXDEX(transfers);
     document.getElementById('wl').innerHTML=renderWhales(transfers);
 
-    // Whale Score
     if(d.whale_score){
-      const sm=d.whale_score.match(/(\d+)\/10/);
-      const s=sm?parseInt(sm[1]):parseInt(d.whale_score)||0;
+      const sm=String(d.whale_score).match(/(\d+)\/10/);
+      const s=sm?parseInt(sm[1]):0;
       document.getElementById('ws-val').textContent=s+'/10';
       document.getElementById('ws-val').style.color=s>=7?'#f87171':s>=5?'#fbbf24':'#34d399';
       document.getElementById('ws-desc').textContent=s>=7?'تحذير':s>=5?'محايد':'آمن';
     }
 
-    // التحليل والقرار
-    if(d.analysis)renderDecision(d.analysis);
+    if(d.analysis)renderDecision(String(d.analysis));
 
   }catch(e){
-    // لو Webhook لم يُضبط بعد، أظهر رسالة
-    document.getElementById('wl').innerHTML='<div class="ld" style="font-size:8px;color:#475569">⚠️ أضف رابط Webhook من Make.com</div>';
+    document.getElementById('wl').innerHTML='<div class="ld" style="font-size:8px;color:#475569">⚠️ تحقق من الاتصال</div>';
     document.getElementById('decision').textContent='انتظر';
     document.getElementById('decision').className='dec dw';
   }
