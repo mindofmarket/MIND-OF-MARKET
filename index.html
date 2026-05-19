@@ -488,54 +488,120 @@ function renderDecision(analysis){
 }
 
 async function loadData(){
-  document.getElementById('wl').innerHTML=
-    '<div class="ld"><div class="spin"></div><span>جاري جلب البيانات</span></div>';
+
+  document.getElementById('wl').innerHTML =
+  '<div class="ld"><div class="spin"></div><span>جاري جلب البيانات</span></div>';
 
   try{
-    const r=await fetch(WEBHOOK + '?t=' + Date.now(), {
-      method:'GET',
-      cache:'no-store'
-    });
 
-    if(!r.ok){
-      throw new Error('HTTP ' + r.status);
+    const r = await fetch(WEBHOOK);
+
+    const d = await r.json();
+
+    // ===== الأسعار =====
+
+    if(d.prices){
+
+      document.getElementById('p-btc').textContent =
+      fmtP(d.prices.btc.price);
+
+      document.getElementById('c-btc').textContent =
+      (+d.prices.btc.change > 0 ? '+' : '') +
+      parseFloat(d.prices.btc.change).toFixed(2) + '%';
+
+      document.getElementById('c-btc').className =
+      'pch ' + (+d.prices.btc.change >= 0 ? 'up' : 'dn');
+
+
+
+      document.getElementById('p-eth').textContent =
+      fmtP(d.prices.eth.price);
+
+      document.getElementById('c-eth').textContent =
+      (+d.prices.eth.change > 0 ? '+' : '') +
+      parseFloat(d.prices.eth.change).toFixed(2) + '%';
+
+      document.getElementById('c-eth').className =
+      'pch ' + (+d.prices.eth.change >= 0 ? 'up' : 'dn');
+
+
+
+      document.getElementById('p-sol').textContent =
+      fmtP(d.prices.sol.price);
+
+      document.getElementById('p-bnb').textContent =
+      fmtP(d.prices.bnb.price);
     }
 
-    const d=await r.json();
 
-    const transfers=Array.isArray(d.transfers)?d.transfers:[];
+    // ===== Funding =====
 
-    document.getElementById('wh-count').textContent=transfers.length+' تحرك';
+    if(d.market){
+
+      document.getElementById('fund-val').textContent =
+      parseFloat(d.market.funding).toFixed(4) + '%';
+
+      document.getElementById('ls-val').textContent =
+      d.market.oi || '--';
+    }
+
+
+    // ===== Whale Score =====
+
+    if(d.whale_score){
+
+      document.getElementById('ws-val').textContent =
+      d.whale_score;
+
+      const score =
+      parseInt(String(d.whale_score).split('/')[0]);
+
+      document.getElementById('ws-val').style.color =
+      score >= 7 ? '#f87171' :
+      score >= 5 ? '#fbbf24' :
+      '#34d399';
+
+      document.getElementById('ws-desc').textContent =
+      score >= 7 ? 'تحذير' :
+      score >= 5 ? 'محايد' :
+      'آمن';
+    }
+
+
+    // ===== التحليل =====
+
+    if(d.analysis){
+
+      renderDecision(d.analysis);
+    }
+
+
+    // ===== الحيتان =====
+
+    const transfers = d.transfers || [];
+
+    document.getElementById('wh-count').textContent =
+    transfers.length + ' تحرك';
 
     renderCEXDEX(transfers);
 
-    document.getElementById('wl').innerHTML=renderWhales(transfers);
+    document.getElementById('wl').innerHTML =
+    renderWhales(transfers);
 
-    const scoreText=d.whale_score || '';
+  }
 
-    if(scoreText){
-      const sm=String(scoreText).match(/(\d+)\/10/);
-      const s=sm?parseInt(sm[1]):parseInt(scoreText)||0;
+  catch(e){
 
-      document.getElementById('ws-val').textContent=s+'/10';
-      document.getElementById('ws-val').style.color=s>=7?'#f87171':s>=5?'#fbbf24':'#34d399';
-      document.getElementById('ws-desc').textContent=s>=7?'تحذير':s>=5?'محايد':'آمن';
-    }
+    console.log(e);
 
-    if(d.analysis){
-      renderDecision(String(d.analysis));
-    }else{
-      renderDecision('انتظر');
-    }
+    document.getElementById('wl').innerHTML =
+    '<div class="ld" style="font-size:8px;color:#475569">⚠️ تحقق من الاتصال</div>';
 
-  }catch(e){
-    console.log('Webhook error:', e);
+    document.getElementById('decision').textContent =
+    'انتظر';
 
-    document.getElementById('wl').innerHTML=
-      '<div class="ld" style="font-size:8px;color:#475569">⚠️ تحقق من الاتصال</div>';
-
-    document.getElementById('decision').textContent='انتظر';
-    document.getElementById('decision').className='dec dw';
+    document.getElementById('decision').className =
+    'dec dw';
   }
 }
 
