@@ -202,7 +202,7 @@ footer{text-align:center;padding:3px;color:#1e293b;font-size:7px;flex-shrink:0;}
 <footer>عقل السوق | @theMindofmarket | بيانات فقط</footer>
 
 <script>
-const WEBHOOK = 'https://hook.eu1.make.com/o3s4gou5mrmhg474gu6w2g3du034zkl7';
+const WEBHOOK = 'https://hook.eu1.make.com/8ibjgclq29zn628x2o121je6be0dqhir';
 
 const CEX=['binance','coinbase','okx','bybit','kraken','kucoin','mexc','gate','hitbtc','huobi'];
 const DEX=['uniswap','aerodrome','curve','sushiswap','pancakeswap','dydx','gmx','1inch','balancer'];
@@ -288,13 +288,7 @@ function connectWS(){
 
 async function loadFunding(){
   try{
-    const r = await fetch(WEBHOOK,{
-  method:'GET',
-  headers:{
-    'Accept':'application/json'
-  },
-  cache:'no-store'
-});
+    const r=await fetch('https://fapi.binance.com/fapi/v1/premiumIndex?symbol=BTCUSDT');
     const d=await r.json();
 
     const fr=parseFloat(d.lastFundingRate)*100;
@@ -494,125 +488,54 @@ function renderDecision(analysis){
 }
 
 async function loadData(){
-
-
-  window.addEventListener('focus',loadData);
-document.addEventListener('visibilitychange',()=>{
-  if(!document.hidden) loadData();
-});
-  document.getElementById('wl').innerHTML =
-  '<div class="ld"><div class="spin"></div><span>جاري جلب البيانات</span></div>';
+  document.getElementById('wl').innerHTML=
+    '<div class="ld"><div class="spin"></div><span>جاري جلب البيانات</span></div>';
 
   try{
+    const r=await fetch(WEBHOOK + '?t=' + Date.now(), {
+      method:'GET',
+      cache:'no-store'
+    });
 
-    const r = await fetch(WEBHOOK);
-
-    const d = await r.json();
-
-    // ===== الأسعار =====
-
-    if(d.prices){
-
-      document.getElementById('p-btc').textContent =
-      fmtP(d.prices.btc.price);
-
-      document.getElementById('c-btc').textContent =
-      (+d.prices.btc.change > 0 ? '+' : '') +
-      parseFloat(d.prices.btc.change).toFixed(2) + '%';
-
-      document.getElementById('c-btc').className =
-      'pch ' + (+d.prices.btc.change >= 0 ? 'up' : 'dn');
-
-
-
-      document.getElementById('p-eth').textContent =
-      fmtP(d.prices.eth.price);
-
-      document.getElementById('c-eth').textContent =
-      (+d.prices.eth.change > 0 ? '+' : '') +
-      parseFloat(d.prices.eth.change).toFixed(2) + '%';
-
-      document.getElementById('c-eth').className =
-      'pch ' + (+d.prices.eth.change >= 0 ? 'up' : 'dn');
-
-
-
-      document.getElementById('p-sol').textContent =
-      fmtP(d.prices.sol.price);
-
-      document.getElementById('p-bnb').textContent =
-      fmtP(d.prices.bnb.price);
+    if(!r.ok){
+      throw new Error('HTTP ' + r.status);
     }
 
+    const d=await r.json();
 
-    // ===== Funding =====
+    const transfers=Array.isArray(d.transfers)?d.transfers:[];
 
-    if(d.market){
-
-      document.getElementById('fund-val').textContent =
-      parseFloat(d.market.funding).toFixed(4) + '%';
-
-      document.getElementById('ls-val').textContent =
-      d.market.oi || '--';
-    }
-
-
-    // ===== Whale Score =====
-
-    if(d.whale_score){
-
-      document.getElementById('ws-val').textContent =
-      d.whale_score;
-
-      const score =
-      parseInt(String(d.whale_score).split('/')[0]);
-
-      document.getElementById('ws-val').style.color =
-      score >= 7 ? '#f87171' :
-      score >= 5 ? '#fbbf24' :
-      '#34d399';
-
-      document.getElementById('ws-desc').textContent =
-      score >= 7 ? 'تحذير' :
-      score >= 5 ? 'محايد' :
-      'آمن';
-    }
-
-
-    // ===== التحليل =====
-
-    if(d.analysis){
-
-      renderDecision(d.analysis);
-    }
-
-
-    // ===== الحيتان =====
-
-    const transfers = d.transfers || [];
-
-    document.getElementById('wh-count').textContent =
-    transfers.length + ' تحرك';
+    document.getElementById('wh-count').textContent=transfers.length+' تحرك';
 
     renderCEXDEX(transfers);
 
-    document.getElementById('wl').innerHTML =
-    renderWhales(transfers);
+    document.getElementById('wl').innerHTML=renderWhales(transfers);
 
-  }
+    const scoreText=d.whale_score || '';
 
-  catch(e){
+    if(scoreText){
+      const sm=String(scoreText).match(/(\d+)\/10/);
+      const s=sm?parseInt(sm[1]):parseInt(scoreText)||0;
 
-    console.log(e);
+      document.getElementById('ws-val').textContent=s+'/10';
+      document.getElementById('ws-val').style.color=s>=7?'#f87171':s>=5?'#fbbf24':'#34d399';
+      document.getElementById('ws-desc').textContent=s>=7?'تحذير':s>=5?'محايد':'آمن';
+    }
 
-    document.getElementById('wl').innerHTML =
-    '<div class="ld" style="font-size:8px;color:#475569">⚠️ تحقق من الاتصال</div>';
+    if(d.analysis){
+      renderDecision(String(d.analysis));
+    }else{
+      renderDecision('انتظر');
+    }
 
-    document.getElementById('decision').textContent =
-    'انتظر';
+  }catch(e){
+    console.log('Webhook error:', e);
 
-    document.getElementById('decision').className =
-    'dec dw';
+    document.getElementById('wl').innerHTML=
+      '<div class="ld" style="font-size:8px;color:#475569">⚠️ تحقق من الاتصال</div>';
+
+    document.getElementById('decision').textContent='انتظر';
+    document.getElementById('decision').className='dec dw';
   }
 }
 
@@ -625,7 +548,7 @@ loadData();
 setInterval(loadFearGreed,60000);
 setInterval(loadFunding,30000);
 setInterval(loadNews,300000);
-setInterval(loadData,30000);
+setInterval(loadData,900000);
 </script>
 
 </body>
