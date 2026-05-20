@@ -1,28 +1,59 @@
 {
-  "transfers": [],
+  "transfers": ["transfers": [
+  {
+    "symbol":"USDC",
+    "amount":"1512657.681103",
+    "from":"Aerodrome Finance",
+    "to":""
+  },
+  {
+    "symbol":"USDT",
+    "amount":"1070000",
+    "from":"",
+    "to":""
+  },
+  {
+    "symbol":"USDC",
+    "amount":"1000000",
+    "from":"Aave",
+    "to":""
+  },
+  {
+    "symbol":"WETH",
+    "amount":"1320152.6694483843",
+    "from":"",
+    "to":"Aerodrome Finance"
+  },
+  {
+    "symbol":"USDC",
+    "amount":"1490152.340389",
+    "from":"",
+    "to":"Aerodrome Finance"
+  }
+],],
   "transfers_count": "0",
   "whale_score": "7/10",
-  "analysis": "Whale Score: 3/10, نوع الحركة: داخلي, Fake Hunt: 15%, ماذا تفعل: انتظر, الخلاصة: تحويل دائرة داخلي بمليون دولار بدون تأثير سوقي مع معدل تمويل إيجابي ضعيف يشير لحياد السوق",
+  "analysis": "Whale Score: 3/10 - نوع الحركة: داخلي - Fake Hunt: 15% - ماذا تفعل: انتظر - الخلاصة: تحويل متوسط من بورصة لامركزية بقيمة 1.5 مليون دولار في ظل معدل تمويل محايد يشير لحركة روتينية بدون إشارات قو",
   "prices": {
     "btc": {
-      "price": "77472.28000000",
-      "change": "1.278"
+      "price": "77532.09000000",
+      "change": "1.449"
     },
     "eth": {
-      "price": "2138.12000000",
-      "change": "1.390"
+      "price": "2139.45000000",
+      "change": "1.487"
     },
     "sol": {
-      "price": "649.25000000",
-      "change": "1.700"
+      "price": "649.52000000",
+      "change": "1.802"
     },
     "bnb": {
-      "price": "86.15000000",
-      "change": "2.219"
+      "price": "86.37000000",
+      "change": "2.602"
     }
   },
   "market": {
-    "funding": "0.00006946",
+    "funding": "0.00007050",
     "oi": "10007.66",
     "count": "9233"
   }
