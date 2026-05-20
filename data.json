@@ -1,59 +1,59 @@
 {
   "transfers": ["transfers": [
   {
-    "symbol":"weETH",
-    "amount":"1544730.0912795",
-    "from":"Ether.fi",
-    "to":""
-  },
-  {
-    "symbol":"USDC",
-    "amount":"151474698.488929",
-    "from":"",
-    "to":"Morpho"
-  },
-  {
-    "symbol":"USDC",
-    "amount":"151474698.488929",
+    "symbol":"WETH",
+    "amount":"135504631.82113272",
     "from":"Morpho",
     "to":""
   },
   {
-    "symbol":"cbBTC",
-    "amount":"43466280.007748",
-    "from":"",
-    "to":"Aave"
-  },
-  {
     "symbol":"USDC",
-    "amount":"1000000",
+    "amount":"3500000",
     "from":"",
     "to":""
+  },
+  {
+    "symbol":"USDT",
+    "amount":"2500000",
+    "from":"",
+    "to":"HTX"
+  },
+  {
+    "symbol":"WETH",
+    "amount":"1105943.898906035",
+    "from":"Aerodrome Finance",
+    "to":""
+  },
+  {
+    "symbol":"WETH",
+    "amount":"1105943.898906035",
+    "from":"",
+    "to":"Aerodrome Finance"
   }
 ],],
   "transfers_count": "0",
   "whale_score": "7/10",
-  "analysis": "Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 25%, ماذا تفعل: فرصة, الخلاصة: حركة حيتان كبيرة من Ether.fi بقيمة 1.5 مليون دولار مع معدل تمويل إيجابي يشير لتراكم والسوق في وضع صعودي حذ",
+  "analysis": "Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 25%, ماذا تفعل: فرصة, الخلاصة: سحب ضخم من بروتوكول مورفو بقيمة 135 مليون دولار إيثيريوم يشير لتحركات حيتان تراكمية مع معدل تمويل إيجابي",
   "prices": {
     "btc": {
-      "price": "77414.10000000",
-      "change": "1.180"
+      "price": "77049.98000000",
+      "change": "0.535"
     },
     "eth": {
-      "price": "2135.99000000",
-      "change": "1.237"
+      "price": "2126.52000000",
+      "change": "0.684"
     },
     "sol": {
-      "price": "648.32000000",
-      "change": "1.478"
+      "price": "646.59000000",
+      "change": "1.155"
     },
     "bnb": {
-      "price": "86.25000000",
-      "change": "2.301"
+      "price": "85.70000000",
+      "change": "1.528"
     }
   },
   "market": {
-    "funding": "0.00007135",
+    "funding": "0.00006577",
     "oi": "10007.66",
     "count": "9233"
   }
