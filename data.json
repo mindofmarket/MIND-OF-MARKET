@@ -1,41 +1,41 @@
 {
   "transfers": [
     {
-      "symbol":"SOL",
-      "amount":"2349983.99931136",
+      "symbol":"USDT",
+      "amount":"85938229.887322",
       "from":"",
-      "to":"Coinbase Prime",
+      "to":"Morpho",
       "type":"تراكم"
     },
 
     {
-      "symbol":"SOL",
-      "amount":"1119039.99931136",
-      "from":"",
-      "to":"Coinbase Prime",
+      "symbol":"cbBTC",
+      "amount":"1277913.83689047",
+      "from":"Aerodrome Finance",
+      "to":"",
       "type":"توزيع"
     },
 
     {
       "symbol":"USDC",
-      "amount":"1177663.90583",
-      "from":"Morpho",
-      "to":"Morpho",
+      "amount":"1013219.726275",
+      "from":"Aerodrome Finance",
+      "to":"",
       "type":"داخلي"
     },
 
     {
       "symbol":"USDC",
-      "amount":"1000500",
-      "from":"Mercado Bitcoin",
+      "amount":"2699995",
+      "from":"Bullish.com",
       "to":"",
       "type":"تراكم"
     },
 
     {
-      "symbol":"WETH",
-      "amount":"1101690.3386435483",
-      "from":"Aerodrome Finance",
+      "symbol":"USDC",
+      "amount":"2342569",
+      "from":"",
       "to":"",
       "type":"توزيع"
     }
@@ -45,32 +45,32 @@
 
   "whale_score":"8/10",
 
-  "analysis":"Whale Score: 7/10, نوع الحركة: توزيع, Fake Hunt: 65%, ماذا تفعل: احذر, الخلاصة: تحويل ضخم لسولانا بقيمة 2.3 مليون دولار إلى كوين بيس برايم يشير لضغط بيع محتمل مع تمويل إيجابي خفيف وال",
+  "analysis":"Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 25%, ماذا تفعل: فرصة, الخلاصة: تدفق ضخم 85 مليون دولار لبروتوكول Morpho يشير لتراكم مؤسسي قوي مع معدل تمويل إيجابي يدعم الاتجاه الص",
 
   "prices": {
     "btc": {
-      "price":"77608.00000000",
-      "change":"0.977"
+      "price":"77637.02000000",
+      "change":"0.909"
     },
 
     "eth": {
-      "price":"2136.72000000",
-      "change":"1.112"
+      "price":"2136.40000000",
+      "change":"0.997"
     },
 
     "sol": {
-      "price":"650.01000000",
-      "change":"1.556"
+      "price":"649.77000000",
+      "change":"1.485"
     },
 
     "bnb": {
-      "price":"86.00000000",
-      "change":"1.944"
+      "price":"85.92000000",
+      "change":"1.717"
     }
   },
 
   "market": {
-    "funding":"0.00004893",
+    "funding":"0.00004710",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
