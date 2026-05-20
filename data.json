@@ -1,42 +1,42 @@
 {
   "transfers": [
     {
-      "symbol":"WETH",
-      "amount":"2076882.5293464696",
-      "from":"Uniswap",
-      "to":"jaredfromsubway (MEV)",
+      "symbol":"USDC",
+      "amount":"1376594.585995",
+      "from":"Morpho",
+      "to":"Morpho",
       "type":"تراكم"
     },
 
     {
-      "symbol":"WETH",
-      "amount":"1256055.5938128277",
-      "from":"Aerodrome Finance",
+      "symbol":"USDC",
+      "amount":"12991777.75",
+      "from":"",
       "to":"",
       "type":"توزيع"
     },
 
     {
       "symbol":"USDC",
-      "amount":"1450000",
-      "from":"",
-      "to":"",
+      "amount":"2364679.426618",
+      "from":"Morpho",
+      "to":"Spark",
       "type":"داخلي"
     },
 
     {
       "symbol":"USDC",
-      "amount":"9000000",
-      "from":"BitGo",
-      "to":"",
+      "amount":"2329957.204438",
+      "from":"Spark",
+      "to":"Sky (MakerDAO)",
       "type":"تراكم"
     },
 
     {
-      "symbol":"USDC",
-      "amount":"4999900",
-      "from":"",
-      "to":"",
+      "symbol":"USDS",
+      "amount":"2329957.204438",
+      "from":"Sky (MakerDAO)",
+      "to":"Sky (MakerDAO)",
       "type":"توزيع"
     }
   ],
@@ -45,32 +45,32 @@
 
   "whale_score":"8/10",
 
-  "analysis":"Whale Score: 6/10 | نوع الحركة: داخلي | Fake Hunt: 30% | ماذا تفعل: احذر | الخلاصة: بوت MEV يسحب سيولة كبيرة من يونيسواب مما يشير لتقلبات محتملة مع معدل تمويل إيجابي ضعيف وبيتكوين مستق",
+  "analysis":"Whale Score: 3/10 | نوع الحركة: داخلي | Fake Hunt: 15% | ماذا تفعل: انتظر | الخلاصة: حركة داخلية في بروتوكول Morpho بدون تأثير سوقي مع معدل تمويل إيجابي منخفض يشير لحياد السوق وانتظار محفزات جديد",
 
   "prices": {
     "btc": {
-      "price":"77562.71000000",
-      "change":"0.989"
+      "price":"77566.40000000",
+      "change":"0.895"
     },
 
     "eth": {
-      "price":"2137.63000000",
-      "change":"1.189"
+      "price":"2138.27000000",
+      "change":"1.084"
     },
 
     "sol": {
-      "price":"650.08000000",
-      "change":"1.637"
+      "price":"649.79000000",
+      "change":"1.507"
     },
 
     "bnb": {
-      "price":"86.21000000",
-      "change":"2.266"
+      "price":"86.20000000",
+      "change":"2.109"
     }
   },
 
   "market": {
-    "funding":"0.00005251",
+    "funding":"0.00005205",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
