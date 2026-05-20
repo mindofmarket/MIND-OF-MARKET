@@ -1,60 +1,50 @@
 {
-  "transfers": ["transfers": [
-  {
-    "symbol":"WETH",
-    "amount":"135504631.82113272",
-    "from":"Morpho",
-    "to":""
-  },
-  {
-    "symbol":"USDC",
-    "amount":"3500000",
-    "from":"",
-    "to":""
-  },
-  {
-    "symbol":"USDT",
-    "amount":"2500000",
-    "from":"",
-    "to":"HTX"
-  },
-  {
-    "symbol":"WETH",
-    "amount":"1105943.898906035",
-    "from":"Aerodrome Finance",
-    "to":""
-  },
-  {
-    "symbol":"WETH",
-    "amount":"1105943.898906035",
-    "from":"",
-    "to":"Aerodrome Finance"
-  }
-],],
-  "transfers_count": "0",
-  "whale_score": "7/10",
-  "analysis": "Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 25%, ماذا تفعل: فرصة, الخلاصة: سحب ضخم من بروتوكول مورفو بقيمة 135 مليون دولار إيثيريوم يشير لتحركات حيتان تراكمية مع معدل تمويل إيجابي",
-  "prices": {
-    "btc": {
-      "price": "77049.98000000",
-      "change": "0.535"
+  "transfers": [
+    {
+      "symbol":"USDC",
+      "amount":"1399999.4"
     },
-    "eth": {
-      "price": "2126.52000000",
-      "change": "0.684"
+    {
+      "symbol":"aEthWETH",
+      "amount":"1594589.2041067376"
     },
-    "sol": {
-      "price": "646.59000000",
-      "change": "1.155"
+    {
+      "symbol":"ETH",
+      "amount":"1597186.21836005"
+    }
+  ],
+
+  "transfers_count":"3",
+
+  "whale_score":"7/10",
+
+  "analysis":"Whale Score: 6/10, نوع الحركة: توزيع, Fake Hunt: 35%, ماذا تفعل: احذر, الخلاصة: تحويل ضخم للـ USDC إلى منصة كوين بيس مع معدل تمويل إيجابي يشير لضغط بيع محتمل قريب رغم ثبات البيتكوين ف",
+
+  "prices":{
+    "btc":{
+      "price":"77163.84000000",
+      "change":"0.536"
     },
-    "bnb": {
-      "price": "85.70000000",
-      "change": "1.528"
+
+    "eth":{
+      "price":"2130.13000000",
+      "change":"0.655"
+    },
+
+    "sol":{
+      "price":"646.85000000",
+      "change":"1.085"
+    },
+
+    "bnb":{
+      "price":"85.79000000",
+      "change":"1.323"
     }
   },
-  "market": {
-    "funding": "0.00006577",
-    "oi": "10007.66",
-    "count": "9233"
+
+  "market":{
+    "funding":"0.00006602",
+    "oi":"10007.66",
+    "count":"9233"
   }
 }
