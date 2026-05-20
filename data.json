@@ -1,36 +1,70 @@
 {
-  "transfers": [],
-  "transfers_count":"0",
+  "transfers": [
+    {
+      "symbol":"WETH",
+      "amount":"1293736.6111009002",
+      "from":"Aerodrome Finance",
+      "to":""
+    },
+
+    {
+      "symbol":"WETH",
+      "amount":"1063870",
+      "from":"",
+      "to":"Morpho"
+    },
+
+    {
+      "symbol":"USDC",
+      "amount":"90000000",
+      "from":"",
+      "to":"Circle"
+    },
+
+    {
+      "symbol":"WETH",
+      "amount":"1300602.120513734",
+      "from":"",
+      "to":"Aerodrome Finance"
+    },
+
+    {
+      "symbol":"USDC",
+      "amount":"1651964",
+      "from":"",
+      "to":""
+    }
+  ],
+
+  "transfers_count":"5",
 
   "whale_score":"7/10",
 
-  "analysis":"Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 25%, ماذا تفعل: فرصة, الخلاصة: حيتان تراكم ضخم على WETH بقيمة 135 مليون دولار نحو بروتوكول Morpho مع تمويل إيجابي يشير لاتجاه صعودي محتمل",
+  "analysis":"Whale Score: 8/10, نوع الحركة: تراكم, Fake Hunt: 15%, ماذا تفعل: فرصة, الخلاصة: حيتان تسحب سيولة ضخمة من WETH من بروتوكول ايرودروم مع معدل تمويل إيجابي مما يشير لتراكم قوي قبل حركة صعود",
 
-  "prices":{
-    "btc":{
-      "price":"77319.45000000",
-      "change":"0.670"
+  "prices": {
+    "btc": {
+      "price":"77361.64000000",
+      "change":"0.731"
     },
 
-    "eth":{
-      "price":"2135.72000000",
-      "change":"0.847"
+    "eth": {
+      "price":"2137.77000000",
+      "change":"0.949"
     },
 
-    "sol":{
-      "price":"648.43000000",
-      "change":"1.354"
+    "sol": {
+      "price":"648.77000000",
+      "change":"1.388"
     },
 
-    "bnb":{
-      "price":"86.57000000",
-      "change":"2.111"
+    "bnb": {
+      "price":"86.78000000",
+      "change":"2.347"
     }
   },
 
-  "market":{
-    "funding":"0.00006981",
-    "oi":"10007.66",
-    "count":"9233"
-  }
+  "funding":"0.00006981",
+
+  "open_interest":""
 }
