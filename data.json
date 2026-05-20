@@ -1,42 +1,42 @@
 {
   "transfers": [
     {
-      "symbol":"USDC",
-      "amount":"1376594.585995",
-      "from":"Morpho",
-      "to":"Morpho",
+      "symbol":"USDT",
+      "amount":"9013100.941252",
+      "from":"",
+      "to":"Fluid (Instadapp)",
       "type":"تراكم"
     },
 
     {
-      "symbol":"USDC",
-      "amount":"12991777.75",
+      "symbol":"USDG",
+      "amount":"7113518.630549",
       "from":"",
-      "to":"",
+      "to":"Paxos",
       "type":"توزيع"
     },
 
     {
       "symbol":"USDC",
-      "amount":"2364679.426618",
-      "from":"Morpho",
-      "to":"Spark",
+      "amount":"9005427.941449",
+      "from":"",
+      "to":"Fluid (Instadapp)",
       "type":"داخلي"
     },
 
     {
-      "symbol":"USDC",
-      "amount":"2329957.204438",
-      "from":"Spark",
-      "to":"Sky (MakerDAO)",
+      "symbol":"WETH",
+      "amount":"1552493.1146565129",
+      "from":"",
+      "to":"Aave",
       "type":"تراكم"
     },
 
     {
-      "symbol":"USDS",
-      "amount":"2329957.204438",
-      "from":"Sky (MakerDAO)",
-      "to":"Sky (MakerDAO)",
+      "symbol":"USDT",
+      "amount":"9013100.941252",
+      "from":"",
+      "to":"Morpho",
       "type":"توزيع"
     }
   ],
@@ -45,32 +45,32 @@
 
   "whale_score":"8/10",
 
-  "analysis":"Whale Score: 3/10 | نوع الحركة: داخلي | Fake Hunt: 15% | ماذا تفعل: انتظر | الخلاصة: حركة داخلية في بروتوكول Morpho بدون تأثير سوقي مع معدل تمويل إيجابي منخفض يشير لحياد السوق وانتظار محفزات جديد",
+  "analysis":"Whale Score: 7/10 | نوع الحركة: تراكم | Fake Hunt: 15% | ماذا تفعل: فرصة | الخلاصة: حيتان تضخ سيولة ضخمة لبروتوكول فلويد مع معدل تمويل إيجابي يشير لتفاؤل حذر وفرصة دخول محتملة على",
 
   "prices": {
     "btc": {
-      "price":"77566.40000000",
-      "change":"0.895"
+      "price":"77639.98000000",
+      "change":"1.060"
     },
 
     "eth": {
-      "price":"2138.27000000",
-      "change":"1.084"
+      "price":"2140.78000000",
+      "change":"1.329"
     },
 
     "sol": {
-      "price":"649.79000000",
-      "change":"1.507"
+      "price":"650.77000000",
+      "change":"1.705"
     },
 
     "bnb": {
-      "price":"86.20000000",
-      "change":"2.109"
+      "price":"86.19000000",
+      "change":"2.157"
     }
   },
 
   "market": {
-    "funding":"0.00005205",
+    "funding":"0.00005031",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
