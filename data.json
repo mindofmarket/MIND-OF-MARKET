@@ -1,59 +1,59 @@
 {
   "transfers": ["transfers": [
   {
-    "symbol":"USDT",
-    "amount":"87811130.669678",
-    "from":"Morpho",
+    "symbol":"weETH",
+    "amount":"1544730.0912795",
+    "from":"Ether.fi",
     "to":""
   },
   {
-    "symbol":"USDT",
-    "amount":"87811130.669678",
+    "symbol":"USDC",
+    "amount":"151474698.488929",
     "from":"",
     "to":"Morpho"
   },
   {
-    "symbol":"WETH",
-    "amount":"1295790.1607542832",
-    "from":"",
-    "to":"Aerodrome Finance"
+    "symbol":"USDC",
+    "amount":"151474698.488929",
+    "from":"Morpho",
+    "to":""
   },
   {
-    "symbol":"WETH",
-    "amount":"1298677.433393201",
+    "symbol":"cbBTC",
+    "amount":"43466280.007748",
     "from":"",
-    "to":"Aerodrome Finance"
+    "to":"Aave"
   },
   {
     "symbol":"USDC",
-    "amount":"1670029.272712",
+    "amount":"1000000",
     "from":"",
-    "to":"Aerodrome Finance"
+    "to":""
   }
 ],],
   "transfers_count": "0",
   "whale_score": "7/10",
-  "analysis": "Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 25%, ماذا تفعل: فرصة, الخلاصة: حركة حيتان قوية بسحب 87 مليون من Morpho مع تمويل إيجابي يشير لتراكم محتمل قبل صعود بيتكوين",
+  "analysis": "Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 25%, ماذا تفعل: فرصة, الخلاصة: حركة حيتان كبيرة من Ether.fi بقيمة 1.5 مليون دولار مع معدل تمويل إيجابي يشير لتراكم والسوق في وضع صعودي حذ",
   "prices": {
     "btc": {
-      "price": "77555.25000000",
-      "change": "1.470"
+      "price": "77414.10000000",
+      "change": "1.180"
     },
     "eth": {
-      "price": "2139.71000000",
-      "change": "1.470"
+      "price": "2135.99000000",
+      "change": "1.237"
     },
     "sol": {
-      "price": "649.54000000",
-      "change": "1.788"
+      "price": "648.32000000",
+      "change": "1.478"
     },
     "bnb": {
-      "price": "86.45000000",
-      "change": "2.672"
+      "price": "86.25000000",
+      "change": "2.301"
     }
   },
   "market": {
-    "funding": "0.00007070",
+    "funding": "0.00007135",
     "oi": "10007.66",
     "count": "9233"
   }
