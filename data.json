@@ -1,42 +1,42 @@
 {
   "transfers": [
     {
-      "symbol":"cbBTC",
-      "amount":"1235589.51928896",
-      "from":"Aerodrome Finance",
-      "to":"",
+      "symbol":"USDT",
+      "amount":"1566504",
+      "from":"Binance",
+      "to":"Wintermute",
       "type":"تراكم"
     },
 
     {
-      "symbol":"cbBTC",
-      "amount":"1235589.5200633202",
+      "symbol":"USDC",
+      "amount":"9579146.04",
       "from":"",
-      "to":"Aerodrome Finance",
+      "to":"Circle",
       "type":"توزيع"
     },
 
     {
-      "symbol":"USDT",
-      "amount":"2063336.755827",
-      "from":"Uniswap",
-      "to":"jaredfromsubway (MEV)",
+      "symbol":"HYPE",
+      "amount":"1773777.5749101916",
+      "from":"",
+      "to":"",
       "type":"داخلي"
     },
 
     {
       "symbol":"USDC",
-      "amount":"2061366.136099",
-      "from":"jaredfromsubway (MEV)",
-      "to":"Uniswap",
+      "amount":"7642607",
+      "from":"",
+      "to":"Kraken",
       "type":"تراكم"
     },
 
     {
-      "symbol":"USDT",
-      "amount":"2188010.417417",
-      "from":"jaredfromsubway (MEV)",
-      "to":"Uniswap",
+      "symbol":"USDC",
+      "amount":"6900003.867379",
+      "from":"Kamino Finance",
+      "to":"",
       "type":"توزيع"
     }
   ],
@@ -45,54 +45,97 @@
 
   "whale_score":"8/10",
 
-  "analysis":"# التحليل المؤسسي
+  "analysis":"# INSTITUTIONAL CRYPTO INTELLIGENCE REPORT
 
-## الحالة:
-**سوق محايد مع ميل حذر** - البيانات السعرية والحجمية غائبة لكن المؤشرات المشتقة تشير لتوازن هش
+## ⚠️ DATA INTEGRITY STATUS: CRITICAL FAILURE
 
-## النية:
-**تحفظ مؤسسي واضح** - Funding Rate موجب لكن منخفض جداً (0.00002251) يشير لغياب الحماس الشرائي المفرط، مما يعكس عدم وجود ازدحام واضح على أي اتجاه
+### Missing Critical Data Points:
+- BTC_PRICE: **NO DATA**
+- BTC_CHANGE: **NO DATA**
+- ETH_PRICE: **NO DATA**
+- ETH_CHANGE: **NO DATA**
+- BNB_PRICE: **NO DATA**
+- BNB_CHANGE: **NO DATA**
+- SOL_PRICE: **NO DATA**
+- SOL_CHANGE: **NO DATA**
+- BTC_VOLUME: **NO DATA**
+- BTC_OI: **NO DATA**
+- LONG_SHORT_RATIO: **NO DATA**
+- LONG_ACCOUNT: **TRUNCATED**
 
-## القرار:
-**انتظار وترقب - عدم الدخول**
-- Funding Rate موجب لكن ضعيف جداً (قريب من الحياد)
-- لا توجد إشارات ازدحام على Longs أو Shorts
-- غياب بيانات الحيتان والـ Long/Short Ratio يمنع التأكيد
-- لا توجد محفزات واضحة للدخول في أي اتجاه
+### Available Data Fragment:
+- **FUNDING_RATE**: 0.00002200 (0.0022% per 8h / ~0.24% annualized)
 
-## الثقة:
-**40%** - البيانات المتاحة محدودة جداً، والـ Funding Rate وحده غير كافٍ لبناء conviction قوي
+---
 
-## الخطر:
-**متوسط إلى مرتفع (60%)** - السوق في حالة غموض، أي تحرك مفاجئ قد يحدث بدون إنذار مسبق نظراً لغياب المؤشرات الحاسمة
+## INSTITUTIONAL ANALYSIS (Limited Scope)
 
-## السيناريو الأقرب:
-**تذبذب عرضي مع احتمال Fake Move** - Funding Rate الإيجابي الضعيف + غيا",
+### Funding Rate Interpretation:
+```
+Rate: 0.0022% per interval
+Status: NEUTRAL-to-SLIGHTLY BULLISH
+```
+
+**Implications:**
+- Minimal premium for long positions
+- No excessive leverage buildup
+- No immediate liquidation cascade risk
+- Market not overheated
+- Institutional spot accumulation zone (typically)
+
+---
+
+## RISK ASSESSMENT:
+
+🔴 **CANNOT EXECUTE COMPREHENSIVE ANALYSIS**
+
+**Required for institutional-grade assessment:**
+1. Price action context
+2. Volume profile validation
+3. Open Interest delta
+4. Position distribution
+5. Cross-asset correlation matrix
+
+**Current confidence level:** <15%
+
+---
+
+## INSTITUTIONAL DIRECTIVE:
+
+**NO ACTIONABLE INTELLIGENCE CAN BE DERIVED**
+
+Feed complete dataset for proper market structure analysis.
+
+*Institutional capital requires ≥95% data integrity for deployment decisions.*
+
+---
+
+`STATUS: AWAITING COMPLETE MARKET DATA FEED`",
 
   "prices": {
     "btc": {
-      "price":"77410.78000000",
-      "change":"0.728"
+      "price":"77415.72000000",
+      "change":"0.679"
     },
 
     "eth": {
-      "price":"2123.72000000",
-      "change":"0.506"
+      "price":"2124.01000000",
+      "change":"0.461"
     },
 
     "sol": {
-      "price":"647.77000000",
-      "change":"1.137"
+      "price":"647.83000000",
+      "change":"1.148"
     },
 
     "bnb": {
-      "price":"85.92000000",
-      "change":"1.885"
+      "price":"85.90000000",
+      "change":"1.753"
     }
   },
 
   "market": {
-    "funding":"0.00002251",
+    "funding":"0.00002200",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
