@@ -2,41 +2,41 @@
   "transfers": [
     {
       "symbol":"USDC",
-      "amount":"2000000",
-      "from":"Jupiter",
-      "to":"",
-      "type":"تراكم"
-    },
-
-    {
-      "symbol":"kBTC",
-      "amount":"1439962.256627",
-      "from":"Kraken",
-      "to":"",
-      "type":"توزيع"
-    },
-
-    {
-      "symbol":"ETH",
-      "amount":"2139788.07",
+      "amount":"1200000",
       "from":"",
-      "to":"",
-      "type":"داخلي"
-    },
-
-    {
-      "symbol":"USDC",
-      "amount":"3136648",
-      "from":"Circle",
       "to":"Circle",
       "type":"تراكم"
     },
 
     {
-      "symbol":"USDC",
-      "amount":"88111990.642037",
+      "symbol":"WETH",
+      "amount":"48668105.61392014",
       "from":"Morpho",
       "to":"",
+      "type":"توزيع"
+    },
+
+    {
+      "symbol":"WETH",
+      "amount":"48668105.61392014",
+      "from":"",
+      "to":"Morpho",
+      "type":"داخلي"
+    },
+
+    {
+      "symbol":"USDG",
+      "amount":"5260000",
+      "from":"Aave",
+      "to":"",
+      "type":"تراكم"
+    },
+
+    {
+      "symbol":"WETH",
+      "amount":"48668105.61392014",
+      "from":"",
+      "to":"Morpho",
       "type":"توزيع"
     }
   ],
@@ -45,32 +45,32 @@
 
   "whale_score":"8/10",
 
-  "analysis":"Whale Score: 7/10 | نوع الحركة: تراكم | Fake Hunt: 30% | ماذا تفعل: فرصة | الخلاصة: تدفقات ضخمة من USDC عبر Jupiter مع معدل تمويل إيجابي يشير لتراكم الحيتان قبل ارتفاع محتمل في البيتكوين",
+  "analysis":"Whale Score: 6/10, نوع الحركة: تراكم, Fake Hunt: 30%, ماذا تفعل: فرصة, الخلاصة: تحويل كبير من USDC إلى Circle يشير لتحضيرات شراء محتملة مع معدل تمويل إيجابي يدعم الاتجاه الصاعد قصير المدى",
 
   "prices": {
     "btc": {
-      "price":"77531.35000000",
-      "change":"0.806"
+      "price":"77483.87000000",
+      "change":"0.861"
     },
 
     "eth": {
-      "price":"2138.91000000",
-      "change":"1.009"
+      "price":"2134.32000000",
+      "change":"0.908"
     },
 
     "sol": {
-      "price":"649.58000000",
-      "change":"1.370"
+      "price":"649.11000000",
+      "change":"1.447"
     },
 
     "bnb": {
-      "price":"86.42000000",
-      "change":"2.043"
+      "price":"86.07000000",
+      "change":"1.967"
     }
   },
 
   "market": {
-    "funding":"0.00006487",
+    "funding":"0.00006589",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
