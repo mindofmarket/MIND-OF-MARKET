@@ -1,13 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl" id="root">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 <title>MIND OF MARKET | عقل السوق</title>
 
 <style>
@@ -15,405 +10,241 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Orbitron:wght@700;900&display=swap');
 
 *{
-
 margin:0;
-
 padding:0;
-
 box-sizing:border-box;
-
 }
 
 html,body{
-
 height:100%;
-
 overflow:hidden;
-
 background:#030b14;
-
 color:#e2e8f0;
-
 }
 
 body{
-
 font-family:'Tajawal',sans-serif;
-
 display:flex;
-
 flex-direction:column;
-
 width:100%;
-
 }
 
 /* HEADER */
 
 .hdr{
-
 background:rgba(2,8,20,.99);
-
 border-bottom:1px solid rgba(56,189,248,.15);
-
 padding:8px 14px;
-
 display:flex;
-
 align-items:center;
-
 justify-content:space-between;
-
 flex-shrink:0;
-
 }
 
 .logo{
-
 display:flex;
-
 align-items:center;
-
 gap:9px;
-
 }
 
 .eye{
-
 width:26px;
-
 height:13px;
-
 border:1.5px solid #38bdf8;
-
 border-radius:50%;
-
 position:relative;
-
 box-shadow:0 0 10px rgba(56,189,248,.35);
-
 }
 
 .eye::after{
-
 content:'';
-
 position:absolute;
-
 width:7px;
-
 height:7px;
-
 background:#38bdf8;
-
 border-radius:50%;
-
 top:50%;
-
 left:50%;
-
 transform:translate(-50%,-50%);
-
 box-shadow:0 0 6px #38bdf8;
-
 }
 
 .ln{
-
 font-family:'Orbitron',sans-serif;
-
 font-size:11px;
-
 font-weight:900;
-
 letter-spacing:2px;
-
 color:#38bdf8;
-
 }
 
 .ls{
-
 font-size:8px;
-
 color:#475569;
-
 letter-spacing:1px;
-
 }
 
 .hr{
-
 display:flex;
-
 align-items:center;
-
 gap:7px;
-
 }
 
 .live{
-
 display:flex;
-
 align-items:center;
-
 gap:4px;
-
 font-size:9px;
-
 color:#34d399;
-
 }
 
 .dot{
-
 width:5px;
-
 height:5px;
-
 background:#34d399;
-
 border-radius:50%;
-
 }
 
 .btn{
-
 background:rgba(56,189,248,.08);
-
 border:1px solid rgba(56,189,248,.2);
-
 color:#38bdf8;
-
 padding:4px 10px;
-
 border-radius:6px;
-
 font-size:10px;
-
 cursor:pointer;
-
 font-family:'Tajawal',sans-serif;
-
 }
 
 /* NEWS */
 
 .news{
-
 background:rgba(56,189,248,.03);
-
 border-bottom:1px solid rgba(56,189,248,.08);
-
 padding:4px 0;
-
 overflow:hidden;
-
 flex-shrink:0;
-
 }
 
 .news-inner{
-
 display:flex;
-
 white-space:nowrap;
-
 animation:scroll-l 45s linear infinite;
-
 }
 
 .ni{
-
 display:inline-flex;
-
 align-items:center;
-
 gap:6px;
-
 padding:0 16px;
-
 font-size:10px;
-
 color:#94a3b8;
-
 }
 
 .nd{
-
 width:4px;
-
 height:4px;
-
 background:#38bdf8;
-
 border-radius:50%;
-
 }
 
 @keyframes scroll-l{
-
 0%{transform:translateX(0)}
-
 100%{transform:translateX(-50%)}
-
 }
 
 /* CONTENT */
 
 .cnt{
-
 flex:1;
-
 padding:7px 9px;
-
 display:flex;
-
 flex-direction:column;
-
 gap:6px;
-
 overflow:hidden;
-
 }
 
 /* PRICES */
 
 .prices{
-
 display:grid;
-
 grid-template-columns:repeat(4,1fr);
-
 gap:5px;
-
 }
 
 .pc{
-
 background:rgba(8,18,38,.95);
-
 border:1px solid rgba(56,189,248,.1);
-
 border-radius:9px;
-
 padding:7px 6px;
-
 text-align:center;
-
 }
 
 .ps{
-
 font-size:9px;
-
 color:#475569;
-
 margin-bottom:2px;
-
 }
 
 .pv{
-
 font-family:'Orbitron',sans-serif;
-
 font-size:13px;
-
 font-weight:700;
-
 color:#38bdf8;
-
 }
 
 .pch{
-
 font-size:9px;
-
 font-weight:700;
-
 margin-top:2px;
-
 }
 
 .up{color:#34d399}
-
 .dn{color:#f87171}
 
 /* LIVE CHART */
 
 .chart-box{
-
 background:rgba(8,18,38,.95);
-
 border:1px solid rgba(56,189,248,.1);
-
 border-radius:9px;
-
 padding:6px;
-
 height:220px;
-
 }
 
 .chart-head{
-
 display:flex;
-
 justify-content:space-between;
-
 font-size:9px;
-
 color:#38bdf8;
-
 margin-bottom:5px;
-
 }
 
 .tv{
-
 height:150px;
-
 border-radius:7px;
-
 overflow:hidden;
-
 }
 
 .flow{
-
 display:grid;
-
 grid-template-columns:repeat(3,1fr);
-
 gap:5px;
-
 margin-top:5px;
-
 }
 
 .flow div{
-
 background:rgba(255,255,255,.03);
-
 border-radius:6px;
-
 padding:4px;
-
 text-align:center;
-
 font-size:9px;
-
 }
 
 .demand{color:#34d399}
-
 .supply{color:#f87171}
-
 .volume{color:#38bdf8}
 
 </style>
-
 </head>
 
 <body>
@@ -421,33 +252,22 @@ font-size:9px;
 <div class="hdr">
 
 <div class="logo">
-
 <div class="eye"></div>
-
 <div>
-
 <div class="ln">MIND OF MARKET</div>
-
 <div class="ls">رادار الحيتان</div>
-
 </div>
-
 </div>
 
 <div class="hr">
-
 <div class="live"><div class="dot"></div>مباشر</div>
-
 <button class="btn">EN</button>
-
 </div>
 
 </div>
 
 <div class="news">
-
 <div class="news-inner" id="news-track"></div>
-
 </div>
 
 <div class="cnt">
@@ -455,43 +275,27 @@ font-size:9px;
 <div class="prices">
 
 <div class="pc">
-
 <div class="ps">BTC</div>
-
 <div class="pv" id="p-btc">--</div>
-
 <div class="pch" id="c-btc">--</div>
-
 </div>
 
 <div class="pc">
-
 <div class="ps">ETH</div>
-
 <div class="pv" id="p-eth">--</div>
-
 <div class="pch" id="c-eth">--</div>
-
 </div>
 
 <div class="pc">
-
 <div class="ps">SOL</div>
-
 <div class="pv" id="p-sol">--</div>
-
 <div class="pch" id="c-sol">--</div>
-
 </div>
 
 <div class="pc">
-
 <div class="ps">BNB</div>
-
 <div class="pv" id="p-bnb">--</div>
-
 <div class="pch" id="c-bnb">--</div>
-
 </div>
 
 </div>
@@ -499,23 +303,16 @@ font-size:9px;
 <div class="chart-box">
 
 <div class="chart-head">
-
 <div>LIVE MARKET</div>
-
 <div>BTC / 15m</div>
-
 </div>
 
 <div class="tv" id="tradingview_chart"></div>
 
 <div class="flow">
-
 <div class="demand">Demand<br><span id="demandVal">--</span></div>
-
 <div class="supply">Supply<br><span id="supplyVal">--</span></div>
-
 <div class="volume">Volume<br><span id="volumeVal">--</span></div>
-
 </div>
 
 </div>
@@ -527,59 +324,36 @@ font-size:9px;
 <script>
 
 new TradingView.widget({
-
 autosize:true,
-
 symbol:"BINANCE:BTCUSDT",
-
 interval:"15",
-
 timezone:"Etc/UTC",
-
 theme:"dark",
-
 style:"1",
-
 locale:"en",
-
 hide_top_toolbar:true,
-
 allow_symbol_change:false,
-
 container_id:"tradingview_chart",
-
 studies:["Volume@tv-basicstudies"]
-
 });
 
 const ws = new WebSocket('wss://stream.binance.com:9443/stream?streams=btcusdt@ticker/ethusdt@ticker/solusdt@ticker/bnbusdt@ticker');
 
 const map={
-
 BTCUSDT:'btc',
-
 ETHUSDT:'eth',
-
 SOLUSDT:'sol',
-
 BNBUSDT:'bnb'
-
 };
 
 function fmt(n){
-
 const x=parseFloat(n);
-
 if(!x)return'--';
-
 return '$'+x.toLocaleString('en-US',{maximumFractionDigits:2});
-
 }
 
 ws.onmessage=(e)=>{
-
 const d=JSON.parse(e.data).data;
-
 const id=map[d.s];
 
 document.getElementById('p-'+id).textContent=fmt(d.c);
@@ -591,7 +365,6 @@ const el=document.getElementById('c-'+id);
 el.textContent=(ch>=0?'+':'')+ch.toFixed(2)+'%';
 
 el.className='pch '+(ch>=0?'up':'dn');
-
 };
 
 async function orderBook(){
@@ -603,19 +376,14 @@ const r=await fetch('https://api.binance.com/api/v3/depth?symbol=BTCUSDT&limit=1
 const d=await r.json();
 
 let bids=0;
-
 let asks=0;
 
 d.bids.forEach(x=>{
-
 bids+=parseFloat(x[0])*parseFloat(x[1]);
-
 });
 
 d.asks.forEach(x=>{
-
 asks+=parseFloat(x[0])*parseFloat(x[1]);
-
 });
 
 const total=bids+asks;
@@ -633,35 +401,23 @@ document.getElementById('volumeVal').textContent='$'+Math.round(total/1000000)+'
 async function loadNews(){
 
 const news=[
-
 'Bitcoin liquidity rises while whales accumulate',
-
 'ETH demand increases across derivatives markets',
-
 'SOL volume expands as momentum strengthens',
-
 'Whale transfers spike across centralized exchanges',
-
 'Funding rates remain positive on BTC'
-
 ];
 
 document.getElementById('news-track').innerHTML=[...news,...news].map(x=>`
-
 <span class="ni">
-
 <span class="nd"></span>
-
 ${x}
-
 </span>
-
 `).join('');
 
 }
 
 orderBook();
-
 loadNews();
 
 setInterval(orderBook,10000);
@@ -669,5 +425,4 @@ setInterval(orderBook,10000);
 </script>
 
 </body>
-
 </html>
