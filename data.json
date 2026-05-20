@@ -1,10 +1,10 @@
 {
   "transfers": [
     {
-      "symbol":"WETH",
-      "amount":"1072223.6104826664",
-      "from":"",
-      "to":"Aerodrome Finance",
+      "symbol":"USDC",
+      "amount":"1503113.3112243335",
+      "from":"ListaDAO",
+      "to":"",
       "type":"تراكم"
     },
 
@@ -18,25 +18,25 @@
 
     {
       "symbol":"WETH",
-      "amount":"48612603.897037946",
-      "from":"Morpho",
-      "to":"",
+      "amount":"1072223.6104826664",
+      "from":"",
+      "to":"Aerodrome Finance",
       "type":"داخلي"
     },
 
     {
       "symbol":"WETH",
-      "amount":"48612603.897037946",
-      "from":"Morpho",
+      "amount":"1072223.6104826664",
+      "from":"Aerodrome Finance",
       "to":"",
       "type":"تراكم"
     },
 
     {
       "symbol":"WETH",
-      "amount":"48612603.897037946",
+      "amount":"1072223.6104826664",
       "from":"",
-      "to":"Morpho",
+      "to":"Aerodrome Finance",
       "type":"توزيع"
     }
   ],
@@ -45,27 +45,27 @@
 
   "whale_score":"8/10",
 
-  "analysis":"Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 25%, ماذا تفعل: فرصة, الخلاصة: حوت يضخ سيولة ضخمة في Aerodrome مما يشير لتراكم إيجابي مع معدل تمويل محايد يدعم فرصة شراء محتملة",
+  "analysis":"Whale Score: 6/10 نوع الحركة: تراكم الفيك هنت: 35% ماذا تفعل: انتظر الخلاصة: تدفق متوسط من ListaDAO مع بيتكوين مستقر وتمويل إيجابي يشير لتراكم هادئ لكن يفضل انتظار إشارات أقوى قبل",
 
   "prices": {
     "btc": {
-      "price":"77513.69000000",
-      "change":"0.889"
+      "price":"77542.79000000",
+      "change":"0.927"
     },
 
     "eth": {
-      "price":"2136.23000000",
-      "change":"0.987"
+      "price":"2136.78000000",
+      "change":"1.006"
     },
 
     "sol": {
-      "price":"649.29000000",
-      "change":"1.431"
+      "price":"649.68000000",
+      "change":"1.497"
     },
 
     "bnb": {
-      "price":"86.13000000",
-      "change":"1.989"
+      "price":"86.16000000",
+      "change":"2.049"
     }
   },
 
