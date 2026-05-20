@@ -2,28 +2,28 @@
   "transfers": [],
   "transfers_count": "0",
   "whale_score": "7/10",
-"analysis": ,
+"analysis": 16.Data.content[1].text,
   "prices": {
     "btc": {
-      "price": "77523.26000000",
-      "change": "1.395"
+      "price": "77572.52000000",
+      "change": "1.501"
     },
     "eth": {
-      "price": "2138.44000000",
-      "change": "1.373"
-    },
-    "sol": {
-      "price": "648.63000000",
+      "price": "2140.72000000",
       "change": "1.545"
     },
+    "sol": {
+      "price": "649.04000000",
+      "change": "1.651"
+    },
     "bnb": {
-      "price": "86.00000000",
-      "change": "2.017"
+      "price": "86.04000000",
+      "change": "2.088"
     }
   },
   "market": {
     "funding": "0.00007069",
     "oi": "10006.61",
-    "count": "9488"
+    "count": "9493"
   }
 }
