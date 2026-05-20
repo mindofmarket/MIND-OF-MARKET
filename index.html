@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="root">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MIND OF MARKET</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Orbitron:wght@700;900&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Orbitron:wght@700;900&display=swap');
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
 background:#030b14;
 color:#e2e8f0;
-font-family:'Tajawal',sans-serif;
+font-family:'Inter',sans-serif;
 padding:10px;
+overflow-x:hidden;
 }
 
 .hdr{
@@ -29,27 +25,18 @@ align-items:center;
 margin-bottom:10px;
 }
 
-.logo{
-display:flex;
-flex-direction:column;
-}
-
 .ln{
 font-family:'Orbitron',sans-serif;
 font-size:18px;
 font-weight:900;
 color:#38bdf8;
+letter-spacing:1px;
 }
 
 .ls{
 font-size:11px;
 color:#64748b;
-}
-
-.right{
-display:flex;
-align-items:center;
-gap:8px;
+text-align:right;
 }
 
 .live{
@@ -57,14 +44,26 @@ font-size:11px;
 color:#34d399;
 }
 
-.lang-btn{
-background:#111827;
-border:1px solid rgba(56,189,248,0.2);
-color:#38bdf8;
-padding:6px 10px;
-border-radius:8px;
-cursor:pointer;
+.news-box{
+background:#0f172a;
+border:1px solid rgba(56,189,248,.12);
+border-radius:12px;
+padding:8px;
+margin-bottom:10px;
+overflow:hidden;
+white-space:nowrap;
+}
+
+.news-track{
+display:inline-block;
+animation:newsScroll 45s linear infinite;
 font-size:11px;
+color:#94a3b8;
+}
+
+@keyframes newsScroll{
+0%{transform:translateX(100%)}
+100%{transform:translateX(-100%)}
 }
 
 .prices{
@@ -74,45 +73,40 @@ gap:6px;
 margin-bottom:10px;
 }
 
-.pc{
+.card{
 background:#0f172a;
+border:1px solid rgba(56,189,248,.12);
+border-radius:14px;
 padding:10px;
-border-radius:12px;
-border:1px solid rgba(56,189,248,0.08);
 text-align:center;
 }
 
-.ps{
+.label{
 font-size:10px;
 color:#64748b;
-margin-bottom:4px;
+margin-bottom:5px;
 }
 
-.pv{
+.value{
 font-family:'Orbitron',sans-serif;
 font-size:15px;
-font-weight:700;
+font-weight:900;
 color:#38bdf8;
 }
 
-.pch{
-font-size:11px;
-margin-top:4px;
+.change{
+font-size:10px;
 font-weight:700;
+margin-top:4px;
 }
 
-.up{
-color:#34d399;
-}
-
-.dn{
-color:#f87171;
-}
+.up{color:#34d399}
+.down{color:#f87171}
 
 .chart-box{
 background:#0f172a;
-border:1px solid rgba(56,189,248,0.08);
-border-radius:12px;
+border:1px solid rgba(56,189,248,.12);
+border-radius:14px;
 padding:10px;
 margin-bottom:10px;
 }
@@ -120,45 +114,38 @@ margin-bottom:10px;
 .chart-head{
 display:flex;
 justify-content:space-between;
-margin-bottom:8px;
-font-size:12px;
+align-items:center;
 color:#38bdf8;
+font-size:12px;
 font-weight:700;
+margin-bottom:8px;
 }
 
 canvas{
 width:100%;
-height:160px;
+height:150px;
 background:#111827;
-border-radius:10px;
+border-radius:12px;
 }
 
-.sd-row{
+.flow{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:6px;
-margin-top:10px;
+margin-top:8px;
 }
 
-.sd{
+.flow div{
 background:#111827;
+border-radius:10px;
 padding:8px;
-border-radius:8px;
-text-align:center;
 font-size:11px;
+text-align:center;
 }
 
-.demand{
-color:#34d399;
-}
-
-.supply{
-color:#f87171;
-}
-
-.volume{
-color:#38bdf8;
-}
+.demand{color:#34d399}
+.supply{color:#f87171}
+.volume{color:#38bdf8}
 
 .indicators{
 display:grid;
@@ -167,409 +154,320 @@ gap:6px;
 margin-bottom:10px;
 }
 
-.ind{
+.whale-box{
 background:#0f172a;
+border:1px solid rgba(56,189,248,.12);
+border-radius:14px;
 padding:10px;
-border-radius:12px;
-border:1px solid rgba(56,189,248,0.08);
-text-align:center;
-}
-
-.il{
-font-size:10px;
-color:#64748b;
-margin-bottom:5px;
-}
-
-.iv{
-font-family:'Orbitron',sans-serif;
-font-size:18px;
-font-weight:900;
-}
-
-.id{
-font-size:10px;
-margin-top:5px;
-color:#94a3b8;
-}
-
-.whales{
-background:#0f172a;
-padding:10px;
-border-radius:12px;
-border:1px solid rgba(56,189,248,0.08);
 margin-bottom:10px;
+height:260px;
+overflow:hidden;
 }
 
-.wht{
+.whale-title{
+color:#38bdf8;
 font-size:12px;
-font-weight:700;
-color:#38bdf8;
-margin-bottom:10px;
+font-weight:800;
+margin-bottom:8px;
 }
 
-.wi{
-background:#111827;
-padding:10px;
-border-radius:10px;
-margin-bottom:6px;
-border:1px solid rgba(255,255,255,0.04);
+.whale-scroll{
+height:215px;
+overflow:hidden;
+position:relative;
 }
 
-.wa{
-font-family:'Orbitron',sans-serif;
-font-size:15px;
-font-weight:700;
-color:#38bdf8;
-margin-bottom:5px;
+.whale-inner{
+animation:whaleMove 35s linear infinite;
 }
 
-.wroute{
+@keyframes whaleMove{
+0%{transform:translateY(0)}
+100%{transform:translateY(-50%)}
+}
+
+.transfer-line{
+display:grid;
+grid-template-columns:80px 1fr 65px;
+gap:6px;
+align-items:center;
+padding:8px 4px;
+border-bottom:1px solid rgba(255,255,255,.06);
 font-size:11px;
-margin-bottom:4px;
 }
 
-.wbot{
-display:flex;
-justify-content:space-between;
+.amount{
+font-family:'Orbitron',sans-serif;
+color:#38bdf8;
+font-size:12px;
+}
+
+.route{
+color:#cbd5e1;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+
+.type{
+text-align:right;
 font-size:10px;
-color:#94a3b8;
 }
 
-.green{
-color:#34d399;
-}
+.accum{color:#34d399}
+.dist{color:#f87171}
+.internal{color:#fbbf24}
 
-.red{
-color:#f87171;
-}
-
-.yellow{
-color:#fbbf24;
-}
-
-.dec{
+.decision{
 padding:12px;
-border-radius:12px;
+border-radius:14px;
 text-align:center;
-font-size:14px;
-font-weight:700;
+font-weight:800;
+font-size:13px;
+line-height:1.5;
 margin-bottom:10px;
 }
 
-.dg{
-background:rgba(52,211,153,0.1);
+.buy{
+background:rgba(52,211,153,.1);
 color:#34d399;
-border:1px solid rgba(52,211,153,0.2);
+border:1px solid rgba(52,211,153,.25);
 }
 
-.dc{
-background:rgba(248,113,113,0.1);
+.warn{
+background:rgba(248,113,113,.1);
 color:#f87171;
-border:1px solid rgba(248,113,113,0.2);
+border:1px solid rgba(248,113,113,.25);
 }
 
-.dw{
-background:rgba(251,191,36,0.1);
+.wait{
+background:rgba(251,191,36,.1);
 color:#fbbf24;
-border:1px solid rgba(251,191,36,0.2);
+border:1px solid rgba(251,191,36,.25);
 }
 
 footer{
 text-align:center;
-margin-top:10px;
 font-size:10px;
 color:#475569;
+margin-top:12px;
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="hdr">
-
-<div class="logo">
+<div>
 <div class="ln">MIND OF MARKET</div>
-<div class="ls" id="subTitle">رادار الحيتان</div>
+<div class="ls">AI Whale Radar</div>
 </div>
-
-<div class="right">
 <div class="live">● LIVE</div>
-<button class="lang-btn" onclick="toggleLang()">EN / AR</button>
 </div>
 
+<div class="news-box">
+<div class="news-track" id="newsTrack">Loading latest market news...</div>
 </div>
 
 <div class="prices">
-
-<div class="pc">
-<div class="ps">BTC</div>
-<div class="pv" id="p-btc">--</div>
-<div class="pch" id="c-btc">--</div>
-</div>
-
-<div class="pc">
-<div class="ps">ETH</div>
-<div class="pv" id="p-eth">--</div>
-<div class="pch" id="c-eth">--</div>
-</div>
-
-<div class="pc">
-<div class="ps">SOL</div>
-<div class="pv" id="p-sol">--</div>
-<div class="pch" id="c-sol">--</div>
-</div>
-
-<div class="pc">
-<div class="ps">BNB</div>
-<div class="pv" id="p-bnb">--</div>
-<div class="pch" id="c-bnb">--</div>
-</div>
-
+<div class="card"><div class="label">BTC</div><div class="value" id="p-btc">--</div><div class="change" id="c-btc">--</div></div>
+<div class="card"><div class="label">ETH</div><div class="value" id="p-eth">--</div><div class="change" id="c-eth">--</div></div>
+<div class="card"><div class="label">SOL</div><div class="value" id="p-sol">--</div><div class="change" id="c-sol">--</div></div>
+<div class="card"><div class="label">BNB</div><div class="value" id="p-bnb">--</div><div class="change" id="c-bnb">--</div></div>
 </div>
 
 <div class="chart-box">
-
 <div class="chart-head">
-<div id="chartTitle">حركة السوق</div>
+<div>LIVE MARKET CHART</div>
 <div>BTC / 15m</div>
 </div>
+<canvas id="marketChart" width="800" height="220"></canvas>
 
-<canvas id="marketChart" width="800" height="160"></canvas>
-
-<div class="sd-row">
-
-<div class="sd demand">
-طلب
-<div id="buyPressure">68%</div>
+<div class="flow">
+<div class="demand">Demand<br><span id="demandVal">--</span></div>
+<div class="supply">Supply<br><span id="supplyVal">--</span></div>
+<div class="volume">Volume<br><span id="volumeVal">--</span></div>
 </div>
-
-<div class="sd supply">
-عرض
-<div id="sellPressure">32%</div>
-</div>
-
-<div class="sd volume">
-Volume
-<div id="volumeVal">$2.4B</div>
-</div>
-
-</div>
-
 </div>
 
 <div class="indicators">
-
-<div class="ind">
-<div class="il">Whale Score</div>
-<div class="iv" id="whaleScore">--</div>
-<div class="id">Smart Money</div>
+<div class="card"><div class="label">Whale Score</div><div class="value" id="whaleScore">--</div><div class="label">Smart Money</div></div>
+<div class="card"><div class="label">Funding</div><div class="value" id="fundingRate">--</div><div class="label">Funding Rate</div></div>
+<div class="card"><div class="label">Open Interest</div><div class="value" id="openInterest">--</div><div class="label">OI</div></div>
 </div>
 
-<div class="ind">
-<div class="il">Funding</div>
-<div class="iv" id="fundingRate">--</div>
-<div class="id">Funding Rate</div>
+<div class="whale-box">
+<div class="whale-title">🚨 LAST 20 WHALE MOVES</div>
+<div class="whale-scroll">
+<div class="whale-inner" id="whaleList"></div>
+</div>
 </div>
 
-<div class="ind">
-<div class="il">Open Interest</div>
-<div class="iv" id="openInterest">--</div>
-<div class="id">OI</div>
-</div>
+<div class="decision wait" id="decisionBox">Analyzing market...</div>
 
-</div>
-
-<div class="whales">
-
-<div class="wht" id="whaleTitle">أهم تحركات الحيتان</div>
-
-<div id="whaleList"></div>
-
-</div>
-
-<div class="dec dw" id="decisionBox">
-جاري التحليل...
-</div>
-
-<footer>
-MIND OF MARKET ©
-</footer>
+<footer>MIND OF MARKET | AI MARKET INTELLIGENCE</footer>
 
 <script>
-
 const DATA_URL='./data.json';
 
-let currentLang='ar';
-
-function toggleLang(){
-
-const root=document.getElementById('root');
-
-if(currentLang==='ar'){
-currentLang='en';
-root.setAttribute('dir','ltr');
-root.setAttribute('lang','en');
-document.getElementById('subTitle').textContent='Whale Radar';
-document.getElementById('chartTitle').textContent='Market Movement';
-document.getElementById('whaleTitle').textContent='Top Whale Transfers';
-}else{
-currentLang='ar';
-root.setAttribute('dir','rtl');
-root.setAttribute('lang','ar');
-document.getElementById('subTitle').textContent='رادار الحيتان';
-document.getElementById('chartTitle').textContent='حركة السوق';
-document.getElementById('whaleTitle').textContent='أهم تحركات الحيتان';
+function money(n){
+const x=parseFloat(n);
+if(!x)return'--';
+if(x>=1e9)return'$'+(x/1e9).toFixed(2)+'B';
+if(x>=1e6)return'$'+(x/1e6).toFixed(2)+'M';
+if(x>=1e3)return'$'+(x/1e3).toFixed(1)+'K';
+return'$'+x.toFixed(0);
 }
 
+function price(n){
+const x=parseFloat(n);
+if(!x)return'--';
+return'$'+x.toLocaleString('en-US',{maximumFractionDigits:2});
 }
 
-function formatMoney(num){
-
-const n=parseFloat(num);
-
-if(n>=1000000000){
-return '$'+(n/1000000000).toFixed(2)+'B';
+function setChange(id,v){
+const el=document.getElementById(id);
+const x=parseFloat(v||0);
+el.textContent=(x>=0?'+':'')+x.toFixed(2)+'%';
+el.className='change '+(x>=0?'up':'down');
 }
 
-if(n>=1000000){
-return '$'+(n/1000000).toFixed(2)+'M';
+function cleanName(v){
+if(!v || v==='null' || v==='undefined')return'Unknown';
+return v;
 }
 
-if(n>=1000){
-return '$'+(n/1000).toFixed(1)+'K';
-}
-
-return '$'+n.toFixed(0);
-
-}
-
-async function loadData(){
-
+async function loadLiveChart(){
 try{
+const r=await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=15m&limit=40');
+const d=await r.json();
 
-const res=await fetch(DATA_URL+'?v='+Date.now());
+const closes=d.map(x=>parseFloat(x[4]));
+let demand=0,supply=0,volume=0;
 
-const data=await res.json();
-
-document.getElementById('p-btc').textContent='$'+parseFloat(data.prices.btc.price).toLocaleString();
-document.getElementById('p-eth').textContent='$'+parseFloat(data.prices.eth.price).toLocaleString();
-document.getElementById('p-sol').textContent='$'+parseFloat(data.prices.sol.price).toLocaleString();
-document.getElementById('p-bnb').textContent='$'+parseFloat(data.prices.bnb.price).toLocaleString();
-
-document.getElementById('c-btc').textContent=data.prices.btc.change+'%';
-document.getElementById('c-eth').textContent=data.prices.eth.change+'%';
-document.getElementById('c-sol').textContent=data.prices.sol.change+'%';
-document.getElementById('c-bnb').textContent=data.prices.bnb.change+'%';
-
-document.getElementById('whaleScore').textContent=data.whale_score;
-
-document.getElementById('fundingRate').textContent=data.market.funding;
-
-document.getElementById('openInterest').textContent=formatMoney(data.market.open_interest);
-
-document.getElementById('buyPressure').textContent=data.market.buy_pressure+'%';
-
-document.getElementById('sellPressure').textContent=data.market.sell_pressure+'%';
-
-document.getElementById('volumeVal').textContent=formatMoney(data.market.volume);
-
-document.getElementById('decisionBox').textContent=data.analysis;
-
-if(data.analysis.includes('شراء')||data.analysis.includes('تراكم')){
-document.getElementById('decisionBox').className='dec dg';
-}else if(data.analysis.includes('حذر')||data.analysis.includes('بيع')){
-document.getElementById('decisionBox').className='dec dc';
-}else{
-document.getElementById('decisionBox').className='dec dw';
-}
-
-let whales='';
-
-data.transfers.forEach(t=>{
-
-let color='yellow';
-
-if(t.type==='تراكم'){
-color='green';
-}
-
-if(t.type==='توزيع'){
-color='red';
-}
-
-whales+=`
-<div class="wi">
-
-<div class="wa">
-${formatMoney(t.amount)}
-</div>
-
-<div class="wroute">
-${t.from || 'مجهول'} ← ${t.to || 'مجهول'}
-</div>
-
-<div class="wbot">
-<div>${t.symbol}</div>
-<div class="${color}">${t.type}</div>
-</div>
-
-</div>
-`;
-
+d.forEach(x=>{
+const open=parseFloat(x[1]);
+const close=parseFloat(x[4]);
+const vol=parseFloat(x[5]);
+volume+=vol;
+if(close>=open)demand+=vol;
+else supply+=vol;
 });
 
-document.getElementById('whaleList').innerHTML=whales;
+const total=demand+supply;
+document.getElementById('demandVal').textContent=Math.round((demand/total)*100)+'%';
+document.getElementById('supplyVal').textContent=Math.round((supply/total)*100)+'%';
+document.getElementById('volumeVal').textContent=money(volume*closes[closes.length-1]);
 
-drawChart(data.line_chart['1h']);
-
-}catch(e){
-
-console.log(e);
-
-}
-
+drawChart(closes);
+}catch(e){}
 }
 
 function drawChart(arr){
-
-const canvas=document.getElementById('marketChart');
-
-const ctx=canvas.getContext('2d');
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-ctx.beginPath();
-
-ctx.strokeStyle='#38bdf8';
-ctx.lineWidth=3;
+const c=document.getElementById('marketChart');
+const ctx=c.getContext('2d');
+ctx.clearRect(0,0,c.width,c.height);
 
 const max=Math.max(...arr);
 const min=Math.min(...arr);
+const pad=20;
+const range=max-min || 1;
 
-arr.forEach((v,i)=>{
-
-const x=(canvas.width/(arr.length-1))*i;
-
-const y=canvas.height-((v-min)/(max-min))*130-15;
-
-if(i===0){
-ctx.moveTo(x,y);
-}else{
-ctx.lineTo(x,y);
+ctx.strokeStyle='rgba(56,189,248,.12)';
+ctx.lineWidth=1;
+for(let i=0;i<4;i++){
+let y=pad+i*((c.height-pad*2)/3);
+ctx.beginPath();
+ctx.moveTo(pad,y);
+ctx.lineTo(c.width-pad,y);
+ctx.stroke();
 }
 
+ctx.strokeStyle='#38bdf8';
+ctx.lineWidth=4;
+ctx.beginPath();
+
+arr.forEach((v,i)=>{
+let x=pad+i*((c.width-pad*2)/(arr.length-1));
+let y=c.height-pad-((v-min)/range)*(c.height-pad*2);
+if(i===0)ctx.moveTo(x,y);
+else ctx.lineTo(x,y);
 });
 
 ctx.stroke();
-
 }
 
+async function loadNews(){
+const fallback=[
+'Bitcoin liquidity expands as traders watch ETF flows',
+'Ethereum market structure improves with stronger demand',
+'Whale activity increases across major stablecoin transfers',
+'Crypto market volume rises as risk appetite improves',
+'Funding rates remain positive while BTC holds key levels'
+];
+
+document.getElementById('newsTrack').textContent=fallback.join('   •   ');
+}
+
+async function loadData(){
+try{
+const r=await fetch(DATA_URL+'?v='+Date.now(),{cache:'no-store'});
+const d=await r.json();
+
+document.getElementById('p-btc').textContent=price(d.prices?.btc?.price);
+document.getElementById('p-eth').textContent=price(d.prices?.eth?.price);
+document.getElementById('p-sol').textContent=price(d.prices?.sol?.price);
+document.getElementById('p-bnb').textContent=price(d.prices?.bnb?.price);
+
+setChange('c-btc',d.prices?.btc?.change);
+setChange('c-eth',d.prices?.eth?.change);
+setChange('c-sol',d.prices?.sol?.change);
+setChange('c-bnb',d.prices?.bnb?.change);
+
+document.getElementById('whaleScore').textContent=d.whale_score||'--';
+document.getElementById('fundingRate').textContent=d.market?.funding||d.funding||'--';
+document.getElementById('openInterest').textContent=money(d.market?.open_interest||d.market?.oi||d.open_interest);
+
+const moves=(d.transfers||[]).slice(0,20);
+let html='';
+
+moves.forEach(t=>{
+const type=t.type||'Internal';
+let cls='internal';
+if(type.includes('تراكم')||type.toLowerCase().includes('accum'))cls='accum';
+if(type.includes('توزيع')||type.toLowerCase().includes('dist'))cls='dist';
+
+html+=`
+<div class="transfer-line">
+<div class="amount">${money(t.amount)}</div>
+<div class="route">${cleanName(t.from)} ← ${cleanName(t.to)}<br><span style="color:#64748b">${t.symbol||'--'}</span></div>
+<div class="type ${cls}">${type}</div>
+</div>`;
+});
+
+document.getElementById('whaleList').innerHTML=html+html;
+
+const dec=document.getElementById('decisionBox');
+dec.textContent=d.analysis||'Analyzing market...';
+
+const txt=(d.analysis||'').toLowerCase();
+if(txt.includes('فرصة')||txt.includes('شراء')||txt.includes('accum')||txt.includes('buy'))dec.className='decision buy';
+else if(txt.includes('حذر')||txt.includes('بيع')||txt.includes('sell')||txt.includes('dist'))dec.className='decision warn';
+else dec.className='decision wait';
+
+}catch(e){
+document.getElementById('decisionBox').textContent='Connection error';
+document.getElementById('decisionBox').className='decision warn';
+}
+}
+
+loadNews();
 loadData();
+loadLiveChart();
 
 setInterval(loadData,15000);
-
+setInterval(loadLiveChart,15000);
+setInterval(loadNews,300000);
 </script>
 
 </body>
