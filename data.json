@@ -2,36 +2,36 @@
   "transfers": [
     {
       "symbol":"WETH",
-      "amount":"1293736.6111009002",
+      "amount":"1349271.9097019355",
+      "from":"",
+      "to":"Aerodrome Finance"
+    },
+
+    {
+      "symbol":"cbBTC",
+      "amount":"1074702.00933837",
       "from":"Aerodrome Finance",
       "to":""
     },
 
     {
       "symbol":"WETH",
-      "amount":"1063870",
-      "from":"",
-      "to":"Morpho"
-    },
-
-    {
-      "symbol":"USDC",
-      "amount":"90000000",
-      "from":"",
-      "to":"Circle"
-    },
-
-    {
-      "symbol":"WETH",
-      "amount":"1300602.120513734",
+      "amount":"1353184.195853441",
       "from":"",
       "to":"Aerodrome Finance"
     },
 
     {
-      "symbol":"USDC",
-      "amount":"1651964",
-      "from":"",
+      "symbol":"GHO",
+      "amount":"1627526.0147052573",
+      "from":"Aave",
+      "to":""
+    },
+
+    {
+      "symbol":"WETH",
+      "amount":"44014277.658744",
+      "from":"Morpho",
       "to":""
     }
   ],
@@ -40,31 +40,31 @@
 
   "whale_score":"7/10",
 
-  "analysis":"Whale Score: 8/10, نوع الحركة: تراكم, Fake Hunt: 15%, ماذا تفعل: فرصة, الخلاصة: حيتان تسحب سيولة ضخمة من WETH من بروتوكول ايرودروم مع معدل تمويل إيجابي مما يشير لتراكم قوي قبل حركة صعود",
+  "analysis":"Whale Score: 7/10 | نوع الحركة: تراكم | Fake Hunt: 25% | ماذا تفعل: فرصة | الخلاصة: تدفق ضخم من الحيتان نحو بروتوكولات DeFi يشير إلى تراكم استراتيجي مع معدل تمويل إيجابي يدعم الاتجاه ال",
 
   "prices": {
     "btc": {
-      "price":"77361.64000000",
-      "change":"0.731"
+      "price":"77323.90000000",
+      "change":"0.595"
     },
 
     "eth": {
-      "price":"2137.77000000",
-      "change":"0.949"
+      "price":"2134.94000000",
+      "change":"0.692"
     },
 
     "sol": {
-      "price":"648.77000000",
-      "change":"1.388"
+      "price":"648.63000000",
+      "change":"1.219"
     },
 
     "bnb": {
-      "price":"86.78000000",
-      "change":"2.347"
+      "price":"86.49000000",
+      "change":"1.945"
     }
   },
 
-  "funding":"0.00006981",
+  "funding":"0.00006965",
 
   "open_interest":""
 }
