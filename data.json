@@ -1,29 +1,59 @@
 {
-  "transfers": [],
-  "transfers_count": "0",
-  "whale_score": "7/10",
-  "analysis": "فرصة: السوق إيجابي",
+  "transfers": [
+    {
+      "amount": "1250000",
+      "from": "Binance",
+      "to": "Unknown Wallet",
+      "chain": "BTC",
+      "token": "BTC"
+    },
+    {
+      "amount": "850000",
+      "from": "Coinbase",
+      "to": "Bybit",
+      "chain": "ETH",
+      "token": "ETH"
+    }
+  ],
+
+  "transfers_count": "2",
+
+  "whale_score": "8/10",
+
+  "analysis": "فرصة: السوق إيجابي والحيتان تتراكم",
+
   "prices": {
+
     "btc": {
-      "price": "77157.47000000",
+      "price": "77157.47",
       "change": "0.429"
     },
+
     "eth": {
-      "price": "2119.75000000",
+      "price": "2119.75",
       "change": "0.170"
     },
+
     "sol": {
-      "price": "642.63000000",
+      "price": "642.63",
       "change": "0.402"
     },
+
     "bnb": {
-      "price": "84.67000000",
+      "price": "84.67",
       "change": "0.024"
     }
+
   },
+
   "market": {
+
     "funding": "0.00006690",
+
     "oi": "10007.66",
+
     "count": "9233"
+
   }
+
 }
