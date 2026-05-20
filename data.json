@@ -1,32 +1,32 @@
 {
   "transfers": [
     {
-      "symbol":"",
-      "amount":"1171116.7651604556",
-      "from":"Coinbase Prime",
+      "symbol":"WETH",
+      "amount":"1082265.0874252755",
+      "from":"Aerodrome Finance",
       "to":"",
       "type":"تراكم"
     },
 
     {
       "symbol":"WETH",
-      "amount":"1310881.405513111",
-      "from":"Aerodrome Finance",
-      "to":"",
+      "amount":"1082265.0874252755",
+      "from":"",
+      "to":"Aerodrome Finance",
       "type":"توزيع"
     },
 
     {
-      "symbol":"USDC",
-      "amount":"1000000",
-      "from":"",
-      "to":"Circle",
+      "symbol":"USDT",
+      "amount":"2000000",
+      "from":"Nascent",
+      "to":"",
       "type":"داخلي"
     },
 
     {
       "symbol":"WETH",
-      "amount":"1313799.932795814",
+      "amount":"1303018.1639301695",
       "from":"Aerodrome Finance",
       "to":"",
       "type":"تراكم"
@@ -34,9 +34,9 @@
 
     {
       "symbol":"USDC",
-      "amount":"1219950.555015",
-      "from":"Morpho",
-      "to":"Morpho",
+      "amount":"1033828.268017",
+      "from":"Aerodrome Finance",
+      "to":"",
       "type":"توزيع"
     }
   ],
@@ -45,32 +45,32 @@
 
   "whale_score":"8/10",
 
-  "analysis":"Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 15%, ماذا تفعل: فرصة, الخلاصة: حركة تراكم قوية من محفظة مؤسسية برأسمال كبير تشير لثقة الحيتان بارتفاع قادم على المدى المتوسط.",
+  "analysis":"Whale Score: 8/10, نوع الحركة: تراكم, Fake Hunt: 15%, ماذا تفعل: فرصة, الخلاصة: حيتان تسحب سيولة ضخمة من Aerodrome مما يشير لتحرك كبير قادم مع بقاء البيتكوين مستقر والتمويل إيجابي",
 
   "prices": {
     "btc": {
-      "price":"77442.00000000",
-      "change":"0.604"
+      "price":"77522.01000000",
+      "change":"0.846"
     },
 
     "eth": {
-      "price":"2133.50000000",
-      "change":"0.661"
+      "price":"2136.89000000",
+      "change":"0.957"
     },
 
     "sol": {
-      "price":"649.07000000",
-      "change":"1.254"
+      "price":"650.13000000",
+      "change":"1.542"
     },
 
     "bnb": {
-      "price":"85.95000000",
-      "change":"1.668"
+      "price":"86.10000000",
+      "change":"2.002"
     }
   },
 
   "market": {
-    "funding":"0.00005328",
+    "funding":"0.00005298",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
