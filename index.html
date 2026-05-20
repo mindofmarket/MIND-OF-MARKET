@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="root">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>عقل السوق</title>
+<title>MIND OF MARKET</title>
 
 <style>
 
@@ -31,11 +29,16 @@ align-items:center;
 margin-bottom:10px;
 }
 
+.logo{
+display:flex;
+flex-direction:column;
+}
+
 .ln{
 font-family:'Orbitron',sans-serif;
-font-size:16px;
-color:#38bdf8;
+font-size:18px;
 font-weight:900;
+color:#38bdf8;
 }
 
 .ls{
@@ -43,9 +46,25 @@ font-size:11px;
 color:#64748b;
 }
 
+.right{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
 .live{
 font-size:11px;
 color:#34d399;
+}
+
+.lang-btn{
+background:#111827;
+border:1px solid rgba(56,189,248,0.2);
+color:#38bdf8;
+padding:6px 10px;
+border-radius:8px;
+cursor:pointer;
+font-size:11px;
 }
 
 .prices{
@@ -58,13 +77,13 @@ margin-bottom:10px;
 .pc{
 background:#0f172a;
 padding:10px;
-border-radius:10px;
+border-radius:12px;
+border:1px solid rgba(56,189,248,0.08);
 text-align:center;
-border:1px solid rgba(56,189,248,0.1);
 }
 
 .ps{
-font-size:11px;
+font-size:10px;
 color:#64748b;
 margin-bottom:4px;
 }
@@ -72,8 +91,8 @@ margin-bottom:4px;
 .pv{
 font-family:'Orbitron',sans-serif;
 font-size:15px;
-color:#38bdf8;
 font-weight:700;
+color:#38bdf8;
 }
 
 .pch{
@@ -90,6 +109,57 @@ color:#34d399;
 color:#f87171;
 }
 
+.chart-box{
+background:#0f172a;
+border:1px solid rgba(56,189,248,0.08);
+border-radius:12px;
+padding:10px;
+margin-bottom:10px;
+}
+
+.chart-head{
+display:flex;
+justify-content:space-between;
+margin-bottom:8px;
+font-size:12px;
+color:#38bdf8;
+font-weight:700;
+}
+
+canvas{
+width:100%;
+height:160px;
+background:#111827;
+border-radius:10px;
+}
+
+.sd-row{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:6px;
+margin-top:10px;
+}
+
+.sd{
+background:#111827;
+padding:8px;
+border-radius:8px;
+text-align:center;
+font-size:11px;
+}
+
+.demand{
+color:#34d399;
+}
+
+.supply{
+color:#f87171;
+}
+
+.volume{
+color:#38bdf8;
+}
+
 .indicators{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -100,9 +170,9 @@ margin-bottom:10px;
 .ind{
 background:#0f172a;
 padding:10px;
-border-radius:10px;
+border-radius:12px;
+border:1px solid rgba(56,189,248,0.08);
 text-align:center;
-border:1px solid rgba(56,189,248,0.1);
 }
 
 .il{
@@ -112,8 +182,8 @@ margin-bottom:5px;
 }
 
 .iv{
-font-size:18px;
 font-family:'Orbitron',sans-serif;
+font-size:18px;
 font-weight:900;
 }
 
@@ -126,29 +196,30 @@ color:#94a3b8;
 .whales{
 background:#0f172a;
 padding:10px;
-border-radius:10px;
-border:1px solid rgba(56,189,248,0.1);
+border-radius:12px;
+border:1px solid rgba(56,189,248,0.08);
 margin-bottom:10px;
 }
 
 .wht{
 font-size:12px;
+font-weight:700;
 color:#38bdf8;
 margin-bottom:10px;
-font-weight:700;
 }
 
 .wi{
-padding:8px;
-border-radius:8px;
 background:#111827;
+padding:10px;
+border-radius:10px;
 margin-bottom:6px;
 border:1px solid rgba(255,255,255,0.04);
 }
 
 .wa{
 font-family:'Orbitron',sans-serif;
-font-size:14px;
+font-size:15px;
+font-weight:700;
 color:#38bdf8;
 margin-bottom:5px;
 }
@@ -159,16 +230,31 @@ margin-bottom:4px;
 }
 
 .wbot{
+display:flex;
+justify-content:space-between;
 font-size:10px;
 color:#94a3b8;
 }
 
+.green{
+color:#34d399;
+}
+
+.red{
+color:#f87171;
+}
+
+.yellow{
+color:#fbbf24;
+}
+
 .dec{
 padding:12px;
-border-radius:10px;
+border-radius:12px;
 text-align:center;
-font-weight:700;
 font-size:14px;
+font-weight:700;
+margin-bottom:10px;
 }
 
 .dg{
@@ -190,8 +276,8 @@ border:1px solid rgba(251,191,36,0.2);
 }
 
 footer{
-margin-top:15px;
 text-align:center;
+margin-top:10px;
 font-size:10px;
 color:#475569;
 }
@@ -203,13 +289,14 @@ color:#475569;
 
 <div class="hdr">
 
-<div>
+<div class="logo">
 <div class="ln">MIND OF MARKET</div>
-<div class="ls">رادار الحيتان</div>
+<div class="ls" id="subTitle">رادار الحيتان</div>
 </div>
 
-<div class="live">
-● مباشر
+<div class="right">
+<div class="live">● LIVE</div>
+<button class="lang-btn" onclick="toggleLang()">EN / AR</button>
 </div>
 
 </div>
@@ -242,299 +329,242 @@ color:#475569;
 
 </div>
 
+<div class="chart-box">
+
+<div class="chart-head">
+<div id="chartTitle">حركة السوق</div>
+<div>BTC / 15m</div>
+</div>
+
+<canvas id="marketChart" width="800" height="160"></canvas>
+
+<div class="sd-row">
+
+<div class="sd demand">
+طلب
+<div id="buyPressure">68%</div>
+</div>
+
+<div class="sd supply">
+عرض
+<div id="sellPressure">32%</div>
+</div>
+
+<div class="sd volume">
+Volume
+<div id="volumeVal">$2.4B</div>
+</div>
+
+</div>
+
+</div>
+
 <div class="indicators">
 
 <div class="ind">
 <div class="il">Whale Score</div>
-<div class="iv" id="ws-val">--</div>
-<div class="id" id="ws-desc">--</div>
+<div class="iv" id="whaleScore">--</div>
+<div class="id">Smart Money</div>
 </div>
 
 <div class="ind">
 <div class="il">Funding</div>
-<div class="iv" id="fund-val">--</div>
-<div class="id" id="fund-desc">--</div>
+<div class="iv" id="fundingRate">--</div>
+<div class="id">Funding Rate</div>
 </div>
 
 <div class="ind">
 <div class="il">Open Interest</div>
-<div class="iv" id="ls-val">--</div>
-<div class="id" id="ls-desc">--</div>
+<div class="iv" id="openInterest">--</div>
+<div class="id">OI</div>
 </div>
 
 </div>
 
 <div class="whales">
 
-<div class="wht">
-أهم التحركات
-</div>
+<div class="wht" id="whaleTitle">أهم تحركات الحيتان</div>
 
-<div id="wl">
-
-<div class="wi">
-<div class="wa">لا توجد بيانات</div>
-</div>
+<div id="whaleList"></div>
 
 </div>
 
-</div>
-
-<div class="dec dw" id="decision">
-جاري التحليل
+<div class="dec dw" id="decisionBox">
+جاري التحليل...
 </div>
 
 <footer>
-عقل السوق | MIND OF MARKET
+MIND OF MARKET ©
 </footer>
 
 <script>
 
-const DATA_URL = './data.json';
+const DATA_URL='./data.json';
 
-// ===== أدوات =====
+let currentLang='ar';
 
-const fmtPrice = n => {
+function toggleLang(){
 
-if(!n) return '--';
+const root=document.getElementById('root');
 
-const x = parseFloat(n);
-
-return x >= 1000
-? '$' + x.toLocaleString('en-US',{maximumFractionDigits:0})
-: '$' + x.toFixed(2);
-
-};
-
-const fmtChange = n => {
-
-if(!n) return '--';
-
-const x = parseFloat(n);
-
-return (x > 0 ? '+' : '') + x.toFixed(2) + '%';
-
-};
-
-// ===== تحديث الأسعار =====
-
-function updatePrices(prices){
-
-if(!prices) return;
-
-const coins = ['btc','eth','sol','bnb'];
-
-coins.forEach(c=>{
-
-if(!prices[c]) return;
-
-const p = document.getElementById('p-'+c);
-const ch = document.getElementById('c-'+c);
-
-if(p){
-p.textContent = fmtPrice(prices[c].price);
-}
-
-if(ch){
-
-const change = parseFloat(prices[c].change || 0);
-
-ch.textContent = fmtChange(change);
-
-if(change >= 0){
-ch.className = 'pch up';
+if(currentLang==='ar'){
+currentLang='en';
+root.setAttribute('dir','ltr');
+root.setAttribute('lang','en');
+document.getElementById('subTitle').textContent='Whale Radar';
+document.getElementById('chartTitle').textContent='Market Movement';
+document.getElementById('whaleTitle').textContent='Top Whale Transfers';
 }else{
-ch.className = 'pch dn';
+currentLang='ar';
+root.setAttribute('dir','rtl');
+root.setAttribute('lang','ar');
+document.getElementById('subTitle').textContent='رادار الحيتان';
+document.getElementById('chartTitle').textContent='حركة السوق';
+document.getElementById('whaleTitle').textContent='أهم تحركات الحيتان';
 }
 
 }
 
-});
+function formatMoney(num){
 
+const n=parseFloat(num);
+
+if(n>=1000000000){
+return '$'+(n/1000000000).toFixed(2)+'B';
 }
 
-// ===== Whale Score =====
-
-function updateWhaleScore(score){
-
-const el = document.getElementById('ws-val');
-const desc = document.getElementById('ws-desc');
-
-if(!score) return;
-
-el.textContent = score;
-
-const num = parseInt(score);
-
-if(num >= 7){
-
-el.style.color = '#f87171';
-desc.textContent = 'قوي';
-
-}else if(num >= 5){
-
-el.style.color = '#fbbf24';
-desc.textContent = 'متوسط';
-
-}else{
-
-el.style.color = '#34d399';
-desc.textContent = 'ضعيف';
-
+if(n>=1000000){
+return '$'+(n/1000000).toFixed(2)+'M';
 }
 
+if(n>=1000){
+return '$'+(n/1000).toFixed(1)+'K';
 }
 
-// ===== Funding =====
-
-function updateFunding(market){
-
-if(!market) return;
-
-const funding = document.getElementById('fund-val');
-const fundingDesc = document.getElementById('fund-desc');
-
-const ls = document.getElementById('ls-val');
-const lsDesc = document.getElementById('ls-desc');
-
-if(funding){
-
-const val = parseFloat(market.funding || 0);
-
-funding.textContent = val.toFixed(4) + '%';
-
-if(val >= 0){
-
-funding.style.color = '#34d399';
-fundingDesc.textContent = 'شراء';
-
-}else{
-
-funding.style.color = '#f87171';
-fundingDesc.textContent = 'بيع';
+return '$'+n.toFixed(0);
 
 }
-
-}
-
-if(ls){
-
-ls.textContent = market.oi || '--';
-lsDesc.textContent = 'Open Interest';
-
-}
-
-}
-
-// ===== القرار =====
-
-function updateDecision(text){
-
-const dec = document.getElementById('decision');
-
-if(!text){
-
-dec.textContent = 'انتظر';
-dec.className = 'dec dw';
-return;
-
-}
-
-dec.textContent = text;
-
-if(text.includes('فرصة')){
-
-dec.className = 'dec dg';
-
-}else if(text.includes('احذر')){
-
-dec.className = 'dec dc';
-
-}else{
-
-dec.className = 'dec dw';
-
-}
-
-}
-
-// ===== التحركات =====
-
-function updateTransfers(data){
-
-const wl = document.getElementById('wl');
-
-if(!data || !data.length){
-
-wl.innerHTML = `
-<div class="wi">
-<div class="wa">لا توجد تحركات حالياً</div>
-</div>
-`;
-
-return;
-
-}
-
-wl.innerHTML = data.map(t=>`
-
-<div class="wi">
-
-<div class="wa">
-$${t.amount || '--'}
-</div>
-
-<div class="wroute">
-${t.from || 'Unknown'} ← ${t.to || 'Unknown'}
-</div>
-
-<div class="wbot">
-${t.chain || '--'} | ${t.token || '--'}
-</div>
-
-</div>
-
-`).join('');
-
-}
-
-// ===== تحميل البيانات =====
 
 async function loadData(){
 
 try{
 
-const res = await fetch(DATA_URL + '?v=' + Date.now());
+const res=await fetch(DATA_URL+'?v='+Date.now());
 
-const d = await res.json();
+const data=await res.json();
 
-console.log(d);
+document.getElementById('p-btc').textContent='$'+parseFloat(data.prices.btc.price).toLocaleString();
+document.getElementById('p-eth').textContent='$'+parseFloat(data.prices.eth.price).toLocaleString();
+document.getElementById('p-sol').textContent='$'+parseFloat(data.prices.sol.price).toLocaleString();
+document.getElementById('p-bnb').textContent='$'+parseFloat(data.prices.bnb.price).toLocaleString();
 
-updatePrices(d.prices);
+document.getElementById('c-btc').textContent=data.prices.btc.change+'%';
+document.getElementById('c-eth').textContent=data.prices.eth.change+'%';
+document.getElementById('c-sol').textContent=data.prices.sol.change+'%';
+document.getElementById('c-bnb').textContent=data.prices.bnb.change+'%';
 
-updateWhaleScore(d.whale_score);
+document.getElementById('whaleScore').textContent=data.whale_score;
 
-updateFunding(d.market);
+document.getElementById('fundingRate').textContent=data.market.funding;
 
-updateDecision(d.analysis);
+document.getElementById('openInterest').textContent=formatMoney(data.market.open_interest);
 
-updateTransfers(d.transfers);
+document.getElementById('buyPressure').textContent=data.market.buy_pressure+'%';
 
-}catch(err){
+document.getElementById('sellPressure').textContent=data.market.sell_pressure+'%';
 
-console.log(err);
+document.getElementById('volumeVal').textContent=formatMoney(data.market.volume);
 
-document.getElementById('wl').innerHTML = `
+document.getElementById('decisionBox').textContent=data.analysis;
+
+if(data.analysis.includes('شراء')||data.analysis.includes('تراكم')){
+document.getElementById('decisionBox').className='dec dg';
+}else if(data.analysis.includes('حذر')||data.analysis.includes('بيع')){
+document.getElementById('decisionBox').className='dec dc';
+}else{
+document.getElementById('decisionBox').className='dec dw';
+}
+
+let whales='';
+
+data.transfers.forEach(t=>{
+
+let color='yellow';
+
+if(t.type==='تراكم'){
+color='green';
+}
+
+if(t.type==='توزيع'){
+color='red';
+}
+
+whales+=`
 <div class="wi">
-<div class="wa">⚠️ خطأ في الاتصال</div>
+
+<div class="wa">
+${formatMoney(t.amount)}
+</div>
+
+<div class="wroute">
+${t.from || 'مجهول'} ← ${t.to || 'مجهول'}
+</div>
+
+<div class="wbot">
+<div>${t.symbol}</div>
+<div class="${color}">${t.type}</div>
+</div>
+
 </div>
 `;
 
-}
+});
+
+document.getElementById('whaleList').innerHTML=whales;
+
+drawChart(data.line_chart['1h']);
+
+}catch(e){
+
+console.log(e);
 
 }
 
-// ===== تشغيل =====
+}
+
+function drawChart(arr){
+
+const canvas=document.getElementById('marketChart');
+
+const ctx=canvas.getContext('2d');
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.beginPath();
+
+ctx.strokeStyle='#38bdf8';
+ctx.lineWidth=3;
+
+const max=Math.max(...arr);
+const min=Math.min(...arr);
+
+arr.forEach((v,i)=>{
+
+const x=(canvas.width/(arr.length-1))*i;
+
+const y=canvas.height-((v-min)/(max-min))*130-15;
+
+if(i===0){
+ctx.moveTo(x,y);
+}else{
+ctx.lineTo(x,y);
+}
+
+});
+
+ctx.stroke();
+
+}
 
 loadData();
 
