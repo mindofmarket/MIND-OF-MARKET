@@ -1,70 +1,93 @@
 {
   "transfers": [
     {
-      "symbol":"WETH",
-      "amount":"1349271.9097019355",
+      "symbol":"USDT",
+      "amount":"1055700",
       "from":"",
-      "to":"Aerodrome Finance"
+      "to":"",
+      "type":"تراكم"
     },
 
     {
-      "symbol":"cbBTC",
-      "amount":"1074702.00933837",
-      "from":"Aerodrome Finance",
-      "to":""
-    },
-
-    {
-      "symbol":"WETH",
-      "amount":"1353184.195853441",
+      "symbol":"SOL",
+      "amount":"1428493.8534456268",
       "from":"",
-      "to":"Aerodrome Finance"
+      "to":"",
+      "type":"توزيع"
     },
 
     {
-      "symbol":"GHO",
-      "amount":"1627526.0147052573",
-      "from":"Aave",
-      "to":""
+      "symbol":"RLUSD",
+      "amount":"1461029.6961277649",
+      "from":"",
+      "to":"Morpho",
+      "type":"داخلي"
     },
 
     {
-      "symbol":"WETH",
-      "amount":"44014277.658744",
+      "symbol":"RLUSD",
+      "amount":"1461029.6961277649",
       "from":"Morpho",
-      "to":""
+      "to":"Morpho",
+      "type":"تراكم"
+    },
+
+    {
+      "symbol":"weETH",
+      "amount":"2807112.0000000005",
+      "from":"Morpho",
+      "to":"",
+      "type":"توزيع"
     }
   ],
 
   "transfers_count":"5",
 
-  "whale_score":"7/10",
+  "whale_score":"8/10",
 
-  "analysis":"Whale Score: 7/10 | نوع الحركة: تراكم | Fake Hunt: 25% | ماذا تفعل: فرصة | الخلاصة: تدفق ضخم من الحيتان نحو بروتوكولات DeFi يشير إلى تراكم استراتيجي مع معدل تمويل إيجابي يدعم الاتجاه ال",
+  "analysis":"Whale Score: 6/10 | نوع الحركة: تراكم | Fake Hunt: 30% | ماذا تفعل: فرصة | الخلاصة: تدفق سيولة كبير مع معدل تمويل إيجابي يشير لتراكم الحيتان عند مستويات 77 ألف دولار مما يعطي فرصة شراء محت",
 
   "prices": {
     "btc": {
-      "price":"77323.90000000",
-      "change":"0.595"
+      "price":"77333.19000000",
+      "change":"0.559"
     },
 
     "eth": {
-      "price":"2134.94000000",
-      "change":"0.692"
+      "price":"2135.36000000",
+      "change":"0.684"
     },
 
     "sol": {
-      "price":"648.63000000",
-      "change":"1.219"
+      "price":"648.68000000",
+      "change":"1.217"
     },
 
     "bnb": {
-      "price":"86.49000000",
-      "change":"1.945"
+      "price":"86.51000000",
+      "change":"1.908"
     }
   },
 
-  "funding":"0.00006965",
+  "market": {
+    "funding":"0.00006999",
+    "open_interest":"",
+    "volume":"2450000000",
+    "buy_pressure":"68",
+    "sell_pressure":"32",
+    "market_trend":"Bullish"
+  },
 
-  "open_interest":""
+  "line_chart": {
+    "1h":[67120,67150,67180,67200,67240,67210,67290],
+    "4h":[66400,66550,66700,66820,66950,67080,67290],
+    "24h":[65200,65500,65800,66100,66450,66800,67290]
+  },
+
+  "order_flow": {
+    "buyers":"68",
+    "sellers":"32",
+    "liquidity":"High",
+    "trend":"شراء قوي"
+  }
 }
