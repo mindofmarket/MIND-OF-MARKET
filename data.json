@@ -1,41 +1,41 @@
 {
   "transfers": [
     {
-      "symbol":"WETH",
-      "amount":"26133227.662339676",
-      "from":"Uniswap",
-      "to":"",
+      "symbol":"USDC",
+      "amount":"4695166.368264",
+      "from":"Kamino Finance",
+      "to":"Kamino Finance",
       "type":"تراكم"
     },
 
     {
       "symbol":"USDC",
-      "amount":"106201934.334585",
-      "from":"Morpho",
-      "to":"",
+      "amount":"1939574.793848",
+      "from":"",
+      "to":"Aerodrome Finance",
       "type":"توزيع"
     },
 
     {
-      "symbol":"WETH",
-      "amount":"26133227.66239936",
-      "from":"",
-      "to":"Uniswap",
+      "symbol":"USDC",
+      "amount":"2162690.280658",
+      "from":"Kamino Finance",
+      "to":"Kamino Finance",
       "type":"داخلي"
     },
 
     {
-      "symbol":"WETH",
-      "amount":"26133227.662399262",
-      "from":"Uniswap",
-      "to":"",
+      "symbol":"USDC",
+      "amount":"1940253.186312",
+      "from":"",
+      "to":"Aerodrome Finance",
       "type":"تراكم"
     },
 
     {
       "symbol":"USDC",
-      "amount":"26130466.813479",
-      "from":"Uniswap",
+      "amount":"1940253.186311",
+      "from":"Aerodrome Finance",
       "to":"",
       "type":"توزيع"
     }
@@ -45,87 +45,89 @@
 
   "whale_score":"8/10",
 
-  "analysis":"# INSTITUTIONAL CRYPTO INTELLIGENCE BRIEFING
+  "analysis":"# 🧠 INSTITUTIONAL CRYPTO INTELLIGENCE REPORT
 
-## CRITICAL DATA GAPS DETECTED
+## ⚠️ DATA UNAVAILABILITY NOTICE
 
-### Available Signal:
-- **FUNDING_RATE: 0.00002144** (2.144 basis points)
+**STATUS:** Insufficient data for institutional-grade analysis
 
----
+### MISSING CRITICAL DATASETS:
 
-## ANALYSIS FROM SINGLE DATA POINT
-
-### Funding Rate Interpretation:
-
-**0.00002144 = +2.144 bps per 8h interval**
-
-- **Annualized:** ~9.5% premium
-- **Position:** Marginally positive (longs paying shorts)
-- **Context:** Near-neutral zone (typically -10 to +10 bps considered balanced)
-
-### Institutional Read:
-
-**NEUTRAL with SLIGHT LONG BIAS**
-
-This funding rate suggests:
-- No euphoria (would see +10-30 bps)
-- No panic (would see negative rates)
-- Market in equilibrium with modest bullish tilt
-- Leverage NOT excessive
-- No imminent liquidation cascade risk from funding alone
+| Data Type | Status | Impact |
+|-----------|--------|--------|
+| **Price Action** | ❌ Missing | Cannot assess momentum |
+| **Volume Profile** | ❌ Missing | Cannot confirm conviction |
+| **Open Interest** | ❌ Missing | Cannot gauge leverage build-up |
+| **Long/Short Ratio** | ❌ Missing | Cannot identify positioning imbalance |
+| **Account Distribution** | ❌ Missing | Cannot assess retail vs institutional bias |
+| **Whale Activity** | ❌ Missing | Cannot track smart money flow |
 
 ---
 
-## WHAT'S MISSING FOR ACTIONABLE INTELLIGENCE:
+## 📊 PARTIAL DATA AVAILABLE:
 
-1. **Price Context** - Is this neutrality occurring at support or resistance?
-2. **Volume Profile** - Low conviction drift vs. high conviction consolidation?
-3. **OI Delta** - Are positions building or reducing?
-4. **Long/Short Ratio** - Is the crowd positioned correctly or trapped?
-5. **Cross-Asset Behavior** - BTC vs ETH vs SOL divergence signals
+### **Funding Rate Analysis:**
+```
+Current Funding: +0.00002206 (0.002206%)
+Annualized: ~28.8%
+```
 
----
-
-## CONDITIONAL SCENARIOS:
-
-**IF** this funding rate exists with:
-- Rising OI → Accumulation phase, neutral-bullish
-- Falling OI → Disinterest, awaiting catalyst
-- High long/short ratio → Complacency, reversal risk
-- Low volume → Weekend/holiday drift, ignore
+**INTERPRETATION:**
+- **Neutral to Slightly Bullish** bias
+- Longs paying shorts (typical in stable/uptrend markets)
+- **Not extreme** — no immediate squeeze risk
+- Healthy rate for continuation, not exhaustion
 
 ---
 
-**STATUS:** Insufficient data for institutional-grade directional bias.  
-**RECOMMENDATION:** Require full dataset for deployment-ready intelligence.
+## 🎯 INSTITUTIONAL POSITIONING HYPOTHESIS (Low Confidence):
 
-Stand by for complete data feed.",
+⚠️ **Cannot confirm without:**
+- Long/Short Ratio (crowd positioning)
+- OI delta (leverage expansion/contraction)
+- Volume profile (conviction vs manipulation)
+- Whale flows (smart money direction)
+
+---
+
+## 🔍 WHAT INSTITUTIONS WOULD MONITOR NOW:
+
+1. **OI + Price correlation** → Are longs/shorts building into strength/weakness?
+2. **Volume divergence** → Is this move supported or fabricated?
+3. **Whale wallet activity** → Are large holders accumulating or distributing?
+4. **Account ratio skew** → Is retail FOMO'ing while smart money exits?
+
+---
+
+## ⚡ ACTIONABLE INTELLIGENCE:
+
+**Current State:** 
+- Funding suggests **mild long bias**, but",
 
   "prices": {
     "btc": {
-      "price":"77417.99000000",
+      "price":"77423.63000000",
       "change":"0.694"
     },
 
     "eth": {
-      "price":"2124.64000000",
-      "change":"0.494"
+      "price":"2125.12000000",
+      "change":"0.489"
     },
 
     "sol": {
-      "price":"647.89000000",
-      "change":"1.149"
+      "price":"648.18000000",
+      "change":"1.194"
     },
 
     "bnb": {
-      "price":"85.90000000",
-      "change":"1.741"
+      "price":"85.94000000",
+      "change":"1.788"
     }
   },
 
   "market": {
-    "funding":"0.00002144",
+    "funding":"0.00002206",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
