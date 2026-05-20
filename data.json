@@ -1,59 +1,59 @@
 {
   "transfers": ["transfers": [
   {
-    "symbol":"USDC",
-    "amount":"1512657.681103",
-    "from":"Aerodrome Finance",
+    "symbol":"USDT",
+    "amount":"87811130.669678",
+    "from":"Morpho",
     "to":""
   },
   {
     "symbol":"USDT",
-    "amount":"1070000",
+    "amount":"87811130.669678",
     "from":"",
-    "to":""
-  },
-  {
-    "symbol":"USDC",
-    "amount":"1000000",
-    "from":"Aave",
-    "to":""
+    "to":"Morpho"
   },
   {
     "symbol":"WETH",
-    "amount":"1320152.6694483843",
+    "amount":"1295790.1607542832",
+    "from":"",
+    "to":"Aerodrome Finance"
+  },
+  {
+    "symbol":"WETH",
+    "amount":"1298677.433393201",
     "from":"",
     "to":"Aerodrome Finance"
   },
   {
     "symbol":"USDC",
-    "amount":"1490152.340389",
+    "amount":"1670029.272712",
     "from":"",
     "to":"Aerodrome Finance"
   }
 ],],
   "transfers_count": "0",
   "whale_score": "7/10",
-  "analysis": "Whale Score: 3/10 - نوع الحركة: داخلي - Fake Hunt: 15% - ماذا تفعل: انتظر - الخلاصة: تحويل متوسط من بورصة لامركزية بقيمة 1.5 مليون دولار في ظل معدل تمويل محايد يشير لحركة روتينية بدون إشارات قو",
+  "analysis": "Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 25%, ماذا تفعل: فرصة, الخلاصة: حركة حيتان قوية بسحب 87 مليون من Morpho مع تمويل إيجابي يشير لتراكم محتمل قبل صعود بيتكوين",
   "prices": {
     "btc": {
-      "price": "77532.09000000",
-      "change": "1.449"
+      "price": "77555.25000000",
+      "change": "1.470"
     },
     "eth": {
-      "price": "2139.45000000",
-      "change": "1.487"
+      "price": "2139.71000000",
+      "change": "1.470"
     },
     "sol": {
-      "price": "649.52000000",
-      "change": "1.802"
+      "price": "649.54000000",
+      "change": "1.788"
     },
     "bnb": {
-      "price": "86.37000000",
-      "change": "2.602"
+      "price": "86.45000000",
+      "change": "2.672"
     }
   },
   "market": {
-    "funding": "0.00007050",
+    "funding": "0.00007070",
     "oi": "10007.66",
     "count": "9233"
   }
