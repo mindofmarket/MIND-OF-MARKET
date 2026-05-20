@@ -1,40 +1,40 @@
 {
   "transfers": [
     {
-      "symbol":"USDC",
-      "amount":"1200000",
+      "symbol":"WETH",
+      "amount":"1072223.6104826664",
       "from":"",
-      "to":"Circle",
+      "to":"Aerodrome Finance",
       "type":"تراكم"
     },
 
     {
       "symbol":"WETH",
-      "amount":"48668105.61392014",
-      "from":"Morpho",
+      "amount":"1072223.6104826664",
+      "from":"Aerodrome Finance",
       "to":"",
       "type":"توزيع"
     },
 
     {
       "symbol":"WETH",
-      "amount":"48668105.61392014",
-      "from":"",
-      "to":"Morpho",
+      "amount":"48612603.897037946",
+      "from":"Morpho",
+      "to":"",
       "type":"داخلي"
     },
 
     {
-      "symbol":"USDG",
-      "amount":"5260000",
-      "from":"Aave",
+      "symbol":"WETH",
+      "amount":"48612603.897037946",
+      "from":"Morpho",
       "to":"",
       "type":"تراكم"
     },
 
     {
       "symbol":"WETH",
-      "amount":"48668105.61392014",
+      "amount":"48612603.897037946",
       "from":"",
       "to":"Morpho",
       "type":"توزيع"
@@ -45,32 +45,32 @@
 
   "whale_score":"8/10",
 
-  "analysis":"Whale Score: 6/10, نوع الحركة: تراكم, Fake Hunt: 30%, ماذا تفعل: فرصة, الخلاصة: تحويل كبير من USDC إلى Circle يشير لتحضيرات شراء محتملة مع معدل تمويل إيجابي يدعم الاتجاه الصاعد قصير المدى",
+  "analysis":"Whale Score: 7/10, نوع الحركة: تراكم, Fake Hunt: 25%, ماذا تفعل: فرصة, الخلاصة: حوت يضخ سيولة ضخمة في Aerodrome مما يشير لتراكم إيجابي مع معدل تمويل محايد يدعم فرصة شراء محتملة",
 
   "prices": {
     "btc": {
-      "price":"77483.87000000",
-      "change":"0.861"
+      "price":"77513.69000000",
+      "change":"0.889"
     },
 
     "eth": {
-      "price":"2134.32000000",
-      "change":"0.908"
+      "price":"2136.23000000",
+      "change":"0.987"
     },
 
     "sol": {
-      "price":"649.11000000",
-      "change":"1.447"
+      "price":"649.29000000",
+      "change":"1.431"
     },
 
     "bnb": {
-      "price":"86.07000000",
-      "change":"1.967"
+      "price":"86.13000000",
+      "change":"1.989"
     }
   },
 
   "market": {
-    "funding":"0.00006589",
+    "funding":"0.00006521",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
