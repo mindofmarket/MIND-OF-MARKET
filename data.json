@@ -1,42 +1,42 @@
 {
   "transfers": [
     {
-      "symbol":"USDT",
-      "amount":"1055700",
-      "from":"",
-      "to":"",
+      "symbol":"ETH",
+      "amount":"2353098.7199999997",
+      "from":"Wintermute",
+      "to":"Wintermute",
       "type":"تراكم"
     },
 
     {
-      "symbol":"SOL",
-      "amount":"1428493.8534456268",
-      "from":"",
-      "to":"",
+      "symbol":"USDT",
+      "amount":"1063175.774085",
+      "from":"Uniswap",
+      "to":"jaredfromsubway (MEV)",
       "type":"توزيع"
     },
 
     {
-      "symbol":"RLUSD",
-      "amount":"1461029.6961277649",
-      "from":"",
-      "to":"Morpho",
+      "symbol":"USDT",
+      "amount":"1199999.59",
+      "from":"MEXC",
+      "to":"",
       "type":"داخلي"
     },
 
     {
-      "symbol":"RLUSD",
-      "amount":"1461029.6961277649",
-      "from":"Morpho",
-      "to":"Morpho",
+      "symbol":"WETH",
+      "amount":"1075770.301692317",
+      "from":"Aerodrome Finance",
+      "to":"",
       "type":"تراكم"
     },
 
     {
-      "symbol":"weETH",
-      "amount":"2807112.0000000005",
-      "from":"Morpho",
-      "to":"",
+      "symbol":"WETH",
+      "amount":"1075770.301692317",
+      "from":"",
+      "to":"Aerodrome Finance",
       "type":"توزيع"
     }
   ],
@@ -45,32 +45,32 @@
 
   "whale_score":"8/10",
 
-  "analysis":"Whale Score: 6/10 | نوع الحركة: تراكم | Fake Hunt: 30% | ماذا تفعل: فرصة | الخلاصة: تدفق سيولة كبير مع معدل تمويل إيجابي يشير لتراكم الحيتان عند مستويات 77 ألف دولار مما يعطي فرصة شراء محت",
+  "analysis":"Whale Score: 3/10, نوع الحركة: داخلي, Fake Hunt: 15%, ماذا تفعل: انتظر, الخلاصة: حركة داخلية بين محافظ وينترموت بقيمة 2.35 مليون دولار إيثريوم مع معدل تمويل إيجابي منخفض يشير لسوق هادئ ",
 
   "prices": {
     "btc": {
-      "price":"77333.19000000",
-      "change":"0.559"
+      "price":"77363.86000000",
+      "change":"0.515"
     },
 
     "eth": {
-      "price":"2135.36000000",
-      "change":"0.684"
+      "price":"2138.12000000",
+      "change":"0.711"
     },
 
     "sol": {
-      "price":"648.68000000",
-      "change":"1.217"
+      "price":"648.75000000",
+      "change":"1.177"
     },
 
     "bnb": {
-      "price":"86.51000000",
-      "change":"1.908"
+      "price":"86.52000000",
+      "change":"2.004"
     }
   },
 
   "market": {
-    "funding":"0.00006999",
+    "funding":"0.00007074",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
