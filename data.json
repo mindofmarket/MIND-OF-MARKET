@@ -2,15 +2,15 @@
   "transfers": [
     {
       "symbol":"WETH",
-      "amount":"1331517.5300615344",
-      "from":"",
-      "to":"Aerodrome Finance",
+      "amount":"2076882.5293464696",
+      "from":"Uniswap",
+      "to":"jaredfromsubway (MEV)",
       "type":"تراكم"
     },
 
     {
       "symbol":"WETH",
-      "amount":"1330389.3651773536",
+      "amount":"1256055.5938128277",
       "from":"Aerodrome Finance",
       "to":"",
       "type":"توزيع"
@@ -18,24 +18,24 @@
 
     {
       "symbol":"USDC",
-      "amount":"9417071.583787",
-      "from":"Coinbase Prime",
-      "to":"Coinbase Prime",
+      "amount":"1450000",
+      "from":"",
+      "to":"",
       "type":"داخلي"
     },
 
     {
       "symbol":"USDC",
-      "amount":"6931534.6845",
-      "from":"Coinbase Prime",
-      "to":"Coinbase Prime",
+      "amount":"9000000",
+      "from":"BitGo",
+      "to":"",
       "type":"تراكم"
     },
 
     {
-      "symbol":"WETH",
-      "amount":"1083952.6670418002",
-      "from":"Aerodrome Finance",
+      "symbol":"USDC",
+      "amount":"4999900",
+      "from":"",
       "to":"",
       "type":"توزيع"
     }
@@ -45,32 +45,32 @@
 
   "whale_score":"8/10",
 
-  "analysis":"Whale Score: 7/10 نوع الحركة: تراكم Fake Hunt: 20% ماذا تفعل: فرصة الخلاصة: حوت يضخ سيولة ضخمة في Aerodrome مع تمويل إيجابي وبيتكوين مستقر مما يشير لفرصة شراء قصيرة المدى مع مراقبة الت",
+  "analysis":"Whale Score: 6/10 | نوع الحركة: داخلي | Fake Hunt: 30% | ماذا تفعل: احذر | الخلاصة: بوت MEV يسحب سيولة كبيرة من يونيسواب مما يشير لتقلبات محتملة مع معدل تمويل إيجابي ضعيف وبيتكوين مستق",
 
   "prices": {
     "btc": {
-      "price":"77514.47000000",
-      "change":"0.899"
+      "price":"77562.71000000",
+      "change":"0.989"
     },
 
     "eth": {
-      "price":"2136.17000000",
-      "change":"1.037"
+      "price":"2137.63000000",
+      "change":"1.189"
     },
 
     "sol": {
-      "price":"650.06000000",
-      "change":"1.561"
+      "price":"650.08000000",
+      "change":"1.637"
     },
 
     "bnb": {
-      "price":"86.09000000",
-      "change":"2.063"
+      "price":"86.21000000",
+      "change":"2.266"
     }
   },
 
   "market": {
-    "funding":"0.00005275",
+    "funding":"0.00005251",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
