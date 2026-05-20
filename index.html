@@ -1,292 +1,546 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="root">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>عقل السوق</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Orbitron:wght@700;900&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#030b14;
+color:#e2e8f0;
+font-family:'Tajawal',sans-serif;
+padding:10px;
+}
+
+.hdr{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+.ln{
+font-family:'Orbitron',sans-serif;
+font-size:16px;
+color:#38bdf8;
+font-weight:900;
+}
+
+.ls{
+font-size:11px;
+color:#64748b;
+}
+
+.live{
+font-size:11px;
+color:#34d399;
+}
+
+.prices{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:6px;
+margin-bottom:10px;
+}
+
+.pc{
+background:#0f172a;
+padding:10px;
+border-radius:10px;
+text-align:center;
+border:1px solid rgba(56,189,248,0.1);
+}
+
+.ps{
+font-size:11px;
+color:#64748b;
+margin-bottom:4px;
+}
+
+.pv{
+font-family:'Orbitron',sans-serif;
+font-size:15px;
+color:#38bdf8;
+font-weight:700;
+}
+
+.pch{
+font-size:11px;
+margin-top:4px;
+font-weight:700;
+}
+
+.up{
+color:#34d399;
+}
+
+.dn{
+color:#f87171;
+}
+
+.indicators{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:6px;
+margin-bottom:10px;
+}
+
+.ind{
+background:#0f172a;
+padding:10px;
+border-radius:10px;
+text-align:center;
+border:1px solid rgba(56,189,248,0.1);
+}
+
+.il{
+font-size:10px;
+color:#64748b;
+margin-bottom:5px;
+}
+
+.iv{
+font-size:18px;
+font-family:'Orbitron',sans-serif;
+font-weight:900;
+}
+
+.id{
+font-size:10px;
+margin-top:5px;
+color:#94a3b8;
+}
+
+.whales{
+background:#0f172a;
+padding:10px;
+border-radius:10px;
+border:1px solid rgba(56,189,248,0.1);
+margin-bottom:10px;
+}
+
+.wht{
+font-size:12px;
+color:#38bdf8;
+margin-bottom:10px;
+font-weight:700;
+}
+
+.wi{
+padding:8px;
+border-radius:8px;
+background:#111827;
+margin-bottom:6px;
+border:1px solid rgba(255,255,255,0.04);
+}
+
+.wa{
+font-family:'Orbitron',sans-serif;
+font-size:14px;
+color:#38bdf8;
+margin-bottom:5px;
+}
+
+.wroute{
+font-size:11px;
+margin-bottom:4px;
+}
+
+.wbot{
+font-size:10px;
+color:#94a3b8;
+}
+
+.dec{
+padding:12px;
+border-radius:10px;
+text-align:center;
+font-weight:700;
+font-size:14px;
+}
+
+.dg{
+background:rgba(52,211,153,0.1);
+color:#34d399;
+border:1px solid rgba(52,211,153,0.2);
+}
+
+.dc{
+background:rgba(248,113,113,0.1);
+color:#f87171;
+border:1px solid rgba(248,113,113,0.2);
+}
+
+.dw{
+background:rgba(251,191,36,0.1);
+color:#fbbf24;
+border:1px solid rgba(251,191,36,0.2);
+}
+
+footer{
+margin-top:15px;
+text-align:center;
+font-size:10px;
+color:#475569;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hdr">
+
+<div>
+<div class="ln">MIND OF MARKET</div>
+<div class="ls">رادار الحيتان</div>
+</div>
+
+<div class="live">
+● مباشر
+</div>
+
+</div>
+
+<div class="prices">
+
+<div class="pc">
+<div class="ps">BTC</div>
+<div class="pv" id="p-btc">--</div>
+<div class="pch" id="c-btc">--</div>
+</div>
+
+<div class="pc">
+<div class="ps">ETH</div>
+<div class="pv" id="p-eth">--</div>
+<div class="pch" id="c-eth">--</div>
+</div>
+
+<div class="pc">
+<div class="ps">SOL</div>
+<div class="pv" id="p-sol">--</div>
+<div class="pch" id="c-sol">--</div>
+</div>
+
+<div class="pc">
+<div class="ps">BNB</div>
+<div class="pv" id="p-bnb">--</div>
+<div class="pch" id="c-bnb">--</div>
+</div>
+
+</div>
+
+<div class="indicators">
+
+<div class="ind">
+<div class="il">Whale Score</div>
+<div class="iv" id="ws-val">--</div>
+<div class="id" id="ws-desc">--</div>
+</div>
+
+<div class="ind">
+<div class="il">Funding</div>
+<div class="iv" id="fund-val">--</div>
+<div class="id" id="fund-desc">--</div>
+</div>
+
+<div class="ind">
+<div class="il">Open Interest</div>
+<div class="iv" id="ls-val">--</div>
+<div class="id" id="ls-desc">--</div>
+</div>
+
+</div>
+
+<div class="whales">
+
+<div class="wht">
+أهم التحركات
+</div>
+
+<div id="wl">
+
+<div class="wi">
+<div class="wa">لا توجد بيانات</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="dec dw" id="decision">
+جاري التحليل
+</div>
+
+<footer>
+عقل السوق | MIND OF MARKET
+</footer>
+
 <script>
+
 const DATA_URL = './data.json';
 
-// ========================
-// أدوات مساعدة
-// ========================
+// ===== أدوات =====
 
 const fmtPrice = n => {
-  if(!n) return '--';
 
-  const x = parseFloat(n);
+if(!n) return '--';
 
-  return x >= 1000
-    ? '$' + x.toLocaleString('en-US',{maximumFractionDigits:0})
-    : '$' + x.toFixed(2);
+const x = parseFloat(n);
+
+return x >= 1000
+? '$' + x.toLocaleString('en-US',{maximumFractionDigits:0})
+: '$' + x.toFixed(2);
+
 };
 
 const fmtChange = n => {
-  if(!n) return '--';
 
-  const x = parseFloat(n);
+if(!n) return '--';
 
-  return (x > 0 ? '+' : '') + x.toFixed(2) + '%';
+const x = parseFloat(n);
+
+return (x > 0 ? '+' : '') + x.toFixed(2) + '%';
+
 };
 
-// ========================
-// تحديث الأسعار
-// ========================
+// ===== تحديث الأسعار =====
 
 function updatePrices(prices){
 
-  if(!prices) return;
+if(!prices) return;
 
-  const coins = ['btc','eth','sol','bnb'];
+const coins = ['btc','eth','sol','bnb'];
 
-  coins.forEach(c=>{
+coins.forEach(c=>{
 
-    if(!prices[c]) return;
+if(!prices[c]) return;
 
-    const p = document.getElementById('p-'+c);
-    const ch = document.getElementById('c-'+c);
+const p = document.getElementById('p-'+c);
+const ch = document.getElementById('c-'+c);
 
-    if(p){
-      p.textContent = fmtPrice(prices[c].price);
-    }
-
-    if(ch){
-
-      const change = parseFloat(prices[c].change || 0);
-
-      ch.textContent = fmtChange(change);
-
-      if(change >= 0){
-        ch.className = 'pch up';
-      }else{
-        ch.className = 'pch dn';
-      }
-    }
-  });
+if(p){
+p.textContent = fmtPrice(prices[c].price);
 }
 
-// ========================
-// Whale Score
-// ========================
+if(ch){
+
+const change = parseFloat(prices[c].change || 0);
+
+ch.textContent = fmtChange(change);
+
+if(change >= 0){
+ch.className = 'pch up';
+}else{
+ch.className = 'pch dn';
+}
+
+}
+
+});
+
+}
+
+// ===== Whale Score =====
 
 function updateWhaleScore(score){
 
-  const el = document.getElementById('ws-val');
-  const desc = document.getElementById('ws-desc');
+const el = document.getElementById('ws-val');
+const desc = document.getElementById('ws-desc');
 
-  if(!el || !score) return;
+if(!score) return;
 
-  el.textContent = score;
+el.textContent = score;
 
-  const num = parseInt(score);
+const num = parseInt(score);
 
-  if(num >= 7){
+if(num >= 7){
 
-    el.style.color = '#f87171';
-    desc.textContent = 'قوي';
+el.style.color = '#f87171';
+desc.textContent = 'قوي';
 
-  }else if(num >= 5){
+}else if(num >= 5){
 
-    el.style.color = '#fbbf24';
-    desc.textContent = 'متوسط';
+el.style.color = '#fbbf24';
+desc.textContent = 'متوسط';
 
-  }else{
+}else{
 
-    el.style.color = '#34d399';
-    desc.textContent = 'ضعيف';
-  }
+el.style.color = '#34d399';
+desc.textContent = 'ضعيف';
+
 }
 
-// ========================
-// Funding
-// ========================
+}
+
+// ===== Funding =====
 
 function updateFunding(market){
 
-  if(!market) return;
+if(!market) return;
 
-  const funding = document.getElementById('fund-val');
-  const fundingDesc = document.getElementById('fund-desc');
+const funding = document.getElementById('fund-val');
+const fundingDesc = document.getElementById('fund-desc');
 
-  if(funding){
+const ls = document.getElementById('ls-val');
+const lsDesc = document.getElementById('ls-desc');
 
-    const val = parseFloat(market.funding || 0) * 100;
+if(funding){
 
-    funding.textContent = val.toFixed(4) + '%';
+const val = parseFloat(market.funding || 0);
 
-    if(val > 0){
+funding.textContent = val.toFixed(4) + '%';
 
-      funding.style.color = '#34d399';
-      fundingDesc.textContent = 'شراء';
+if(val >= 0){
 
-    }else{
+funding.style.color = '#34d399';
+fundingDesc.textContent = 'شراء';
 
-      funding.style.color = '#f87171';
-      fundingDesc.textContent = 'بيع';
-    }
-  }
+}else{
 
-  const ls = document.getElementById('ls-val');
-  const lsDesc = document.getElementById('ls-desc');
+funding.style.color = '#f87171';
+fundingDesc.textContent = 'بيع';
 
-  if(ls){
-
-    ls.textContent = market.oi || '--';
-    lsDesc.textContent = 'Open Interest';
-  }
 }
 
-// ========================
-// القرار
-// ========================
+}
+
+if(ls){
+
+ls.textContent = market.oi || '--';
+lsDesc.textContent = 'Open Interest';
+
+}
+
+}
+
+// ===== القرار =====
 
 function updateDecision(text){
 
-  const dec = document.getElementById('decision');
+const dec = document.getElementById('decision');
 
-  if(!dec) return;
+if(!text){
 
-  dec.textContent = text || 'انتظر';
+dec.textContent = 'انتظر';
+dec.className = 'dec dw';
+return;
 
-  if(text.includes('فرصة')){
-
-    dec.className = 'dec dg';
-
-  }else if(text.includes('احذر')){
-
-    dec.className = 'dec dc';
-
-  }else{
-
-    dec.className = 'dec dw';
-  }
 }
 
-// ========================
-// التحركات
-// ========================
+dec.textContent = text;
+
+if(text.includes('فرصة')){
+
+dec.className = 'dec dg';
+
+}else if(text.includes('احذر')){
+
+dec.className = 'dec dc';
+
+}else{
+
+dec.className = 'dec dw';
+
+}
+
+}
+
+// ===== التحركات =====
 
 function updateTransfers(data){
 
-  const wl = document.getElementById('wl');
-  const count = document.getElementById('wh-count');
+const wl = document.getElementById('wl');
 
-  if(!wl) return;
+if(!data || !data.length){
 
-  if(!data || !data.length){
+wl.innerHTML = `
+<div class="wi">
+<div class="wa">لا توجد تحركات حالياً</div>
+</div>
+`;
 
-    wl.innerHTML = `
-      <div class="ld">
-        لا توجد تحركات حالياً
-      </div>
-    `;
+return;
 
-    if(count){
-      count.textContent = '0';
-    }
-
-    return;
-  }
-
-  if(count){
-    count.textContent = data.length + ' تحرك';
-  }
-
-  wl.innerHTML = data.map(t=>`
-
-    <div class="wi">
-
-      <div class="wa">
-        $${t.amount || '--'}
-      </div>
-
-      <div class="winfo">
-
-        <div class="wroute">
-
-          <span class="wfrom">
-            ${t.from || 'Unknown'}
-          </span>
-
-          <span class="warrow">
-            ←
-          </span>
-
-          <span class="wto">
-            ${t.to || 'Unknown'}
-          </span>
-
-        </div>
-
-        <div class="wbot">
-
-          <span class="wchain">
-            ${t.chain || '--'}
-          </span>
-
-          <span class="wtime">
-            ${t.token || '--'}
-          </span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  `).join('');
 }
 
-// ========================
-// تحميل البيانات
-// ========================
+wl.innerHTML = data.map(t=>`
+
+<div class="wi">
+
+<div class="wa">
+$${t.amount || '--'}
+</div>
+
+<div class="wroute">
+${t.from || 'Unknown'} ← ${t.to || 'Unknown'}
+</div>
+
+<div class="wbot">
+${t.chain || '--'} | ${t.token || '--'}
+</div>
+
+</div>
+
+`).join('');
+
+}
+
+// ===== تحميل البيانات =====
 
 async function loadData(){
 
-  try{
+try{
 
-    const res = await fetch(DATA_URL + '?v=' + Date.now());
+const res = await fetch(DATA_URL + '?v=' + Date.now());
 
-    const d = await res.json();
+const d = await res.json();
 
-    console.log(d);
+console.log(d);
 
-    // الأسعار
-    updatePrices(d.prices);
+updatePrices(d.prices);
 
-    // whale score
-    updateWhaleScore(d.whale_score);
+updateWhaleScore(d.whale_score);
 
-    // funding
-    updateFunding(d.market);
+updateFunding(d.market);
 
-    // القرار
-    updateDecision(d.analysis);
+updateDecision(d.analysis);
 
-    // التحركات
-    updateTransfers(d.transfers);
+updateTransfers(d.transfers);
 
-  }catch(err){
+}catch(err){
 
-    console.log(err);
+console.log(err);
 
-    const wl = document.getElementById('wl');
+document.getElementById('wl').innerHTML = `
+<div class="wi">
+<div class="wa">⚠️ خطأ في الاتصال</div>
+</div>
+`;
 
-    if(wl){
-
-      wl.innerHTML = `
-        <div class="ld">
-          ⚠️ خطأ في الاتصال
-        </div>
-      `;
-    }
-  }
 }
 
-// ========================
-// تشغيل
-// ========================
+}
+
+// ===== تشغيل =====
 
 loadData();
-
-// ========================
-// تحديث تلقائي
-// ========================
 
 setInterval(loadData,15000);
 
 </script>
+
+</body>
+</html>
