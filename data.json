@@ -1,41 +1,41 @@
 {
   "transfers": [
     {
-      "symbol":"USDT",
-      "amount":"1566504",
-      "from":"Binance",
-      "to":"Wintermute",
+      "symbol":"WETH",
+      "amount":"26133227.662339676",
+      "from":"Uniswap",
+      "to":"",
       "type":"تراكم"
     },
 
     {
       "symbol":"USDC",
-      "amount":"9579146.04",
-      "from":"",
-      "to":"Circle",
+      "amount":"106201934.334585",
+      "from":"Morpho",
+      "to":"",
       "type":"توزيع"
     },
 
     {
-      "symbol":"HYPE",
-      "amount":"1773777.5749101916",
+      "symbol":"WETH",
+      "amount":"26133227.66239936",
       "from":"",
-      "to":"",
+      "to":"Uniswap",
       "type":"داخلي"
     },
 
     {
-      "symbol":"USDC",
-      "amount":"7642607",
-      "from":"",
-      "to":"Kraken",
+      "symbol":"WETH",
+      "amount":"26133227.662399262",
+      "from":"Uniswap",
+      "to":"",
       "type":"تراكم"
     },
 
     {
       "symbol":"USDC",
-      "amount":"6900003.867379",
-      "from":"Kamino Finance",
+      "amount":"26130466.813479",
+      "from":"Uniswap",
       "to":"",
       "type":"توزيع"
     }
@@ -45,97 +45,87 @@
 
   "whale_score":"8/10",
 
-  "analysis":"# INSTITUTIONAL CRYPTO INTELLIGENCE REPORT
+  "analysis":"# INSTITUTIONAL CRYPTO INTELLIGENCE BRIEFING
 
-## ⚠️ DATA INTEGRITY STATUS: CRITICAL FAILURE
+## CRITICAL DATA GAPS DETECTED
 
-### Missing Critical Data Points:
-- BTC_PRICE: **NO DATA**
-- BTC_CHANGE: **NO DATA**
-- ETH_PRICE: **NO DATA**
-- ETH_CHANGE: **NO DATA**
-- BNB_PRICE: **NO DATA**
-- BNB_CHANGE: **NO DATA**
-- SOL_PRICE: **NO DATA**
-- SOL_CHANGE: **NO DATA**
-- BTC_VOLUME: **NO DATA**
-- BTC_OI: **NO DATA**
-- LONG_SHORT_RATIO: **NO DATA**
-- LONG_ACCOUNT: **TRUNCATED**
-
-### Available Data Fragment:
-- **FUNDING_RATE**: 0.00002200 (0.0022% per 8h / ~0.24% annualized)
+### Available Signal:
+- **FUNDING_RATE: 0.00002144** (2.144 basis points)
 
 ---
 
-## INSTITUTIONAL ANALYSIS (Limited Scope)
+## ANALYSIS FROM SINGLE DATA POINT
 
 ### Funding Rate Interpretation:
-```
-Rate: 0.0022% per interval
-Status: NEUTRAL-to-SLIGHTLY BULLISH
-```
 
-**Implications:**
-- Minimal premium for long positions
-- No excessive leverage buildup
-- No immediate liquidation cascade risk
-- Market not overheated
-- Institutional spot accumulation zone (typically)
+**0.00002144 = +2.144 bps per 8h interval**
 
----
+- **Annualized:** ~9.5% premium
+- **Position:** Marginally positive (longs paying shorts)
+- **Context:** Near-neutral zone (typically -10 to +10 bps considered balanced)
 
-## RISK ASSESSMENT:
+### Institutional Read:
 
-🔴 **CANNOT EXECUTE COMPREHENSIVE ANALYSIS**
+**NEUTRAL with SLIGHT LONG BIAS**
 
-**Required for institutional-grade assessment:**
-1. Price action context
-2. Volume profile validation
-3. Open Interest delta
-4. Position distribution
-5. Cross-asset correlation matrix
-
-**Current confidence level:** <15%
+This funding rate suggests:
+- No euphoria (would see +10-30 bps)
+- No panic (would see negative rates)
+- Market in equilibrium with modest bullish tilt
+- Leverage NOT excessive
+- No imminent liquidation cascade risk from funding alone
 
 ---
 
-## INSTITUTIONAL DIRECTIVE:
+## WHAT'S MISSING FOR ACTIONABLE INTELLIGENCE:
 
-**NO ACTIONABLE INTELLIGENCE CAN BE DERIVED**
-
-Feed complete dataset for proper market structure analysis.
-
-*Institutional capital requires ≥95% data integrity for deployment decisions.*
+1. **Price Context** - Is this neutrality occurring at support or resistance?
+2. **Volume Profile** - Low conviction drift vs. high conviction consolidation?
+3. **OI Delta** - Are positions building or reducing?
+4. **Long/Short Ratio** - Is the crowd positioned correctly or trapped?
+5. **Cross-Asset Behavior** - BTC vs ETH vs SOL divergence signals
 
 ---
 
-`STATUS: AWAITING COMPLETE MARKET DATA FEED`",
+## CONDITIONAL SCENARIOS:
+
+**IF** this funding rate exists with:
+- Rising OI → Accumulation phase, neutral-bullish
+- Falling OI → Disinterest, awaiting catalyst
+- High long/short ratio → Complacency, reversal risk
+- Low volume → Weekend/holiday drift, ignore
+
+---
+
+**STATUS:** Insufficient data for institutional-grade directional bias.  
+**RECOMMENDATION:** Require full dataset for deployment-ready intelligence.
+
+Stand by for complete data feed.",
 
   "prices": {
     "btc": {
-      "price":"77415.72000000",
-      "change":"0.679"
+      "price":"77417.99000000",
+      "change":"0.694"
     },
 
     "eth": {
-      "price":"2124.01000000",
-      "change":"0.461"
+      "price":"2124.64000000",
+      "change":"0.494"
     },
 
     "sol": {
-      "price":"647.83000000",
-      "change":"1.148"
+      "price":"647.89000000",
+      "change":"1.149"
     },
 
     "bnb": {
       "price":"85.90000000",
-      "change":"1.753"
+      "change":"1.741"
     }
   },
 
   "market": {
-    "funding":"0.00002200",
+    "funding":"0.00002144",
     "open_interest":"",
     "volume":"2450000000",
     "buy_pressure":"68",
