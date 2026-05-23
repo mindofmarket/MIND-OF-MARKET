@@ -1,39 +1,75 @@
-BTC: 
-BTC_CHANGE: 
+{
+  "BTC":"108421",
+  "BTC_CHANGE":"2.14",
 
-ETH: 
-ETH_CHANGE: 
+  "ETH":"6421",
+  "ETH_CHANGE":"1.82",
 
-BNB: 
-BNB_CHANGE: 
+  "SOL":"242",
+  "SOL_CHANGE":"5.42",
 
-SOL: 
-SOL_CHANGE: 
+  "BNB":"921",
+  "BNB_CHANGE":"1.11",
 
-BTC_VOLUME: 
+  "BTC_VOLUME":"24.8B",
 
-OI: 
+  "OI":"18.2B",
 
-FUNDING: 0.00006921
+  "FUNDING":"0.00006921",
 
-LONG_SHORT_RATIO: 
+  "LONG_SHORT_RATIO":"1.42",
 
-LONGS: 
+  "LONGS":"58",
 
-SHORTS: 
+  "SHORTS":"42",
 
-TAKER_LONG_SHORT_RATIO: 
+  "TAKER_LONG_SHORT_RATIO":"1.21",
 
-TAKER_BUY_VOLUME: 
+  "TAKER_BUY_VOLUME":"1.8B",
 
-TAKER_SELL_VOLUME: 
+  "TAKER_SELL_VOLUME":"1.2B",
 
-WHALE_USD: 
+  "WHALE_USD":"48.7M",
 
-WHALE_TOKEN: 
+  "WHALE_TOKEN":"BTC",
 
-WHALE_CHAIN: 
+  "WHALE_CHAIN":"Bitcoin",
 
-WHALE_FROM: 
+  "WHALE_FROM":"Unknown Wallet",
 
-WHALE_TO: 
+  "WHALE_TO":"Binance",
+
+  "analysis":[
+
+    {
+      "time":"17:41",
+      "type":"bear",
+      "text":"السوق يبدو هشاً أمام أي ضغط بيع مفاجئ مع استمرار ازدحام المراكز الشرائية."
+    },
+
+    {
+      "time":"17:39",
+      "type":"neutral",
+      "text":"السيولة لا تزال مترددة قرب المستويات الحالية مع غياب تأكيد الاتجاه."
+    },
+
+    {
+      "time":"17:36",
+      "type":"bull",
+      "text":"هناك إشارات على امتصاص هادئ للبيع قرب مناطق مهمة."
+    },
+
+    {
+      "time":"17:33",
+      "type":"orange",
+      "text":"احتمالات مصيدة سيولة ترتفع مع زيادة التذبذب السريع."
+    },
+
+    {
+      "time":"17:30",
+      "type":"bull",
+      "text":"الحيتان تواصل السحب التدريجي من بعض المنصات المركزية."
+    }
+
+  ]
+}
