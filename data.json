@@ -15,7 +15,7 @@
 
   "OI":"",
 
-  "FUNDING":"0.00008744",
+  "FUNDING":"0.00008731",
 
   "LONG_SHORT_RATIO":"",
 
@@ -37,8 +37,5 @@
 
   "WHALE_FROM":"",
 
-  "WHALE_TO":"",
-
-  "analysis":[]
-
+  "WHALE_TO":""
 }
