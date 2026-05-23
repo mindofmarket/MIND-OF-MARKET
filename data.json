@@ -1,16 +1,7 @@
-{
-  "time":"22:55",
+TAKER_LONG_SHORT_RATIO:
 
-  "state":"",
-  "intent":"",
-  "decision":"",
-  "confidence":"",
-  "risk":"",
-  "scenario":"",
 
-  "OI":"11938.59",
-  "FUNDING":"0.00007350",
+TAKER_BUY_VOLUME:
 
-  "WHALE_USD":"1288961.46519582",
-  "WHALE_TOKEN":"WETH",
-  "WHALE_CHAIN
+
+TAKER_SELL_VOLUME:
