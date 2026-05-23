@@ -1,25 +1,16 @@
 {
-"time":"20:40",
+  "time":"22:55",
 
-"WHALE_USD":"43726143.16372266",
+  "state":"",
+  "intent":"",
+  "decision":"",
+  "confidence":"",
+  "risk":"",
+  "scenario":"",
 
-"WHALE_TOKEN":"WETH",
+  "OI":"11938.59",
+  "FUNDING":"0.00007350",
 
-"WHALE_CHAIN":"ethereum",
-
-"WHALE_FROM":"Morpho",
-
-"WHALE_TO":"Unknown Wallet",
-
-"OI":"12032.47",
-
-"FUNDING":"0.00007064",
-
-"analysis":[
-{
-"time":"20:40",
-"type":"neutral",
-"text":""
-}
-]
-}
+  "WHALE_USD":"1288961.46519582",
+  "WHALE_TOKEN":"WETH",
+  "WHALE_CHAIN
