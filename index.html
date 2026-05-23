@@ -1,510 +1,113 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>MIND OF MARKET</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html,body{
-background:#020813;
-font-family:'Tajawal',sans-serif;
-overflow-x:hidden;
-color:#fff;
-}
-
-body{
-padding-bottom:40px;
-}
-
-/* HEADER */
-
-.hdr{
-height:68px;
-padding:0 14px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-border-bottom:1px solid rgba(56,189,248,.06);
-background:#020813;
-position:sticky;
-top:0;
-z-index:999;
-backdrop-filter:blur(10px);
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.eye{
-width:28px;
-height:14px;
-border:2px solid #38bdf8;
-border-radius:50%;
-position:relative;
-}
-
-.eye::after{
-content:'';
-position:absolute;
-width:8px;
-height:8px;
-background:#38bdf8;
-border-radius:50%;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-box-shadow:0 0 8px #38bdf8;
-}
-
-.ln{
-font-family:'Orbitron',sans-serif;
-font-size:14px;
-font-weight:900;
-letter-spacing:2px;
-color:#38bdf8;
-}
-
-.ls{
-font-size:9px;
-color:#64748b;
-margin-top:2px;
-}
-
-.hr{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.live{
-display:flex;
-align-items:center;
-gap:5px;
-font-size:11px;
-color:#34d399;
-font-weight:700;
-}
-
-.dot{
-width:6px;
-height:6px;
-background:#34d399;
-border-radius:50%;
-box-shadow:0 0 8px #34d399;
-}
-
-.btn{
-background:rgba(56,189,248,.06);
-border:1px solid rgba(56,189,248,.12);
-color:#38bdf8;
-padding:6px 10px;
-border-radius:10px;
-font-size:11px;
-cursor:pointer;
-}
-
-/* NEWS */
-
-.news{
-height:34px;
-overflow:hidden;
-border-bottom:1px solid rgba(56,189,248,.06);
-background:rgba(56,189,248,.02);
-display:flex;
-align-items:center;
-}
-
-.news-inner{
-display:flex;
-white-space:nowrap;
-animation:scroll-l 45s linear infinite;
-}
-
-.ni{
-display:inline-flex;
-align-items:center;
-gap:8px;
-padding:0 16px;
-font-size:11px;
-color:#cbd5e1;
-}
-
-.nd{
-width:4px;
-height:4px;
-background:#38bdf8;
-border-radius:50%;
-}
-
-@keyframes scroll-l{
-0%{transform:translateX(0)}
-100%{transform:translateX(-50%)}
-}
-
-/* CONTENT */
-
-.cnt{
-padding:10px;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-/* PRICES */
-
-.prices{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:8px;
-}
-
-.pc{
-background:#071325;
-border:1px solid rgba(56,189,248,.06);
-border-radius:16px;
-padding:12px;
-}
-
-.ps{
-font-size:11px;
-color:#64748b;
-margin-bottom:4px;
-}
-
-.pv{
-font-family:'Orbitron',sans-serif;
-font-size:21px;
-font-weight:800;
-color:#38bdf8;
-}
-
-.pch{
-margin-top:4px;
-font-size:12px;
-font-weight:700;
-}
-
-.up{
-color:#34d399;
-}
-
-.dn{
-color:#f87171;
-}
-
-/* CHART */
-
-.chart-box{
-background:#071325;
-border:1px solid rgba(56,189,248,.06);
-border-radius:18px;
-padding:10px;
-}
-
-.chart-head{
-display:flex;
-justify-content:space-between;
-margin-bottom:8px;
-font-size:12px;
-color:#38bdf8;
-}
-
-.tv{
-height:280px;
-border-radius:12px;
-overflow:hidden;
-}
-
-.flow{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px;
-margin-top:10px;
-}
-
-.flow div{
-background:rgba(255,255,255,.025);
-border-radius:10px;
-padding:10px;
-text-align:center;
-font-size:11px;
-font-weight:700;
-}
-
-.flow span{
-display:block;
-margin-top:4px;
-font-size:18px;
-font-family:'Orbitron',sans-serif;
-}
-
-.demand{
-color:#34d399;
-}
-
-.supply{
-color:#f87171;
-}
-
-.volume{
-color:#38bdf8;
-}
-
-/* ANALYSIS */
-
-.analysis-box{
-background:#071325;
-border:1px solid rgba(56,189,248,.06);
-border-radius:18px;
-padding:10px;
-}
-
-.analysis-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:8px;
-}
-
-.analysis-title{
-font-size:13px;
-font-weight:800;
-color:#38bdf8;
-}
-
-.analysis-live{
-font-size:10px;
-color:#34d399;
-}
-
-.feed{
-display:flex;
-flex-direction:column;
-gap:6px;
-}
-
-.feed-item{
-padding:10px 12px;
-border-radius:12px;
-background:rgba(255,255,255,.025);
-border-right:3px solid #38bdf8;
-}
-
-.feed-item.red{
-border-right-color:#f87171;
-}
-
-.feed-item.green{
-border-right-color:#34d399;
-}
-
-.feed-item.orange{
-border-right-color:#f59e0b;
-}
-
-.feed-time{
-font-size:10px;
-color:#64748b;
-margin-bottom:4px;
-font-family:'Orbitron',sans-serif;
-}
-
-.feed-text{
-font-size:12px;
-line-height:1.7;
-color:#e2e8f0;
-font-weight:500;
-}
-
-/* WHALES */
-
-.whale-box{
-background:#071325;
-border:1px solid rgba(56,189,248,.06);
-border-radius:18px;
-padding:10px;
-}
-
-.whale-title{
-font-size:13px;
-font-weight:800;
-color:#38bdf8;
-margin-bottom:8px;
-}
-
-.whale-item{
-background:rgba(255,255,255,.025);
-padding:10px 12px;
-border-radius:12px;
-line-height:1.8;
-font-size:12px;
-}
-
-.whale-usd{
-font-family:'Orbitron',sans-serif;
-font-size:18px;
-font-weight:800;
-color:#38bdf8;
-margin-bottom:4px;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#020813;font-family:'Tajawal',sans-serif;overflow-x:hidden;color:#fff}
+body{padding-bottom:40px}
+.hdr{height:68px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(56,189,248,.06);background:#020813;position:sticky;top:0;z-index:999}
+.logo{display:flex;align-items:center;gap:10px}
+.eye{width:28px;height:14px;border:2px solid #38bdf8;border-radius:50%;position:relative}
+.eye::after{content:'';position:absolute;width:8px;height:8px;background:#38bdf8;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
+.ln{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;letter-spacing:2px;color:#38bdf8}
+.ls{font-size:9px;color:#64748b}
+.hr{display:flex;align-items:center;gap:8px}
+.live{display:flex;align-items:center;gap:5px;font-size:11px;color:#34d399;font-weight:700}
+.dot{width:6px;height:6px;background:#34d399;border-radius:50%}
+.btn{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.12);color:#38bdf8;padding:6px 10px;border-radius:10px;font-size:11px}
+.news{height:34px;overflow:hidden;border-bottom:1px solid rgba(56,189,248,.06);background:rgba(56,189,248,.02);display:flex;align-items:center}
+.news-inner{display:flex;white-space:nowrap;animation:scroll-l 45s linear infinite}
+.ni{display:inline-flex;align-items:center;gap:8px;padding:0 16px;font-size:11px;color:#cbd5e1}
+.nd{width:4px;height:4px;background:#38bdf8;border-radius:50%}
+@keyframes scroll-l{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.cnt{padding:10px;display:flex;flex-direction:column;gap:10px}
+.prices{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.pc{background:#071325;border:1px solid rgba(56,189,248,.06);border-radius:16px;padding:12px}
+.ps{font-size:11px;color:#64748b;margin-bottom:4px}
+.pv{font-family:'Orbitron',sans-serif;font-size:21px;font-weight:800;color:#38bdf8}
+.pch{margin-top:4px;font-size:12px;font-weight:700}
+.up{color:#34d399}.dn{color:#f87171}
+.chart-box,.analysis-box,.whale-box{background:#071325;border:1px solid rgba(56,189,248,.06);border-radius:18px;padding:10px}
+.chart-head,.analysis-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:12px;color:#38bdf8}
+.tv{height:280px;border-radius:12px;overflow:hidden}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.flow div{background:rgba(255,255,255,.025);border-radius:10px;padding:10px;text-align:center;font-size:11px;font-weight:700}
+.flow span{display:block;margin-top:4px;font-size:18px;font-family:'Orbitron',sans-serif}
+.demand{color:#34d399}.supply{color:#f87171}.volume{color:#38bdf8}
+.analysis-title,.whale-title{font-size:13px;font-weight:800;color:#38bdf8}
+.analysis-live{font-size:10px;color:#34d399}
+.feed{display:flex;flex-direction:column;gap:6px}
+.feed-item{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.025);border-right:3px solid #38bdf8}
+.feed-item.red{border-right-color:#f87171}
+.feed-item.green{border-right-color:#34d399}
+.feed-item.orange{border-right-color:#f59e0b}
+.feed-time{font-size:10px;color:#64748b;margin-bottom:4px;font-family:'Orbitron',sans-serif}
+.feed-text{font-size:12px;line-height:1.7;color:#e2e8f0;font-weight:500}
+.whale-item{background:rgba(255,255,255,.025);padding:10px 12px;border-radius:12px;line-height:1.8;font-size:12px}
+.whale-usd{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:800;color:#38bdf8;margin-bottom:4px}
 </style>
-
 </head>
 
 <body>
 
 <div class="hdr">
-
 <div class="logo">
-
 <div class="eye"></div>
-
 <div>
-
 <div class="ln">MIND OF MARKET</div>
-
 <div class="ls">AI MARKET INTELLIGENCE</div>
-
 </div>
-
 </div>
 
 <div class="hr">
-
-<div class="live">
-
-<div class="dot"></div>
-
-LIVE
-
-</div>
-
+<div class="live"><div class="dot"></div>LIVE</div>
 <div id="live-clock"></div>
-
-<button class="btn" onclick="refreshDashboard()">
-↻
-</button>
-
-<button class="btn" id="btn-lang" onclick="toggleLang()">
-EN
-</button>
-
+<button class="btn" onclick="refreshDashboard()">↻</button>
+<button class="btn" id="btn-lang" onclick="toggleLang()">EN</button>
 </div>
-
 </div>
 
 <div class="news">
-
 <div class="news-inner" id="news-track"></div>
-
 </div>
 
 <div class="cnt">
 
 <div class="prices">
-
-<div class="pc">
-<div class="ps">BTC</div>
-<div class="pv" id="p-btc">--</div>
-<div class="pch" id="c-btc">--</div>
-</div>
-
-<div class="pc">
-<div class="ps">ETH</div>
-<div class="pv" id="p-eth">--</div>
-<div class="pch" id="c-eth">--</div>
-</div>
-
-<div class="pc">
-<div class="ps">SOL</div>
-<div class="pv" id="p-sol">--</div>
-<div class="pch" id="c-sol">--</div>
-</div>
-
-<div class="pc">
-<div class="ps">BNB</div>
-<div class="pv" id="p-bnb">--</div>
-<div class="pch" id="c-bnb">--</div>
-</div>
-
+<div class="pc"><div class="ps">BTC</div><div class="pv" id="p-btc">--</div><div class="pch" id="c-btc">--</div></div>
+<div class="pc"><div class="ps">ETH</div><div class="pv" id="p-eth">--</div><div class="pch" id="c-eth">--</div></div>
+<div class="pc"><div class="ps">SOL</div><div class="pv" id="p-sol">--</div><div class="pch" id="c-sol">--</div></div>
+<div class="pc"><div class="ps">BNB</div><div class="pv" id="p-bnb">--</div><div class="pch" id="c-bnb">--</div></div>
 </div>
 
 <div class="chart-box">
-
-<div class="chart-head">
-
-<div>LIVE MARKET</div>
-
-<div>BTC / 15m</div>
-
-</div>
-
+<div class="chart-head"><div>LIVE MARKET</div><div>BTC / 15m</div></div>
 <div class="tv" id="tradingview_chart"></div>
 
 <div class="flow">
-
-<div class="demand">
-Demand
-<span id="demandVal">--</span>
+<div class="demand">Demand<span id="demandVal">--</span></div>
+<div class="supply">Supply<span id="supplyVal">--</span></div>
+<div class="volume">Volume<span id="volumeVal">--</span></div>
 </div>
-
-<div class="supply">
-Supply
-<span id="supplyVal">--</span>
-</div>
-
-<div class="volume">
-Volume
-<span id="volumeVal">--</span>
-</div>
-
-</div>
-
 </div>
 
 <div class="analysis-box">
-
 <div class="analysis-head">
-
-<div class="analysis-title" id="title-analysis">
-تحليل السوق الذكي
+<div class="analysis-title" id="title-analysis">تحليل السوق الذكي</div>
+<div class="analysis-live">LIVE</div>
 </div>
-
-<div class="analysis-live">
-LIVE
-</div>
-
-</div>
-
 <div class="feed" id="analysis-feed"></div>
-
 </div>
 
 <div class="whale-box">
-
-<div class="whale-title" id="title-whale">
-تحركات الحيتان
-</div>
-
+<div class="whale-title" id="title-whale">تحركات الحيتان</div>
 <div class="whale-feed" id="whale-feed"></div>
-
 </div>
 
 </div>
@@ -512,10 +115,7 @@ LIVE
 <script src="https://s3.tradingview.com/tv.js"></script>
 
 <script>
-
 let currentLang='ar';
-
-/* TRADINGVIEW */
 
 new TradingView.widget({
 autosize:true,
@@ -531,300 +131,144 @@ container_id:"tradingview_chart",
 studies:["Volume@tv-basicstudies"]
 });
 
-/* CLOCK */
-
 function updateClock(){
-
-const now = new Date();
-
 document.getElementById('live-clock').innerHTML =
-now.toLocaleTimeString('en-GB');
-
+new Date().toLocaleTimeString('en-GB');
 }
-
 setInterval(updateClock,1000);
-
 updateClock();
 
-/* REFRESH */
-
 function refreshDashboard(){
-
-loadData();
+loadGitHubData();
 orderBook();
-
 }
-
-/* LANGUAGE */
 
 function toggleLang(){
-
 if(currentLang==='ar'){
-
 currentLang='en';
-
 document.getElementById('title-analysis').innerHTML='AI MARKET ANALYSIS';
-
 document.getElementById('title-whale').innerHTML='WHALE FLOW';
-
 document.getElementById('btn-lang').innerHTML='AR';
-
 }else{
-
 currentLang='ar';
-
 document.getElementById('title-analysis').innerHTML='تحليل السوق الذكي';
-
 document.getElementById('title-whale').innerHTML='تحركات الحيتان';
-
 document.getElementById('btn-lang').innerHTML='EN';
-
+}
 }
 
-}
-
-/* ORDER BOOK */
-
-async function orderBook(){
-
-try{
-
-const r=await fetch(
-'https://api.binance.com/api/v3/depth?symbol=BTCUSDT&limit=100'
+const ws = new WebSocket(
+'wss://stream.binance.com:9443/stream?streams=btcusdt@ticker/ethusdt@ticker/solusdt@ticker/bnbusdt@ticker'
 );
 
+const map={
+BTCUSDT:'btc',
+ETHUSDT:'eth',
+SOLUSDT:'sol',
+BNBUSDT:'bnb'
+};
+
+function fmt(n){
+return '$'+Number(n).toLocaleString('en-US',{maximumFractionDigits:2});
+}
+
+ws.onmessage=(e)=>{
+const d=JSON.parse(e.data).data;
+const id=map[d.s];
+
+document.getElementById('p-'+id).innerHTML=fmt(d.c);
+
+const ch=Number(d.P);
+const el=document.getElementById('c-'+id);
+
+el.innerHTML=(ch>=0?'+':'')+ch.toFixed(2)+'%';
+el.className='pch '+(ch>=0?'up':'dn');
+};
+
+async function orderBook(){
+try{
+const r=await fetch('https://api.binance.com/api/v3/depth?symbol=BTCUSDT&limit=100');
 const d=await r.json();
 
 let bids=0;
 let asks=0;
 
-d.bids.forEach(x=>{
-bids += parseFloat(x[0]) * parseFloat(x[1]);
-});
+d.bids.forEach(x=>bids+=Number(x[0])*Number(x[1]));
+d.asks.forEach(x=>asks+=Number(x[0])*Number(x[1]));
 
-d.asks.forEach(x=>{
-asks += parseFloat(x[0]) * parseFloat(x[1]);
-});
+const total=bids+asks;
 
-const total = bids + asks;
+document.getElementById('demandVal').innerHTML=Math.round((bids/total)*100)+'%';
+document.getElementById('supplyVal').innerHTML=Math.round((asks/total)*100)+'%';
+document.getElementById('volumeVal').innerHTML='$'+Math.round(total/1000000)+'M';
 
-document.getElementById('demandVal').innerHTML =
-Math.round((bids/total)*100)+'%';
-
-document.getElementById('supplyVal').innerHTML =
-Math.round((asks/total)*100)+'%';
-
-document.getElementById('volumeVal').innerHTML =
-'$'+Math.round(total/1000000)+'M';
-
-}catch(e){
-
-console.log(e);
-
+}catch(e){console.log(e)}
 }
 
-}
-
-async function loadData(){
-
+async function loadGitHubData(){
 try{
+const r=await fetch('./data.json?t='+Date.now());
+const data=await r.json();
 
-const r = await fetch('./data.json?t=' + Date.now());
-
-const data = await r.json();
-
-/* PRICES */
-
-document.getElementById('p-btc').innerHTML =
-'$'+Number(data.BTC).toLocaleString();
-
-document.getElementById('p-eth').innerHTML =
-'$'+Number(data.ETH).toLocaleString();
-
-document.getElementById('p-sol').innerHTML =
-'$'+Number(data.SOL).toLocaleString();
-
-document.getElementById('p-bnb').innerHTML =
-'$'+Number(data.BNB).toLocaleString();
-
-/* CHANGES */
-
-const btcChange = Number(data.BTC_CHANGE);
-const ethChange = Number(data.ETH_CHANGE);
-const solChange = Number(data.SOL_CHANGE);
-const bnbChange = Number(data.BNB_CHANGE);
-
-document.getElementById('c-btc').innerHTML =
-btcChange.toFixed(2)+'%';
-
-document.getElementById('c-eth').innerHTML =
-ethChange.toFixed(2)+'%';
-
-document.getElementById('c-sol').innerHTML =
-solChange.toFixed(2)+'%';
-
-document.getElementById('c-bnb').innerHTML =
-bnbChange.toFixed(2)+'%';
-
-document.getElementById('c-btc').className =
-'pch '+(btcChange>=0?'up':'dn');
-
-document.getElementById('c-eth').className =
-'pch '+(ethChange>=0?'up':'dn');
-
-document.getElementById('c-sol').className =
-'pch '+(solChange>=0?'up':'dn');
-
-document.getElementById('c-bnb').className =
-'pch '+(bnbChange>=0?'up':'dn');
-
-/* ANALYSIS */
-
-const feed =
-document.getElementById('analysis-feed');
-
+const feed=document.getElementById('analysis-feed');
 feed.innerHTML='';
 
 if(data.analysis){
-
-const arr = Array.isArray(data.analysis)
-? data.analysis
-: [data.analysis];
+const arr=Array.isArray(data.analysis)?data.analysis:[data.analysis];
 
 arr.reverse().slice(0,10).forEach(x=>{
-
 let cls='blue';
+const text=x.text || x;
 
-const text = x.text || x;
+if(text.includes('ضغط بيعي')||text.includes('تصريف')||text.includes('هبوط')) cls='red';
+if(text.includes('تجميع')||text.includes('امتصاص')) cls='green';
+if(text.includes('فخ')||text.includes('سيولة')) cls='orange';
 
-if(
-text.includes('ضغط بيعي')
-||
-text.includes('تصريف')
-||
-text.includes('هبوط')
-){
-cls='red';
-}
-
-if(
-text.includes('تجميع')
-||
-text.includes('امتصاص')
-){
-cls='green';
-}
-
-if(
-text.includes('فخ')
-||
-text.includes('سيولة')
-){
-cls='orange';
-}
-
-feed.innerHTML += `
-
+feed.innerHTML+=`
 <div class="feed-item ${cls}">
-
-<div class="feed-time">
-${x.time || '--:--'}
-</div>
-
-<div class="feed-text">
-${text}
-</div>
-
-</div>
-
-`;
-
+<div class="feed-time">${x.time || '--:--'}</div>
+<div class="feed-text">${text}</div>
+</div>`;
 });
-
 }
 
-/* WHALES */
+const whaleFeed=document.getElementById('whale-feed');
 
-const whaleFeed =
-document.getElementById('whale-feed');
-
-whaleFeed.innerHTML = `
-
+whaleFeed.innerHTML=`
 <div class="whale-item">
-
-<div class="whale-usd">
-$${Number(data.WHALE_USD).toLocaleString()}
-</div>
-
-${data.WHALE_TOKEN} | ${data.WHALE_CHAIN}
-
+<div class="whale-usd">$${Number(data.WHALE_USD).toLocaleString()}</div>
+${data.WHALE_TOKEN || '--'} | ${data.WHALE_CHAIN || '--'}
 <br><br>
-
-من:
-${data.WHALE_FROM}
-
+من: ${data.WHALE_FROM || 'Unknown Wallet'}
 <br>
+إلى: ${data.WHALE_TO || 'Unknown Wallet'}
+</div>`;
 
-إلى:
-${data.WHALE_TO}
-
-</div>
-
-`;
-
-}catch(e){
-
-console.log(e);
-
+}catch(e){console.log(e)}
 }
-
-}
-
-/* NEWS */
 
 function loadNews(){
-
 const news=[
-
 'Institutional liquidity remains cautious',
-
 'Whale positioning increases across stablecoins',
-
 'Funding remains elevated across derivatives',
-
 'Crowded longs raise liquidation sensitivity',
-
 'Passive absorption detected near key zones'
-
 ];
 
 document.getElementById('news-track').innerHTML =
 [...news,...news].map(x=>`
-
-<span class="ni">
-
-<span class="nd"></span>
-
-${x}
-
-</span>
-
+<span class="ni"><span class="nd"></span>${x}</span>
 `).join('');
-
 }
 
-loadData();
-
+loadGitHubData();
 orderBook();
-
 loadNews();
 
-setInterval(loadData,10000);
-
+setInterval(loadGitHubData,10000);
 setInterval(orderBook,10000);
-
 </script>
 
 </body>
-
 </html>
