@@ -1,56 +1,40 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>MIND OF MARKET</title>
-
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Orbitron:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Orbitron:wght@600;700;800&display=swap');
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
 }
 
 html,body{
-background:#030b14;
+width:100%;
+height:100%;
 overflow-x:hidden;
-font-family:'Tajawal',sans-serif;
+background:#020813;
 color:#e2e8f0;
+font-family:'Tajawal',sans-serif;
 }
 
 body{
-padding-bottom:40px;
-}
-
-::-webkit-scrollbar{
-width:4px;
-}
-
-::-webkit-scrollbar-thumb{
-background:#38bdf8;
-border-radius:20px;
+display:flex;
+flex-direction:column;
+background:
+radial-gradient(circle at top,#071425 0%,#020813 45%);
 }
 
 /* HEADER */
 
 .hdr{
-background:rgba(2,8,20,.98);
-border-bottom:1px solid rgba(56,189,248,.15);
-padding:10px 14px;
+height:68px;
+padding:0 14px;
 display:flex;
-justify-content:space-between;
 align-items:center;
-position:sticky;
-top:0;
-z-index:999;
+justify-content:space-between;
+border-bottom:1px solid rgba(56,189,248,.12);
+background:rgba(2,8,20,.96);
 backdrop-filter:blur(10px);
 }
 
@@ -61,12 +45,12 @@ gap:10px;
 }
 
 .eye{
-width:28px;
-height:14px;
-border:1.5px solid #38bdf8;
+width:30px;
+height:15px;
+border:1.7px solid #38bdf8;
 border-radius:50%;
 position:relative;
-box-shadow:0 0 12px rgba(56,189,248,.4);
+box-shadow:0 0 16px rgba(56,189,248,.45);
 }
 
 .eye::after{
@@ -79,80 +63,91 @@ border-radius:50%;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-box-shadow:0 0 8px #38bdf8;
+box-shadow:0 0 12px #38bdf8;
 }
 
 .ln{
 font-family:'Orbitron',sans-serif;
-font-size:12px;
-font-weight:900;
-letter-spacing:2px;
+font-size:16px;
+font-weight:800;
+letter-spacing:3px;
 color:#38bdf8;
 }
 
 .ls{
-font-size:9px;
+font-size:11px;
 color:#64748b;
+margin-top:2px;
+}
+
+.hr{
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 .live{
 display:flex;
 align-items:center;
-gap:5px;
-font-size:10px;
+gap:6px;
+font-size:13px;
 color:#34d399;
+font-weight:700;
 }
 
 .dot{
-width:6px;
-height:6px;
-background:#34d399;
+width:7px;
+height:7px;
 border-radius:50%;
-box-shadow:0 0 8px #34d399;
+background:#34d399;
+box-shadow:0 0 10px #34d399;
 }
 
 .btn{
+height:38px;
+padding:0 14px;
+border-radius:10px;
+border:1px solid rgba(56,189,248,.25);
 background:rgba(56,189,248,.08);
-border:1px solid rgba(56,189,248,.2);
 color:#38bdf8;
-padding:5px 10px;
-border-radius:6px;
-font-size:10px;
-cursor:pointer;
+font-weight:700;
+font-size:13px;
 }
 
 /* NEWS */
 
 .news{
-background:rgba(56,189,248,.03);
-border-bottom:1px solid rgba(56,189,248,.08);
+height:38px;
 overflow:hidden;
-padding:5px 0;
+border-bottom:1px solid rgba(56,189,248,.08);
+background:rgba(56,189,248,.03);
+display:flex;
+align-items:center;
 }
 
 .news-inner{
 display:flex;
 white-space:nowrap;
-animation:scroll 45s linear infinite;
+animation:scroll-l 45s linear infinite;
 }
 
 .ni{
 display:inline-flex;
 align-items:center;
-gap:7px;
+gap:8px;
 padding:0 18px;
-font-size:10px;
-color:#94a3b8;
+font-size:13px;
+color:#cbd5e1;
 }
 
 .nd{
-width:4px;
-height:4px;
+width:5px;
+height:5px;
 background:#38bdf8;
 border-radius:50%;
 }
 
-@keyframes scroll{
+@keyframes scroll-l{
 0%{transform:translateX(0)}
 100%{transform:translateX(-50%)}
 }
@@ -160,46 +155,64 @@ border-radius:50%;
 /* CONTENT */
 
 .cnt{
+flex:1;
+overflow-y:auto;
 padding:10px;
 display:flex;
 flex-direction:column;
 gap:10px;
 }
 
-/* PRICE CARDS */
+/* PRICES */
 
 .prices{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:8px;
+gap:10px;
 }
 
 .pc{
-background:rgba(8,18,38,.95);
-border:1px solid rgba(56,189,248,.1);
-border-radius:12px;
-padding:10px;
-text-align:center;
-box-shadow:0 0 20px rgba(0,0,0,.2);
+background:
+linear-gradient(180deg,#071325,#06101f);
+border:1px solid rgba(56,189,248,.12);
+border-radius:18px;
+padding:16px 12px;
+position:relative;
+overflow:hidden;
+box-shadow:
+0 0 25px rgba(0,0,0,.35),
+inset 0 0 25px rgba(56,189,248,.03);
+}
+
+.pc::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:1px;
+background:linear-gradient(90deg,transparent,#38bdf8,transparent);
+opacity:.4;
 }
 
 .ps{
-font-size:10px;
+font-size:13px;
 color:#64748b;
-margin-bottom:3px;
+margin-bottom:8px;
+font-weight:700;
 }
 
 .pv{
 font-family:'Orbitron',sans-serif;
-font-size:15px;
+font-size:30px;
+font-weight:800;
 color:#38bdf8;
-font-weight:700;
 }
 
 .pch{
-font-size:10px;
-font-weight:700;
-margin-top:3px;
+margin-top:8px;
+font-size:14px;
+font-weight:800;
 }
 
 .up{
@@ -210,40 +223,41 @@ color:#34d399;
 color:#f87171;
 }
 
-/* BOX */
+/* CHART */
 
-.box{
-background:rgba(8,18,38,.95);
-border:1px solid rgba(56,189,248,.1);
-border-radius:12px;
+.chart-box{
+background:
+linear-gradient(180deg,#071325,#06101f);
+border:1px solid rgba(56,189,248,.12);
+border-radius:20px;
 padding:10px;
-box-shadow:0 0 20px rgba(0,0,0,.2);
+box-shadow:0 0 25px rgba(0,0,0,.35);
 }
 
-.box-head{
+.chart-head{
 display:flex;
 justify-content:space-between;
 align-items:center;
 margin-bottom:10px;
-font-size:11px;
+padding:0 4px;
+}
+
+.chart-title{
+font-size:14px;
+font-weight:800;
 color:#38bdf8;
-font-weight:700;
 }
 
-.live-badge{
-background:rgba(52,211,153,.12);
-color:#34d399;
-padding:4px 8px;
-border-radius:20px;
-font-size:9px;
+.chart-sub{
+font-size:12px;
+color:#64748b;
 }
-
-/* TV */
 
 .tv{
-height:240px;
-border-radius:10px;
+height:270px;
+border-radius:14px;
 overflow:hidden;
+border:1px solid rgba(255,255,255,.05);
 }
 
 /* FLOW */
@@ -251,17 +265,24 @@ overflow:hidden;
 .flow{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:6px;
-margin-top:8px;
+gap:8px;
+margin-top:10px;
 }
 
 .flow div{
 background:rgba(255,255,255,.03);
-padding:6px;
-border-radius:7px;
+border-radius:12px;
+padding:10px 6px;
 text-align:center;
-font-size:10px;
-line-height:1.7;
+font-size:13px;
+font-weight:700;
+}
+
+.flow span{
+display:block;
+margin-top:5px;
+font-size:18px;
+font-family:'Orbitron',sans-serif;
 }
 
 .demand{
@@ -278,588 +299,121 @@ color:#38bdf8;
 
 /* ANALYSIS */
 
-.analysis-feed{
+.analysis-box{
+background:
+linear-gradient(180deg,#071325,#06101f);
+border:1px solid rgba(56,189,248,.12);
+border-radius:20px;
+padding:12px;
+box-shadow:0 0 25px rgba(0,0,0,.35);
+}
+
+.analysis-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+.analysis-title{
+font-size:15px;
+font-weight:800;
+color:#38bdf8;
+}
+
+.analysis-live{
+font-size:12px;
+color:#34d399;
+font-weight:800;
+}
+
+.feed{
 display:flex;
 flex-direction:column;
-gap:8px;
-max-height:320px;
+gap:10px;
+max-height:340px;
 overflow:auto;
+}
+
+.feed::-webkit-scrollbar{
+display:none;
 }
 
 .feed-item{
 background:rgba(255,255,255,.03);
-border-radius:9px;
-padding:8px;
-font-size:10px;
-line-height:1.9;
-border-right:3px solid #38bdf8;
+border-radius:16px;
+padding:14px;
+position:relative;
+border-right:4px solid #38bdf8;
+}
+
+.feed-item.red{
+border-right-color:#f87171;
+}
+
+.feed-item.green{
+border-right-color:#34d399;
+}
+
+.feed-item.orange{
+border-right-color:#f59e0b;
+}
+
+.feed-item.blue{
+border-right-color:#38bdf8;
 }
 
 .feed-time{
-font-size:8px;
+font-size:11px;
 color:#64748b;
-margin-bottom:4px;
-}
-
-/* WHALES */
-
-.whale-item{
-background:rgba(255,255,255,.03);
-padding:9px;
-border-radius:9px;
-font-size:10px;
-line-height:2;
 margin-bottom:8px;
 }
 
-/* CEX DEX */
-
-.exchange-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:8px;
-}
-
-.ex{
-background:rgba(255,255,255,.03);
-padding:8px;
-border-radius:9px;
-font-size:10px;
-line-height:1.8;
-}
-
-/* ALERTS */
-
-.alerts{
-display:flex;
-flex-direction:column;
-gap:6px;
-}
-
-.alert{
-padding:8px;
-border-radius:8px;
-font-size:10px;
-font-weight:700;
-}
-
-.green{
-background:rgba(52,211,153,.12);
-color:#34d399;
-}
-
-.red{
-background:rgba(248,113,113,.12);
-color:#f87171;
-}
-
-.orange{
-background:rgba(251,146,60,.12);
-color:#fb923c;
-}
-
-.blue{
-background:rgba(56,189,248,.12);
-color:#38bdf8;
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- HEADER -->
-
-<div class="hdr">
-
-<div class="logo">
-
-<div class="eye"></div>
-
-<div>
-
-<div class="ln">
-MIND OF MARKET
-</div>
-
-<div class="ls">
-رادار السوق المؤسسي
-</div>
-
-</div>
-
-</div>
-
-<div style="display:flex;align-items:center;gap:8px;">
-
-<div class="live">
-<div class="dot"></div>
-LIVE
-</div>
-
-<button class="btn">
-EN
-</button>
-
-</div>
-
-</div>
-
-<!-- NEWS -->
-
-<div class="news">
-
-<div class="news-inner" id="news-track"></div>
-
-</div>
-
-<!-- CONTENT -->
-
-<div class="cnt">
-
-<!-- PRICES -->
-
-<div class="prices">
-
-<div class="pc">
-<div class="ps">BTC</div>
-<div class="pv" id="p-btc">--</div>
-<div class="pch" id="c-btc">--</div>
-</div>
-
-<div class="pc">
-<div class="ps">ETH</div>
-<div class="pv" id="p-eth">--</div>
-<div class="pch" id="c-eth">--</div>
-</div>
-
-<div class="pc">
-<div class="ps">SOL</div>
-<div class="pv" id="p-sol">--</div>
-<div class="pch" id="c-sol">--</div>
-</div>
-
-<div class="pc">
-<div class="ps">BNB</div>
-<div class="pv" id="p-bnb">--</div>
-<div class="pch" id="c-bnb">--</div>
-</div>
-
-</div>
-
-<!-- CHART -->
-
-<div class="box">
-
-<div class="box-head">
-
-<div>LIVE MARKET</div>
-
-<div class="live-badge">
-BTC / 15m
-</div>
-
-</div>
-
-<div class="tv" id="tradingview_chart"></div>
-
-<div class="flow">
-
-<div class="demand">
-Demand
-<br>
-<span id="demandVal">--</span>
-</div>
-
-<div class="supply">
-Supply
-<br>
-<span id="supplyVal">--</span>
-</div>
-
-<div class="volume">
-Volume
-<br>
-<span id="volumeVal">--</span>
-</div>
-
-</div>
-
-</div>
-
-<!-- AI ANALYSIS -->
-
-<div class="box">
-
-<div class="box-head">
-
-<div>
-AI MARKET ANALYSIS
-</div>
-
-<div class="live-badge">
-LIVE
-</div>
-
-</div>
-
-<div class="analysis-feed" id="analysisFeed"></div>
-
-</div>
-
-<!-- WHALES -->
-
-<div class="box">
-
-<div class="box-head">
-
-<div>
-WHALE ACTIVITY
-</div>
-
-<div class="live-badge">
-LIVE
-</div>
-
-</div>
-
-<div id="whaleFeed"></div>
-
-</div>
-
-<!-- CEX / DEX -->
-
-<div class="box">
-
-<div class="box-head">
-
-<div>
-CEX / DEX FLOW
-</div>
-
-<div class="live-badge">
-LIVE
-</div>
-
-</div>
-
-<div class="exchange-grid">
-
-<div class="ex">
-🏦 Binance
-<br>
-$24.8B Volume
-<br>
-+842M Inflow
-</div>
-
-<div class="ex">
-🏦 Bybit
-<br>
-$11.2B Volume
-<br>
--210M Outflow
-</div>
-
-<div class="ex">
-🦄 Uniswap
-<br>
-$1.9B Volume
-<br>
-Liquidity Rising
-</div>
-
-<div class="ex">
-🪐 Jupiter
-<br>
-$842M Volume
-<br>
-SOL Activity High
-</div>
-
-</div>
-
-</div>
-
-<!-- ALERTS -->
-
-<div class="box">
-
-<div class="box-head">
-
-<div>
-LIVE ALERTS
-</div>
-
-<div class="live-badge">
-LIVE
-</div>
-
-</div>
-
-<div class="alerts">
-
-<div class="alert green">
-Institutional accumulation detected
-</div>
-
-<div class="alert red">
-Crowded longs increasing aggressively
-</div>
-
-<div class="alert orange">
-Liquidity trap risk near resistance
-</div>
-
-<div class="alert blue">
-Funding remains positive across majors
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<script src="https://s3.tradingview.com/tv.js"></script>
-
-<script>
-
-new TradingView.widget({
-autosize:true,
-symbol:"BINANCE:BTCUSDT",
-interval:"15",
-timezone:"Etc/UTC",
-theme:"dark",
-style:"1",
-locale:"en",
-hide_top_toolbar:true,
-allow_symbol_change:false,
-container_id:"tradingview_chart",
-studies:["Volume@tv-basicstudies"]
-});
-
-/* LIVE BINANCE */
-
-const ws = new WebSocket(
-'wss://stream.binance.com:9443/stream?streams=btcusdt@ticker/ethusdt@ticker/solusdt@ticker/bnbusdt@ticker'
-);
-
-const map={
-BTCUSDT:'btc',
-ETHUSDT:'eth',
-SOLUSDT:'sol',
-BNBUSDT:'bnb'
-};
-
-function fmt(n){
-return '$'+parseFloat(n).toLocaleString(
-'en-US',
-{
-maximumFractionDigits:2
-}
-);
-}
-
-ws.onmessage=(e)=>{
-
-const d = JSON.parse(e.data).data;
-
-const id = map[d.s];
-
-document.getElementById('p-'+id)
-.textContent = fmt(d.c);
-
-const ch = parseFloat(d.P);
-
-const el =
-document.getElementById('c-'+id);
-
-el.textContent =
-(ch>=0?'+':'') +
-ch.toFixed(2)+'%';
-
-el.className =
-'pch ' +
-(ch>=0?'up':'dn');
-
-};
-
-/* ORDER BOOK */
-
-async function orderBook(){
-
-try{
-
-const r = await fetch(
-'https://api.binance.com/api/v3/depth?symbol=BTCUSDT&limit=100'
-);
-
-const d = await r.json();
-
-let bids=0;
-let asks=0;
-
-d.bids.forEach(x=>{
-bids+=parseFloat(x[0])*parseFloat(x[1]);
-});
-
-d.asks.forEach(x=>{
-asks+=parseFloat(x[0])*parseFloat(x[1]);
-});
-
-const total=bids+asks;
-
-document.getElementById('demandVal')
-.textContent =
-Math.round((bids/total)*100)+'%';
-
-document.getElementById('supplyVal')
-.textContent =
-Math.round((asks/total)*100)+'%';
-
-document.getElementById('volumeVal')
-.textContent =
-'$'+Math.round(total/1000000)+'M';
-
-}catch(e){}
-
-}
-
-/* DATA JSON */
-
-async function loadDashboard(){
-
-try{
-
-const r = await fetch(
-'data.json?t=' + Date.now()
-);
-
-const data = await r.json();
-
-/* ANALYSIS */
-
-const feed =
-document.getElementById(
-'analysisFeed'
-);
-
-if(data.analysis){
-
-feed.innerHTML='';
-
-data.analysis
-.slice(0,10)
-.forEach(x=>{
-
-feed.innerHTML += `
-
-<div class="feed-item">
-
-<div class="feed-time">
-${x.time}
-</div>
-
-${x.text}
-
-</div>
-
-`;
-
-});
-
+.feed-text{
+font-size:15px;
+line-height:1.9;
+color:#f1f5f9;
+font-weight:600;
 }
 
 /* WHALES */
 
-const whale =
-document.getElementById(
-'whaleFeed'
-);
-
-whale.innerHTML = `
-
-<div class="whale-item">
-
-💰 ${data.WHALE_USD}
-
-<br>
-
-🪙 ${data.WHALE_TOKEN}
-
-<br>
-
-⛓ ${data.WHALE_CHAIN}
-
-<br>
-
-🏦 ${data.WHALE_FROM}
-
-<br>
-
-➡️
-
-<br>
-
-${data.WHALE_TO}
-
-</div>
-
-`;
-
-/* NEWS */
-
-const news = [
-
-data.analysis?.[0]?.text ||
-'Market data updating',
-
-'Funding pressure increasing',
-
-'Whale activity detected',
-
-'Liquidity monitoring active',
-
-'Institutional flow analysis running'
-
-];
-
-document.getElementById(
-'news-track'
-).innerHTML =
-[...news,...news]
-.map(x=>`
-
-<span class="ni">
-
-<span class="nd"></span>
-
-${x}
-
-</span>
-
-`).join('');
-
-}catch(e){
-
-console.log(e);
-
+.whale-box{
+background:
+linear-gradient(180deg,#071325,#06101f);
+border:1px solid rgba(56,189,248,.12);
+border-radius:20px;
+padding:12px;
+box-shadow:0 0 25px rgba(0,0,0,.35);
 }
 
+.whale-title{
+font-size:15px;
+font-weight:800;
+color:#38bdf8;
+margin-bottom:10px;
 }
 
-/* START */
+.whale-feed{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
 
-orderBook();
+.whale-item{
+background:rgba(255,255,255,.03);
+padding:12px;
+border-radius:14px;
+font-size:14px;
+line-height:1.7;
+}
 
-loadDashboard();
+.whale-usd{
+font-family:'Orbitron',sans-serif;
+color:#38bdf8;
+font-size:18px;
+font-weight:800;
+margin-bottom:4px;
+}
 
-setInterval(orderBook,10000);
-
-setInterval(loadDashboard,5000);
-
-</script>
-
-</body>
-</html>
+</style>
