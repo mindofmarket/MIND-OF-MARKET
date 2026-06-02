@@ -195,6 +195,32 @@ body{font-family:var(--body);color:var(--txt);display:flex;flex-direction:column
 .bn-lbl{font-family:var(--mono);font-size:7px;color:var(--txt2);letter-spacing:1px;}
 .bn.active .bn-icon,.bn.active .bn-lbl{color:var(--sky);}
 
+/* VERDICT BOX */
+.verdict-box{background:var(--panel);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;}
+.ana-refresh-btn{background:var(--bg3);border:1px solid var(--bdr2);color:var(--sky);font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:3px;cursor:pointer;letter-spacing:1px;}
+.ana-refresh-btn:hover{background:var(--skyD);}
+.verdict-loading{padding:20px;text-align:center;}
+.verdict-spinner{font-size:24px;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.verdict-content{}
+.verdict-top{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;}
+.verdict-main{}
+.verdict-label{font-family:var(--mono);font-size:8px;color:var(--txt2);letter-spacing:2px;margin-bottom:3px;}
+.verdict-value{font-size:16px;font-weight:900;color:var(--wht);line-height:1.2;}
+.verdict-value.bull{color:var(--grn);}
+.verdict-value.bear{color:var(--red);}
+.verdict-value.warn{color:var(--org);}
+.verdict-value.neu{color:var(--sky);}
+.verdict-conf{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.verdict-conf-lbl{font-family:var(--mono);font-size:8px;color:var(--txt2);letter-spacing:1px;}
+.verdict-divider{height:1px;background:var(--bdr);margin:0;}
+.evidence-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+.ev-item{padding:8px 6px;text-align:center;border-left:1px solid var(--bdr);}
+.ev-item:last-child{border-left:none;}
+.ev-icon{font-size:12px;margin-bottom:3px;}
+.ev-val{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--wht);}
+.ev-lbl{font-family:var(--mono);font-size:7px;color:var(--txt3);letter-spacing:1px;margin-top:2px;}
+
 /* SKEL */
 .sk{background:linear-gradient(90deg,var(--bg3) 25%,var(--bdr) 50%,var(--bg3) 75%);background-size:200% 100%;animation:sh 1.5s infinite;border-radius:2px;height:10px;margin-bottom:3px;}
 @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
@@ -344,29 +370,64 @@ body{font-family:var(--body);color:var(--txt);display:flex;flex-direction:column
     <div class="ms-badge neu" id="msBadge">انتظار</div>
   </div>
 
-  <!-- CLAUDE ANALYSIS -->
+  <!-- ANALYSIS BOX — same style as indicators -->
   <div>
     <div class="sh">
       <div class="sh-t">🧠 تحليل عقل السوق</div>
-      <div class="sh-m" onclick="runAnalysis()" id="runBtn">▶ تشغيل</div>
+      <button class="ana-refresh-btn" id="anaBtn" onclick="runAnalysis()">↻ تحديث</button>
     </div>
-    <div class="ana-box">
-      <div class="ana-header">
-        <div class="ana-title">⚡ تحليل ذكاء اصطناعي</div>
-        <button class="ana-run" id="anaBtn" onclick="runAnalysis()">تحليل الآن</button>
+
+    <!-- VERDICT BOX — prominent like price cards -->
+    <div class="verdict-box" id="verdictBox">
+      <div class="verdict-loading" id="verdictLoading">
+        <div class="verdict-spinner">🧠</div>
+        <div style="font-size:11px;color:var(--txt2);margin-top:6px;">جاري تحليل البيانات...</div>
       </div>
-      <div class="ana-loading" id="anaLoading">
-        <div style="font-size:24px;margin-bottom:6px;">🧠</div>
-        <div class="ana-dots" id="anaDots">جاري تحليل السوق...</div>
-        <div style="font-size:10px;color:var(--txt2);margin-top:4px;">نقوم بدراسة كل المؤشرات</div>
-      </div>
-      <div class="ana-result" id="anaResult">
-        <div class="ana-badge" id="anaBadge">تقرير السوق</div>
-        <div class="ana-text" id="anaText"></div>
-        <div class="ana-footer">
-          <div class="conf-row"><div class="cdot" id="confDot"></div><span id="confLbl">---</span></div>
-          <span id="anaFooterTime" style="color:var(--txt3)"></span>
-          <span>ليس نصيحة مالية</span>
+      <div class="verdict-content" id="verdictContent" style="display:none;">
+        <div class="verdict-top">
+          <div class="verdict-main">
+            <div class="verdict-label">الحكم</div>
+            <div class="verdict-value" id="verdictValue">---</div>
+          </div>
+          <div class="verdict-conf">
+            <div class="cdot" id="confDot"></div>
+            <div class="verdict-conf-lbl" id="confLbl">---</div>
+          </div>
+        </div>
+        <div class="verdict-divider"></div>
+        <!-- EVIDENCE ROW — like indicators -->
+        <div class="evidence-row">
+          <div class="ev-item">
+            <div class="ev-icon">📊</div>
+            <div class="ev-val" id="evLS">---</div>
+            <div class="ev-lbl">L/S</div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-icon">💰</div>
+            <div class="ev-val" id="evFund">---</div>
+            <div class="ev-lbl">Funding</div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-icon">📈</div>
+            <div class="ev-val" id="evOI">---</div>
+            <div class="ev-lbl">OI</div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-icon">🐋</div>
+            <div class="ev-val" id="evWhale">---</div>
+            <div class="ev-lbl">حيتان</div>
+          </div>
+        </div>
+        <div class="verdict-divider"></div>
+        <!-- FULL REPORT -->
+        <div class="ana-result show" id="anaResult">
+          <div class="ana-badge" id="anaBadge">تقرير السوق</div>
+          <div class="ana-text" id="anaText"></div>
+          <div class="ana-footer">
+            <div class="conf-row"><div class="cdot" id="confDot2"></div><span id="confLbl2">---</span></div>
+            <span id="anaFooterTime" style="color:var(--txt3)"></span>
+            <span style="color:var(--txt3)">ليس نصيحة مالية</span>
+          </div>
         </div>
       </div>
     </div>
@@ -930,7 +991,73 @@ async function autoLoadReport(){
     }
     document.getElementById('anaResult').classList.add('show');
     document.getElementById('anaBtn').textContent='تحديث التقرير';
+    populateVerdictBox(reportText);
   }catch(e){}
+}
+
+// ══ POPULATE VERDICT BOX ══
+function populateVerdictBox(text){
+  if(!text)return;
+  document.getElementById('verdictLoading').style.display='none';
+  document.getElementById('verdictContent').style.display='block';
+
+  // Extract verdict
+  const verdictMap = {
+    'فخ سيولة':'warn','فخ':'warn',
+    'تراكم مؤسسي':'bull','تراكم':'bull',
+    'هبوط حقيقي':'bear','هبوط':'bear',
+    'صعود حقيقي':'bull','صعود':'bull',
+    'بمب مصطنع':'warn','بمب':'warn',
+    'دمب مصطنع':'bear','دمب':'bear',
+    'سوق محايد':'neu','محايد':'neu',
+    'RISK WATCH':'warn','CAPITAL FLOW':'bull',
+    'POSITIONING':'neu','OPPORTUNITY':'bull'
+  };
+  let verdictText = '---';
+  let verdictClass = 'neu';
+
+  // Try to extract from "الحكم:" line
+  const hukm = text.match(/الحكم[:\s]*
+?([^
+•]+)/);
+  if(hukm){
+    verdictText = hukm[1].trim().replace(/[📍⚡]/g,'').trim();
+    for(const[k,v] of Object.entries(verdictMap)){
+      if(verdictText.includes(k)){verdictClass=v;break;}
+    }
+  } else {
+    // Fallback: scan full text
+    for(const[k,v] of Object.entries(verdictMap)){
+      if(text.includes(k)){verdictText=k;verdictClass=v;break;}
+    }
+  }
+
+  const vEl = document.getElementById('verdictValue');
+  vEl.textContent = verdictText;
+  vEl.className = 'verdict-value '+verdictClass;
+
+  // Evidence from live data
+  const d = S.deriv;
+  const lsEl = document.getElementById('evLS');
+  if(d.lsR){
+    lsEl.textContent = d.lsR.toFixed(2);
+    lsEl.style.color = d.lsR>1.8?'var(--red)':d.lsR<0.7?'var(--grn)':'var(--wht)';
+  }
+  const fEl = document.getElementById('evFund');
+  if(d.fund!==undefined){
+    fEl.textContent = (d.fund>=0?'+':'')+(d.fund*100).toFixed(4)+'%';
+    fEl.style.color = d.fund>0.01?'var(--red)':d.fund<-0.005?'var(--grn)':'var(--sky)';
+  }
+  const oEl = document.getElementById('evOI');
+  if(d.oiD!==undefined){
+    oEl.textContent = (d.oiD>=0?'▲':'▼')+Math.abs(d.oiD).toFixed(2)+'%';
+    oEl.style.color = d.oiD>=0?'var(--grn)':'var(--red)';
+  }
+  // Whale signal from text
+  const whaleEl = document.getElementById('evWhale');
+  if(text.includes('خارج')||text.includes('سحب')){whaleEl.textContent='خروج';whaleEl.style.color='var(--org)';}
+  else if(text.includes('دخول')||text.includes('إيداع')){whaleEl.textContent='دخول';whaleEl.style.color='var(--red)';}
+  else{whaleEl.textContent='محايد';whaleEl.style.color='var(--txt2)';}
 }
 
 // ══ INIT & REFRESH ══
