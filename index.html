@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#00aaff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="عقل السوق">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>MIND OF MARKET X — عقل السوق</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700;800&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -405,6 +411,7 @@ body{font-family:var(--body);color:var(--txt);display:flex;flex-direction:column
       <div class="ind"><div class="iv" id="iFund">---</div><div class="il">FUNDING</div><div class="is" id="iFunds" style="color:var(--txt2)">---</div></div>
       <div class="ind"><div class="iv" id="iOI" style="color:var(--sky)">---</div><div class="il">OI CHANGE</div><div class="is" id="iOIs" style="color:var(--txt2)">---</div></div>
       <div class="ind"><div class="iv" id="iTaker">---</div><div class="il">TAKER</div><div class="is" id="iTakers" style="color:var(--txt2)">---</div></div>
+      <div class="ind" style="display:none;" id="rsiInd"><div class="iv" id="iRSI" style="color:var(--sky)">--</div><div class="il">RSI 1H</div><div class="is" id="iRSIs" style="color:var(--txt2)">---</div></div>
     </div>
   </div>
 
@@ -491,7 +498,10 @@ body{font-family:var(--body);color:var(--txt);display:flex;flex-direction:column
       </div>
       <div class="ana-load" id="anaLoad"><div class="spin">🧠</div><div style="font-size:9px;color:var(--txt2);margin-top:5px;">جاري التحميل...</div></div>
       <div class="ana-res" id="anaRes">
-        <div class="ana-badge" id="anaBadge">INTELLIGENCE REPORT</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+          <div class="ana-badge" id="anaBadge">INTELLIGENCE REPORT</div>
+          <div id="sendBadge" style="font-family:var(--raj);font-size:7px;letter-spacing:2px;padding:2px 7px;border-radius:2px;display:none;"></div>
+        </div>
         <div class="verdict-row">
           <div><div class="av-lbl" id="avLbl">الحكم</div><div class="av-val neu" id="avVal">---</div></div>
           <div style="text-align:left;">
@@ -814,10 +824,62 @@ async function loadReport(){
   try{
     const r=await fetch(GITHUB+'?t='+Date.now());if(!r.ok)throw new Error();
     const raw=await r.text();let txt='',ts='';
-    try{const j=JSON.parse(raw);txt=j.report||j.text||j.content||'';ts=j.timestamp||j.updated_at||'';
+    try{const j=JSON.parse(raw);
+      txt=j.report||j.text||j.content||'';
+      ts=j.ts||j.timestamp||j.updated_at||'';
+      // ── Populate all intelligence from structured JSON ──
+      if(j.risk!==undefined){
+        const rs=parseInt(j.risk)||0;
+        const rc=rs>75?'var(--red)':rs>55?'var(--org)':rs>35?'var(--yel)':'var(--grn)';
+        const rEl=document.getElementById('ibRisk');if(rEl){rEl.textContent=rs;rEl.style.color=rc;}
+        const rlEl=document.getElementById('ibRiskL');if(rlEl){rlEl.textContent=j.risk_level||'---';rlEl.style.color=rc;}
+        const rf=document.getElementById('riskBarFill');if(rf){rf.style.width=Math.min(rs,100)+'%';rf.style.background=rc;}
+        const aeR=document.getElementById('aeRisk');if(aeR){aeR.textContent=rs+'/100';aeR.style.color=rc;}
+      }
+      if(j.fg!==undefined){
+        const fv=parseInt(j.fg)||50;
+        const fc=fv<25?'var(--red)':fv<45?'var(--org)':fv<55?'var(--sky)':'var(--grn)';
+        const fEl=document.getElementById('ibFG');if(fEl){fEl.textContent=fv;fEl.style.color=fc;}
+        const arabic=fv<25?'خوف شديد':fv<45?'خوف':fv<55?'محايد':fv<75?'طمع':'طمع شديد';
+        const flEl=document.getElementById('ibFGl');if(flEl){flEl.textContent=S.lang==='ar'?arabic:j.fg_class||'---';flEl.style.color=fc;}
+        const needle=document.getElementById('fgNeedle');if(needle)needle.setAttribute('transform',`rotate(${(fv/100)*180-90},40,44)`);
+      }
+      if(j.flow||j.flow_type){
+        const fv2=j.flow||j.flow_type;
+        const ftMap={'CEX_INFLOW':{s:'CEX IN',c:'var(--red)'},'WHALE_OUTFLOW':{s:'OUTFLOW',c:'var(--grn)'},'DEFI_INFLOW':{s:'DeFi',c:'var(--pur)'},'DEFI_LENDING':{s:'Lending',c:'var(--pur)'},'STABLECOIN_MOVE':{s:'STABLE',c:'var(--sky)'}};
+        const ft2=ftMap[fv2]||{s:fv2?.substring(0,8)||'---',c:'var(--sky)'};
+        const ibF=document.getElementById('ibFlow');if(ibF){ibF.textContent=ft2.s;ibF.style.color=ft2.c;}
+        const ibFL=document.getElementById('ibFlowL');if(ibFL){ibFL.textContent=fv2||'---';ibFL.style.color=ft2.c;}
+        const aeW=document.getElementById('aeWhale');if(aeW){aeW.textContent=ft2.s;aeW.style.color=ft2.c;}
+      }
+      if(j.regime){
+        const regMap={'LIQUIDITY_TRAP':['🪤','warn'],'REAL_DUMP':['📉','bear'],'REAL_PUMP':['🚀','bull'],'FAKE_PUMP':['⚡','warn'],'FAKE_DUMP':['⚡','warn'],'EXTREME_FEAR':['😱','warn'],'EXTREME_GREED':['🤑','warn'],'CROWDED_LONGS':['⚠️','warn'],'CROWDED_SHORTS':['💎','bull'],'NEUTRAL':['⚖️','neu']};
+        const rd=regMap[j.regime]||['🔄','neu'];
+        const ri=document.getElementById('regimeIcon');if(ri)ri.textContent=rd[0];
+        const rt=document.getElementById('regimeTitle');if(rt)rt.textContent=j.regime.replace(/_/g,' ');
+        const rbEl=document.getElementById('regimeBadge');
+        if(rbEl){rbEl.textContent=j.regime;const badgeColors={'bull':'background:var(--grnD);color:var(--grn);border:1px solid rgba(0,232,122,0.3)','bear':'background:var(--redD);color:var(--red);border:1px solid rgba(255,45,85,0.3)','warn':'background:var(--orgD);color:var(--org);border:1px solid rgba(255,136,0,0.3)','neu':'background:var(--skyD);color:var(--sky);border:1px solid rgba(0,170,255,0.3)'};rbEl.style.cssText=badgeColors[rd[1]]||badgeColors['neu'];}
+        const aeReg=document.getElementById('aeRegime');if(aeReg)aeReg.textContent=j.regime.substring(0,7);
+      }
+      if(j.ls){const lsEl=document.getElementById('aeLS');if(lsEl)lsEl.textContent=parseFloat(j.ls).toFixed(2);}
+      if(j.rsi){const rsEl=document.getElementById('wvSig');if(rsEl)rsEl.textContent='RSI '+j.rsi;}
+      // Populate sectors from JSON if live not loaded
+      if(j.ai_chg&&!S.sectors.AI){
+        S.sectors={AI:{ch:parseFloat(j.ai_chg)||0,pr:parseFloat(j.ai_p)||0},RWA:{ch:parseFloat(j.rwa_chg)||0,pr:parseFloat(j.rwa_p)||0},MEME:{ch:parseFloat(j.meme_chg)||0,pr:parseFloat(j.meme_p)||0},INFRA:{ch:parseFloat(j.infra_chg)||0,pr:parseFloat(j.infra_p)||0}};
+        renderSectors();
+      }
+      // Update forecast with JSON data
+      if(j.risk){S.deriv.riskScore=parseInt(j.risk)||0;}
+      if(j.regime){S.rpt.regime=j.regime;}
       // Populate intelligence data from JSON if available
-      if(j.risk_score){document.getElementById('ibRisk').textContent=j.risk_score;const col=j.risk_score>75?'var(--red)':j.risk_score>50?'var(--org)':j.risk_score>25?'var(--yel)':'var(--grn)';document.getElementById('ibRisk').style.color=col;document.getElementById('ibRiskL').textContent=j.risk_level||'---';document.getElementById('riskBarFill').style.width=j.risk_score+'%';document.getElementById('riskBarFill').style.background=col;}
-      if(j.flow_type){const ft={EXCHANGE_INFLOW:{short:'CEX IN',color:'var(--red)'},EXCHANGE_OUTFLOW:{short:'OUTFLOW',color:'var(--grn)'},DEFI_FLOW:{short:'DeFi',color:'var(--pur)'},STABLECOIN_FLOW:{short:'STABLE',color:'var(--sky)'}};const f=ft[j.flow_type]||{short:j.flow_type,color:'var(--sky)'};document.getElementById('ibFlow').textContent=f.short;document.getElementById('ibFlow').style.color=f.color;document.getElementById('ibFlowL').textContent=j.flow_confidence||'---';document.getElementById('ibFlowL').style.color=f.color;}
+      if(j.risk!==undefined||j.risk_score){const rs=parseInt(j.risk||j.risk_score)||0;const rc=rs>75?'var(--red)':rs>50?'var(--org)':rs>25?'var(--yel)':'var(--grn)';document.getElementById('ibRisk').textContent=j.risk_score;const col=j.risk_score>75?'var(--red)':j.risk_score>50?'var(--org)':j.risk_score>25?'var(--yel)':'var(--grn)';document.getElementById('ibRisk').style.color=col;document.getElementById('ibRiskL').textContent=j.risk_level||'---';document.getElementById('riskBarFill').style.width=j.risk_score+'%';document.getElementById('riskBarFill').style.background=col;}
+      if(j.regime||j.market_regime){
+        const reg=j.regime||j.market_regime;
+        const regMap={'LIQUIDITY_TRAP':'🪤','REAL_DUMP':'📉','REAL_PUMP':'🚀','EXTREME_FEAR':'😱','EXTREME_GREED':'🤑','CROWDED_LONGS':'⚠️','CROWDED_SHORTS':'💎','NEUTRAL':'⚖️'};
+        const rIcon=document.getElementById('regimeIcon');if(rIcon)rIcon.textContent=regMap[reg]||'🔄';
+        const rTitle=document.getElementById('regimeTitle');if(rTitle)rTitle.textContent=reg.replace(/_/g,' ');
+      }
+      if(j.flow_type||j.flow){const ft={EXCHANGE_INFLOW:{short:'CEX IN',color:'var(--red)'},EXCHANGE_OUTFLOW:{short:'OUTFLOW',color:'var(--grn)'},DEFI_FLOW:{short:'DeFi',color:'var(--pur)'},STABLECOIN_FLOW:{short:'STABLE',color:'var(--sky)'}};const f=ft[j.flow_type]||{short:j.flow_type,color:'var(--sky)'};document.getElementById('ibFlow').textContent=f.short;document.getElementById('ibFlow').style.color=f.color;document.getElementById('ibFlowL').textContent=j.flow_confidence||'---';document.getElementById('ibFlowL').style.color=f.color;}
     }catch(e){txt=raw.trim();}
     if(!txt||txt.length<20)throw new Error('empty');
     const vMap={'فخ سيولة':'warn','تراكم مؤسسي':'bull','هبوط حقيقي':'bear','صعود حقيقي':'bull','بمب مصطنع':'warn','دمب مصطنع':'bear','سوق محايد':'neu'};
@@ -828,7 +890,17 @@ async function loadReport(){
     const types=['POSITIONING INTELLIGENCE','CAPITAL FLOW','RISK WATCH','OPPORTUNITY WATCH','DAILY BRIEF'];
     const matched=types.find(tp=>txt.includes(tp));
     document.getElementById('anaBadge').textContent=matched||'INTELLIGENCE REPORT';
-    document.getElementById('anaText').innerHTML=txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+    // Show send decision
+      const sendMatch=txt.match(/SEND_DECISION:\s*(URGENT|IMPORTANT|REPORT|SKIP)/);
+      const sendEl=document.getElementById('sendBadge');
+      if(sendEl&&sendMatch){
+        const sd=sendMatch[1];
+        sendEl.style.display='block';
+        sendEl.textContent=sd;
+        const sdColors={URGENT:'background:var(--redD);color:var(--red);border:1px solid rgba(255,45,85,0.3)',IMPORTANT:'background:var(--orgD);color:var(--org);border:1px solid rgba(255,136,0,0.3)',REPORT:'background:var(--skyD);color:var(--sky);border:1px solid rgba(0,170,255,0.3)',SKIP:'background:var(--bdr);color:var(--txt2)'};
+        sendEl.style.cssText=(sdColors[sd]||sdColors.SKIP)+';font-family:var(--raj);font-size:7px;letter-spacing:2px;padding:2px 7px;border-radius:2px;';
+      }
+      document.getElementById('anaText').innerHTML=txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
     const cm=txt.match(/مستوى الثقة[\s:]*(مرتفع|متوسط|منخفض)/);const conf=cm?.[1];
     const setC=(d,l)=>{const dot=document.getElementById(d),lbl=document.getElementById(l);if(conf==='مرتفع'){dot.className='cdot c-h';lbl.textContent=S.lang==='ar'?'ثقة مرتفعة':'High';}else if(conf==='متوسط'){dot.className='cdot c-m';lbl.textContent=S.lang==='ar'?'ثقة متوسطة':'Medium';}else{dot.className='cdot c-l';lbl.textContent=S.lang==='ar'?'ثقة منخفضة':'Low';}};
     setC('confDot','confLbl');setC('confDot2','confLbl2');
