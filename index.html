@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="عقل السوق">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
-<title>MIND OF MARKET X — عقل السوق</title>
+<title>MIND OF MARKET X — Ultimate Intelligence | عقل السوق</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700;800&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -373,7 +373,7 @@ body{font-family:var(--body);color:var(--txt);display:flex;flex-direction:column
   <!-- INTELLIGENCE BAR: Risk + Regime + Flow -->
   <div>
     <div class="sh"><div class="sh-t">⚡ <span class="i18n" data-ar="مؤشرات الذكاء" data-en="Intelligence Scores">مؤشرات الذكاء</span></div><div class="sh-r" id="intelTs">---</div></div>
-    <div class="intel-bar">
+    <div class="intel-bar" style="grid-template-columns:repeat(4,1fr);">
       <div class="ib">
         <div class="ib-val" id="ibRisk" style="color:var(--wht)">--</div>
         <div class="ib-lbl">RISK SCORE</div>
@@ -390,9 +390,80 @@ body{font-family:var(--body);color:var(--txt);display:flex;flex-direction:column
         <div class="ib-lbl">FLOW TYPE</div>
         <div class="ib-sub" id="ibFlowL" style="color:var(--txt2)">---</div>
       </div>
+      <div class="ib" id="ibConfCard">
+        <div class="ib-val" id="ibConf" style="color:var(--wht)">0/5</div>
+        <div class="ib-lbl">CONFL.</div>
+        <div class="ib-sub" id="ibConfL" style="color:var(--txt2)">---</div>
+      </div>
     </div>
   </div>
 
+
+  <!-- CONFLUENCE SCORE -->
+  <div>
+    <div class="sh"><div class="sh-t">🎯 <span class="i18n" data-ar="Confluence Score" data-en="Confluence Score">Confluence Score</span></div><div class="sh-r" id="cfTs">---</div></div>
+    <div style="background:var(--panel);border:1px solid var(--bdr2);border-radius:var(--r);padding:9px 11px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;">
+        <div style="font-size:10px;font-weight:700;color:var(--wht);" id="cfTitle">جاري الحساب...</div>
+        <div style="font-family:var(--mono);font-size:20px;font-weight:900;" id="cfScore" style="color:var(--sky)">0/5</div>
+      </div>
+      <div style="display:flex;gap:5px;margin-bottom:6px;" id="cfDots">
+        <div id="cfd0" style="flex:1;height:7px;border-radius:3px;background:var(--bdr);transition:all 0.3s;"></div>
+        <div id="cfd1" style="flex:1;height:7px;border-radius:3px;background:var(--bdr);transition:all 0.3s;"></div>
+        <div id="cfd2" style="flex:1;height:7px;border-radius:3px;background:var(--bdr);transition:all 0.3s;"></div>
+        <div id="cfd3" style="flex:1;height:7px;border-radius:3px;background:var(--bdr);transition:all 0.3s;"></div>
+        <div id="cfd4" style="flex:1;height:7px;border-radius:3px;background:var(--bdr);transition:all 0.3s;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3px;" id="cfSignals">
+        <div style="text-align:center;font-family:var(--raj);font-size:6px;color:var(--txt2);" id="cfs0">BTC</div>
+        <div style="text-align:center;font-family:var(--raj);font-size:6px;color:var(--txt2);" id="cfs1">L/S</div>
+        <div style="text-align:center;font-family:var(--raj);font-size:6px;color:var(--txt2);" id="cfs2">RSI</div>
+        <div style="text-align:center;font-family:var(--raj);font-size:6px;color:var(--txt2);" id="cfs3">TAKER</div>
+        <div style="text-align:center;font-family:var(--raj);font-size:6px;color:var(--txt2);" id="cfs4">OI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BTC/ETH DIVERGENCE & SECTOR DIV -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;" id="divAlerts"></div>
+
+  <!-- RSI MULTI-TF -->
+  <div>
+    <div class="sh"><div class="sh-t">📈 <span class="i18n" data-ar="RSI متعدد الإطار" data-en="Multi-TF RSI">RSI متعدد الإطار</span></div><div class="sh-r" id="rsiSigBadge"></div></div>
+    <div style="background:var(--panel);border:1px solid var(--bdr);border-radius:var(--r);padding:8px 11px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+        <div style="font-family:var(--raj);font-size:8px;color:var(--txt2);width:20px;">1H</div>
+        <div style="flex:1;height:6px;background:var(--bdr);border-radius:3px;overflow:hidden;"><div id="rsi1hBar" style="height:100%;width:50%;background:var(--sky);border-radius:3px;transition:width 0.5s;"></div></div>
+        <div id="rsi1hVal" style="font-family:var(--raj);font-size:10px;font-weight:700;color:var(--sky);width:24px;text-align:right;">50</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+        <div style="font-family:var(--raj);font-size:8px;color:var(--txt2);width:20px;">4H</div>
+        <div style="flex:1;height:6px;background:var(--bdr);border-radius:3px;overflow:hidden;"><div id="rsi4hBar" style="height:100%;width:50%;background:var(--sky);border-radius:3px;transition:width 0.5s;"></div></div>
+        <div id="rsi4hVal" style="font-family:var(--raj);font-size:10px;font-weight:700;color:var(--sky);width:24px;text-align:right;">50</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="font-family:var(--raj);font-size:8px;color:var(--txt2);width:20px;">1D</div>
+        <div style="flex:1;height:6px;background:var(--bdr);border-radius:3px;overflow:hidden;"><div id="rsi1dBar" style="height:100%;width:50%;background:var(--sky);border-radius:3px;transition:width 0.5s;"></div></div>
+        <div id="rsi1dVal" style="font-family:var(--raj);font-size:10px;font-weight:700;color:var(--sky);width:24px;text-align:right;">50</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACKTESTING -->
+  <div id="backtestSection" style="display:none;">
+    <div class="sh"><div class="sh-t">🎯 <span class="i18n" data-ar="دقة التوقع السابق" data-en="Previous Accuracy">دقة التوقع السابق</span></div></div>
+    <div style="background:var(--panel);border:1px solid var(--bdr2);border-radius:var(--r);padding:9px 11px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+        <div style="font-family:var(--raj);font-size:8px;color:var(--txt2);">النتيجة</div>
+        <div id="btResult" style="font-family:var(--raj);font-size:12px;font-weight:700;color:var(--sky);">---</div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-family:var(--raj);font-size:8px;color:var(--txt2);">السعر السابق</div>
+        <div id="btPrevBTC" style="font-family:var(--raj);font-size:10px;color:var(--txt2);">---</div>
+      </div>
+      <div id="btNote" style="font-size:9px;color:var(--txt);margin-top:6px;line-height:1.5;">---</div>
+    </div>
+  </div>
   <!-- MARKET REGIME -->
   <div class="regime-box" id="regimeBox">
     <div class="regime-icon" id="regimeIcon">🔄</div>
@@ -639,7 +710,7 @@ async function fetchDerivatives(){
     document.getElementById('iOIs').textContent=oiD>=0?'يرتفع':'ينخفض';document.getElementById('iOIs').style.color=oiD>=0?'var(--grn)':'var(--red)';
     const tkEl=document.getElementById('iTaker');tkEl.textContent=tkR.toFixed(3);tkEl.style.color=tkR>1.2?'var(--grn)':tkR<0.8?'var(--red)':'var(--wht)';
     document.getElementById('iTakers').textContent=tkR>1.2?'شراء':tkR<0.8?'بيع':'محايد';document.getElementById('iTakers').style.color=tkR>1.2?'var(--grn)':tkR<0.8?'var(--red)':'var(--txt2)';
-    updateRiskScore();updateRegime();updateForecast();updateWaveAlert();
+    updateRiskScore();updateRegime();updateForecast();updateWaveAlert();updateDivergence();updateConfluence();
     document.getElementById('intelTs').textContent=now4();
   }catch(e){}
 }
@@ -872,7 +943,9 @@ async function loadReport(){
       if(j.risk){S.deriv.riskScore=parseInt(j.risk)||0;}
       if(j.regime){S.rpt.regime=j.regime;}
       // Populate intelligence data from JSON if available
-      if(j.risk!==undefined||j.risk_score){const rs=parseInt(j.risk||j.risk_score)||0;const rc=rs>75?'var(--red)':rs>50?'var(--org)':rs>25?'var(--yel)':'var(--grn)';document.getElementById('ibRisk').textContent=j.risk_score;const col=j.risk_score>75?'var(--red)':j.risk_score>50?'var(--org)':j.risk_score>25?'var(--yel)':'var(--grn)';document.getElementById('ibRisk').style.color=col;document.getElementById('ibRiskL').textContent=j.risk_level||'---';document.getElementById('riskBarFill').style.width=j.risk_score+'%';document.getElementById('riskBarFill').style.background=col;}
+      // Backtesting
+if(j.prev_btc)updateBacktest(j);
+if(j.risk!==undefined||j.risk_score){const rs=parseInt(j.risk||j.risk_score)||0;const rc=rs>75?'var(--red)':rs>50?'var(--org)':rs>25?'var(--yel)':'var(--grn)';document.getElementById('ibRisk').textContent=j.risk_score;const col=j.risk_score>75?'var(--red)':j.risk_score>50?'var(--org)':j.risk_score>25?'var(--yel)':'var(--grn)';document.getElementById('ibRisk').style.color=col;document.getElementById('ibRiskL').textContent=j.risk_level||'---';document.getElementById('riskBarFill').style.width=j.risk_score+'%';document.getElementById('riskBarFill').style.background=col;}
       if(j.regime||j.market_regime){
         const reg=j.regime||j.market_regime;
         const regMap={'LIQUIDITY_TRAP':'🪤','REAL_DUMP':'📉','REAL_PUMP':'🚀','EXTREME_FEAR':'😱','EXTREME_GREED':'🤑','CROWDED_LONGS':'⚠️','CROWDED_SHORTS':'💎','NEUTRAL':'⚖️'};
@@ -917,6 +990,120 @@ async function loadReport(){
   btn.disabled=false;
 }
 
+// ── CONFLUENCE SCORE ──
+function updateConfluence(){
+  const d=S.deriv;if(!d.lsR)return;
+  const btcChg=S.prices.BTC?.change||0;
+  const fg=d.fg||50;
+  const rsi1h=S.rsi?.h1||50;
+  let score=0;
+  const active=[false,false,false,false,false];
+  if(Math.abs(btcChg)>1.5){score++;active[0]=true;}
+  if(d.lsR>2.0||d.lsR<0.7){score++;active[1]=true;}
+  if(rsi1h>65||rsi1h<35){score++;active[2]=true;}
+  if(d.tkR<0.8||d.tkR>1.3){score++;active[3]=true;}
+  if(d.oiD&&Math.abs(d.oiD)>1){score++;active[4]=true;}
+  S.deriv.confluence=score;
+  const col=score>=4?'var(--red)':score>=3?'var(--org)':score>=2?'var(--sky)':'var(--grn)';
+  const cfEl=document.getElementById('cfScore');if(cfEl){cfEl.textContent=score+'/5';cfEl.style.color=col;}
+  for(let i=0;i<5;i++){
+    const dot=document.getElementById('cfd'+i);
+    if(dot){dot.style.background=active[i]?col:'var(--bdr)';dot.style.boxShadow=active[i]?`0 0 6px ${col}`:'none';}
+  }
+  const labels=['محايد تام','إشارة ضعيفة','إشارة متوسطة','إشارة قوية','إشارة قوية جداً'];
+  const t=document.getElementById('cfTitle');if(t){t.textContent=labels[Math.min(score,4)];t.style.color=col;}
+  const ibC=document.getElementById('ibConf');if(ibC){ibC.textContent=score+'/5';ibC.style.color=col;}
+  const ibCL=document.getElementById('ibConfL');if(ibCL){ibCL.textContent=score>=3?'قوي':'ضعيف';ibCL.style.color=col;}
+  document.getElementById('cfTs').textContent=now4();
+}
+
+// ── BTC/ETH DIVERGENCE ──
+function updateDivergence(){
+  const btcChg=S.prices.BTC?.change||0;
+  const ethChg=S.prices.ETH?.change||0;
+  const diff=btcChg-ethChg;
+  const divBox=document.getElementById('divAlerts');
+  if(!divBox)return;
+  let html='';
+  if(Math.abs(diff)>2){
+    const col=diff>2?'var(--red)':'var(--grn)';
+    const desc=diff>2?(S.lang==='ar'?'ETH ضعيف vs BTC':'ETH weak vs BTC'):(S.lang==='ar'?'ETH قوي vs BTC':'ETH strong vs BTC');
+    html+=`<div style="background:var(--panel);border:1px solid ${col}33;border-radius:var(--r);padding:7px 9px;">
+      <div style="font-family:var(--raj);font-size:7px;color:${col};letter-spacing:1px;margin-bottom:3px;">BTC/ETH DIV</div>
+      <div style="font-family:var(--raj);font-size:14px;font-weight:900;color:${col};">${(diff>0?'+':'')+diff.toFixed(1)}%</div>
+      <div style="font-size:8px;color:var(--txt);margin-top:2px;">${desc}</div>
+    </div>`;
+  }
+  const btcChg2=S.prices.BTC?.change||0;
+  const aiChg=S.sectors.AI?.ch||0;
+  const rwaChg=S.sectors.RWA?.ch||0;
+  if(btcChg2<-2&&(aiChg>3||rwaChg>3)){
+    const div=aiChg>rwaChg?'AI':'RWA';
+    const chg=aiChg>rwaChg?aiChg:rwaChg;
+    html+=`<div style="background:var(--panel);border:1px solid rgba(136,85,255,0.4);border-radius:var(--r);padding:7px 9px;">
+      <div style="font-family:var(--raj);font-size:7px;color:var(--pur);letter-spacing:1px;margin-bottom:3px;">SECTOR DIV 🔄</div>
+      <div style="font-family:var(--raj);font-size:14px;font-weight:900;color:var(--pur);">${div} +${chg.toFixed(1)}%</div>
+      <div style="font-size:8px;color:var(--txt);margin-top:2px;">${S.lang==='ar'?'تدوير مؤسسي محتمل':'Institutional rotation?'}</div>
+    </div>`;
+  }
+  divBox.innerHTML=html;
+}
+
+// ── RSI MULTI-TF ──
+async function fetchRSIMultiTF(){
+  try{
+    const [r1h,r4h,r1d]=await Promise.all([
+      fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=16'),
+      fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=4h&limit=16'),
+      fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=16')
+    ]);
+    const [c1h,c4h,c1d]=await Promise.all([r1h.json(),r4h.json(),r1d.json()]);
+    const calc=(c)=>{const cl=c.map(x=>parseFloat(x[4]));let g=0,l=0;for(let i=1;i<15;i++){const d=cl[i]-cl[i-1];if(d>0)g+=d;else l+=Math.abs(d);}const rs=(g/14)/(l/14||0.001);return Math.round(100-(100/(1+rs)));};
+    S.rsi={h1:calc(c1h),h4:calc(c4h),d1:calc(c1d)};
+    const rsiColor=v=>v>70?'var(--red)':v<30?'var(--grn)':'var(--sky)';
+    [['1h',S.rsi.h1],['4h',S.rsi.h4],['1d',S.rsi.d1]].forEach(([tf,v])=>{
+      const bar=document.getElementById('rsi'+tf+'Bar');
+      const val=document.getElementById('rsi'+tf+'Val');
+      const col=rsiColor(v);
+      if(bar){bar.style.width=v+'%';bar.style.background=col;}
+      if(val){val.textContent=v;val.style.color=col;}
+    });
+    const {h1,h4,d1}=S.rsi;
+    let sig='NEUTRAL',sigCol='var(--sky)';
+    if(h4>70&&d1>65){sig='OVERBOUGHT ALL TF';sigCol='var(--red)';}
+    else if(h4<30&&d1<35){sig='OVERSOLD ALL TF';sigCol='var(--grn)';}
+    else if(h4>70){sig='OVERBOUGHT 4H';sigCol='var(--org)';}
+    else if(h4<30){sig='OVERSOLD 4H';sigCol='var(--grn)';}
+    else if(d1>70){sig='OVERBOUGHT DAILY';sigCol='var(--org)';}
+    else if(d1<30){sig='OVERSOLD DAILY';sigCol='var(--grn)';}
+    const sb=document.getElementById('rsiSigBadge');
+    if(sb){sb.textContent=sig;sb.style.color=sigCol;sb.style.fontFamily='var(--raj)';sb.style.fontSize='8px';}
+    S.deriv.rsiSignal=sig;
+    updateConfluence();updateWaveAlert();
+  }catch(e){}
+}
+
+// ── BACKTESTING ──
+function updateBacktest(j){
+  if(!j)return;
+  const section=document.getElementById('backtestSection');
+  const prevBTC=parseFloat(j.prev_btc||0);
+  const curBTC=parseFloat(j.btc||0);
+  if(!prevBTC||!curBTC){if(section)section.style.display='none';return;}
+  if(section)section.style.display='block';
+  const isUp=curBTC>prevBTC;
+  const diff=((curBTC-prevBTC)/prevBTC*100).toFixed(2);
+  const col=isUp?'var(--grn)':'var(--red)';
+  const res=document.getElementById('btResult');
+  if(res){res.textContent=isUp?`▲ +${diff}%`:`▼ ${diff}%`;res.style.color=col;}
+  const prev=document.getElementById('btPrevBTC');
+  if(prev)prev.textContent='$'+prevBTC.toLocaleString('en',{maximumFractionDigits:0});
+  const note=document.getElementById('btNote');
+  if(note)note.textContent=isUp?
+    (S.lang==='ar'?`السعر ارتفع +${diff}% منذ التقرير السابق`:`Price rose +${diff}% since last report`):
+    (S.lang==='ar'?`السعر انخفض ${diff}% منذ التقرير السابق`:`Price fell ${diff}% since last report`);
+}
+
 // ── INIT ──
 initPriceCards();
 fetchPricesREST();
@@ -928,6 +1115,9 @@ fetchSectors();
 fetchWhales();
 fetchNews();
 setTimeout(loadReport,1500);
+setTimeout(fetchRSIMultiTF,2000);
+setTimeout(updateConfluence,3000);
+setTimeout(updateDivergence,3500);
 
 setInterval(fetchPricesREST,15000);
 setInterval(fetchDerivatives,30000);
@@ -937,6 +1127,9 @@ setInterval(fetchSectors,60000);
 setInterval(fetchWhales,60000);
 setInterval(fetchNews,180000);
 setInterval(loadReport,14400000);
+setInterval(fetchRSIMultiTF,300000);
+setInterval(updateConfluence,30000);
+setInterval(updateDivergence,15000);
 </script>
 </body>
 </html>
